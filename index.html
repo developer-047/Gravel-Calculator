@@ -170,7 +170,7 @@
             <nav class="hidden md:flex gap-6">
                 <a href="index.html" class="text-blue-600 font-bold transition-colors">Calculator</a>
                 <a href="about.html" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">About Us</a>
-                <a href="contact.html" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Request Quote</a>
+                <a href="contact.html" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Contact</a>
             </nav>
         </div>
     </header>
@@ -527,12 +527,12 @@ Using a tool like this is the first step to a successful project. Take your time
                             </div>
                         </div>
 
-                        <!-- Get Quote Button -->
+                        <!-- Contact Button -->
                          <div class="mt-6 border-t border-slate-100 pt-4">
-                            <button id="btn-get-quote" onclick="getQuote()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all">
-                                <span>Request Quote for this Project</span>
+                            <a href="contact.html" id="btn-contact" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all">
+                                <span>Contact Us for Your Project</span>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                            </button>
+                            </a>
                         </div>
 
                         <!-- Export Actions (PDF / Print) - Desktop only -->
@@ -612,7 +612,7 @@ Using a tool like this is the first step to a successful project. Take your time
                     <h4 class="font-bold text-slate-900 mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm text-slate-600">
                         <li><a href="index.html" class="hover:text-blue-600">Calculator</a></li>
-                        <li><a href="contact.html" class="hover:text-blue-600">Get a Quote</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-600">Contact</a></li>
                         <li><a href="about.html" class="hover:text-blue-600">About Us</a></li>
                     </ul>
                 </div>
@@ -632,31 +632,6 @@ Using a tool like this is the first step to a successful project. Take your time
     </div> <!-- End print:hidden wrapper -->
 
     <script src="script.js"></script>
-    <script>
-        // Quote Navigation Logic
-        function getQuote() {
-            // Gather current results
-            const volume = document.getElementById('result-volume').innerText;
-            const weight = document.getElementById('result-weight').innerText;
-            const bags = document.getElementById('result-bags').innerText;
-            
-            // Gather input config
-            const material = document.getElementById('material-select').value;
-            const activeShapeBtn = document.querySelector('.shape-btn.active');
-            const shape = activeShapeBtn ? activeShapeBtn.dataset.shape : 'custom';
 
-            // Build URL
-            const params = new URLSearchParams({
-                volume: volume,
-                weight: weight,
-                bags: bags,
-                material: material,
-                shape: shape
-            });
-
-            // Navigate
-            window.location.href = `contact.html?${params.toString()}`;
-        }
-    </script>
 </body>
 </html>
