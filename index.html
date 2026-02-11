@@ -78,8 +78,6 @@
       ]
     }
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2116230961044763"
-     crossorigin="anonymous"></script>
 </head>
 <body class="bg-slate-50 min-h-screen">
     
@@ -172,7 +170,7 @@
             <nav class="hidden md:flex gap-6">
                 <a href="index.html" class="text-blue-600 font-bold transition-colors">Calculator</a>
                 <a href="about.html" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">About Us</a>
-                <a href="contact.html" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Contact</a>
+                <a href="contact.html" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Request Quote</a>
             </nav>
         </div>
     </header>
@@ -529,12 +527,12 @@ Using a tool like this is the first step to a successful project. Take your time
                             </div>
                         </div>
 
-                        <!-- Contact Button -->
+                        <!-- Get Quote Button -->
                          <div class="mt-6 border-t border-slate-100 pt-4">
-                            <a href="contact.html" id="btn-contact" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all">
-                                <span>Contact Us for Your Project</span>
+                            <button id="btn-get-quote" onclick="getQuote()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all">
+                                <span>Request Quote for this Project</span>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                            </a>
+                            </button>
                         </div>
 
                         <!-- Export Actions (PDF / Print) - Desktop only -->
@@ -602,6 +600,162 @@ Using a tool like this is the first step to a successful project. Take your time
         </div>
     </main>
 
+    <!-- FAQ Section -->
+    <section id="faq-section" class="container mx-auto px-4 py-12 md:py-16">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">Frequently Asked Questions</h2>
+                <p class="text-slate-500 text-sm md:text-base">Expert answers to the most common gravel and aggregate questions.</p>
+            </div>
+
+            <div class="faq-list space-y-3">
+
+                <!-- FAQ 1 -->
+                <details class="faq-item group" id="faq-1">
+                    <summary class="faq-summary">
+                        <span class="faq-question">How deep should I make my gravel driveway?</span>
+                        <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>For a standard residential driveway, the recommended depth is <strong>4 to 6 inches (10–15 cm)</strong>. If you are parking heavy trucks or RVs, you should increase this to <strong>8 inches</strong>.</p>
+                        <div class="faq-tip">
+                            <span class="faq-tip-label">Pro Tip</span>
+                            <p>Do not lay all 6 inches at once. Lay it in 3 distinct layers of 2 inches each, compacting (tamping) each layer before adding the next. This prevents your car tires from sinking into loose stone.</p>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details class="faq-item group" id="faq-2">
+                    <summary class="faq-summary">
+                        <span class="faq-question">How much does gravel "shrink" after compaction?</span>
+                        <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>You should always order <strong>10% to 20% more</strong> gravel than your raw calculation. When you spread gravel and drive over it, it settles and compacts, reducing its initial volume.</p>
+                        <div class="faq-tip">
+                            <span class="faq-tip-label">The Rule</span>
+                            <p>If your calculator says you need 10 cubic yards, order 11 or 12 cubic yards to ensure you don't run short.</p>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details class="faq-item group" id="faq-3">
+                    <summary class="faq-summary">
+                        <span class="faq-question">What is the difference between Pea Gravel and Crushed Stone?</span>
+                        <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="faq-answer">
+                        <div class="faq-compare">
+                            <div class="faq-compare-card faq-compare-pea">
+                                <h4>🪨 Pea Gravel</h4>
+                                <p>Small, round, and smooth stones (like marbles). Excellent for walkways, patios, and drainage but <strong>bad for driveways</strong> because it shifts under tires.</p>
+                            </div>
+                            <div class="faq-compare-card faq-compare-crushed">
+                                <h4>⛰️ Crushed Stone</h4>
+                                <p>Angular and jagged. These stones lock together when compacted, creating a solid surface that is <strong>perfect for driveways</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details class="faq-item group" id="faq-4">
+                    <summary class="faq-summary">
+                        <span class="faq-question">How do I calculate gravel for an L-shaped or irregular area?</span>
+                        <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>The easiest method is to break your area into simpler shapes (rectangles).</p>
+                        <ol class="faq-steps">
+                            <li>Split your L-shape into <strong>Rectangle A</strong> and <strong>Rectangle B</strong>.</li>
+                            <li>Measure the <strong>Length</strong> and <strong>Width</strong> of each.</li>
+                            <li>Use our <strong>"L-Shape" mode above</strong> to enter these dimensions separately. The calculator will combine them to give you the total tonnage required.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- FAQ 5 -->
+                <details class="faq-item group" id="faq-5">
+                    <summary class="faq-summary">
+                        <span class="faq-question">How much does a cubic yard of gravel weigh?</span>
+                        <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>On average, a cubic yard of standard gravel weighs approximately <strong>2,800 lbs (1.4 tons)</strong>. However, this varies by material:</p>
+                        <div class="faq-weight-table">
+                            <div class="faq-weight-row">
+                                <span class="faq-weight-material">⛰️ Crushed Stone</span>
+                                <span class="faq-weight-value">~2,700 lbs / yd³</span>
+                            </div>
+                            <div class="faq-weight-row">
+                                <span class="faq-weight-material">🏖️ Sand</span>
+                                <span class="faq-weight-value">~2,700 lbs / yd³</span>
+                            </div>
+                            <div class="faq-weight-row">
+                                <span class="faq-weight-material">🌱 Loose Topsoil</span>
+                                <span class="faq-weight-value">~2,100 lbs / yd³</span>
+                            </div>
+                        </div>
+                        <p class="faq-note"><strong>Note:</strong> Our calculator automatically adjusts the weight based on the material density you select.</p>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- JSON-LD Schema for FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How deep should I make my gravel driveway?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For a standard residential driveway, the recommended depth is 4 to 6 inches (10–15 cm). If you are parking heavy trucks or RVs, you should increase this to 8 inches. Pro Tip: Lay it in 3 distinct layers of 2 inches each, compacting each layer before adding the next."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does gravel shrink after compaction?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You should always order 10% to 20% more gravel than your raw calculation. When you spread gravel and drive over it, it settles and compacts, reducing its initial volume. If your calculator says you need 10 cubic yards, order 11 or 12 cubic yards."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between Pea Gravel and Crushed Stone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pea Gravel is small, round, and smooth — excellent for walkways and patios but bad for driveways because it shifts under tires. Crushed Stone is angular and jagged — these stones lock together when compacted, making it perfect for driveways."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate gravel for an L-shaped or irregular area?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Break your area into simpler rectangles. Split your L-shape into Rectangle A and Rectangle B, measure each, and use the L-Shape mode in the calculator to enter dimensions separately."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a cubic yard of gravel weigh?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On average, a cubic yard of standard gravel weighs approximately 2,800 lbs (1.4 tons). Crushed Stone: ~2,700 lbs, Sand: ~2,700 lbs, Loose Topsoil: ~2,100 lbs per cubic yard."
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 mt-16">
         <div class="container mx-auto px-4 py-8">
@@ -614,7 +768,7 @@ Using a tool like this is the first step to a successful project. Take your time
                     <h4 class="font-bold text-slate-900 mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm text-slate-600">
                         <li><a href="index.html" class="hover:text-blue-600">Calculator</a></li>
-                        <li><a href="contact.html" class="hover:text-blue-600">Contact</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-600">Get a Quote</a></li>
                         <li><a href="about.html" class="hover:text-blue-600">About Us</a></li>
                     </ul>
                 </div>
@@ -634,6 +788,31 @@ Using a tool like this is the first step to a successful project. Take your time
     </div> <!-- End print:hidden wrapper -->
 
     <script src="script.js"></script>
+    <script>
+        // Quote Navigation Logic
+        function getQuote() {
+            // Gather current results
+            const volume = document.getElementById('result-volume').innerText;
+            const weight = document.getElementById('result-weight').innerText;
+            const bags = document.getElementById('result-bags').innerText;
+            
+            // Gather input config
+            const material = document.getElementById('material-select').value;
+            const activeShapeBtn = document.querySelector('.shape-btn.active');
+            const shape = activeShapeBtn ? activeShapeBtn.dataset.shape : 'custom';
 
+            // Build URL
+            const params = new URLSearchParams({
+                volume: volume,
+                weight: weight,
+                bags: bags,
+                material: material,
+                shape: shape
+            });
+
+            // Navigate
+            window.location.href = `contact.html?${params.toString()}`;
+        }
+    </script>
 </body>
 </html>
