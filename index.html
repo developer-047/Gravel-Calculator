@@ -4,9 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Use Pro Gravel Calculator Online for accurate stone, rock, and gravel estimates. Features a metric toggle and L-shape driveway mode. Free, fast, and mobile-friendly.">
-    <title>Pro Gravel Calculator Online - Metric & Imperial Estimator</title>
+    <meta name="description" content="Free gravel calculator for driveways, roads &amp; yards. Instant cubic yards, tons &amp; bags in metric or imperial. L-shape &amp; circle modes included.">
+    <meta name="robots" content="index, follow">
+    <title>Gravel Calculator – Free Driveway, Road &amp; Yard Estimator (Metric/Imperial)</title>
+    <link rel="canonical" href="https://www.progravelcalculator.online/">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Gravel Calculator – Free Driveway, Road &amp; Yard Estimator">
+    <meta property="og:description" content="Free gravel calculator for driveways, roads &amp; yards. Instant cubic yards, tons &amp; bags in metric or imperial.">
+    <meta property="og:url" content="https://www.progravelcalculator.online/">
+    <meta property="og:image" content="https://www.progravelcalculator.online/image_8.png">
+    <meta property="og:site_name" content="Pro Gravel Calculator">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gravel Calculator – Free Driveway, Road &amp; Yard Estimator">
+    <meta name="twitter:description" content="Free gravel calculator for driveways, roads &amp; yards. Instant cubic yards, tons &amp; bags in metric or imperial.">
+    <meta name="twitter:image" content="https://www.progravelcalculator.online/image_8.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 
@@ -15,19 +28,20 @@
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Pro Gravel & Aggregate Calculator",
-      "description": "Professional gravel and aggregate calculator for construction projects. Calculate cubic yards, tons, and bags needed for rectangular, circular, and L-shaped areas.",
+      "name": "Pro Gravel Calculator",
+      "url": "https://www.progravelcalculator.online/",
+      "description": "Free gravel and aggregate calculator for driveways, roads, and yards. Instantly estimate cubic yards, tons, and bags for rectangular, circular, and L-shaped areas in metric or imperial units.",
       "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Web Browser",
+      "operatingSystem": "Any",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
       },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "ratingCount": "127"
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pro Gravel Calculator",
+        "url": "https://www.progravelcalculator.online/"
       }
     }
     </script>
@@ -75,7 +89,65 @@
           "@type": "HowToStep",
           "position": 5,
           "name": "Review Results",
-          "text": "The calculator instantly shows cubic yards needed, total tons, and number of 50lb bags required. Remember to order 5-10% extra for waste and settling."
+          "text": "The calculator instantly shows cubic yards needed, total tons, and number of 50 lb bags required. Remember to order 5-10% extra for waste and settling."
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD Schema for FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many cubic yards of gravel do I need?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multiply your area's length × width × depth (all in feet) then divide by 27 to get cubic yards. For example, a 10 ft × 10 ft area at 3 inches deep = (10 × 10 × 0.25) ÷ 27 ≈ 0.93 cubic yards. Use the calculator above for instant results."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many tons of gravel do I need?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multiply the cubic yards by the material's density. Crushed stone weighs about 1.35 tons per cubic yard; pea gravel about 1.42 tons per cubic yard. The calculator converts automatically once you select your material."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How deep should a gravel driveway be?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most driveway installations use a 4–6 inch depth of compacted gravel. A base layer of larger crushed stone topped with a 2–3 inch finish layer of pea gravel or smaller aggregate is a common two-layer approach."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between pea gravel and crushed stone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pea gravel is smooth and rounded (great for paths and gardens) while crushed stone is angular and compacts tightly (better for driveways and structural bases). They have slightly different densities, which the calculator accounts for automatically."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.progravelcalculator.online/"
         }
       ]
     }
@@ -130,15 +202,15 @@
                     <div class="space-y-2 text-sm">
                         <div class="flex justify-between border-b border-slate-200 py-1">
                             <span class="text-slate-600">Total Volume:</span>
-                            <span class="font-bold text-blue-700"><span id="print-volume">0</span> Yards³</span>
+                            <span class="font-bold text-blue-700"><span id="print-volume">0.93</span> Yards³</span>
                         </div>
                         <div class="flex justify-between border-b border-slate-200 py-1">
                             <span class="text-slate-600">Est. Weight:</span>
-                            <span class="font-bold text-blue-700"><span id="print-weight">0</span> Tons</span>
+                            <span class="font-bold text-blue-700"><span id="print-weight">1.31</span> Tons</span>
                         </div>
                         <div class="flex justify-between border-b border-slate-200 py-1">
                             <span class="text-slate-600">Bags (50lb):</span>
-                            <span class="font-bold text-blue-700"><span id="print-bags">0</span> Bags</span>
+                            <span class="font-bold text-blue-700"><span id="print-bags">53</span> Bags</span>
                         </div>
                     </div>
                 </div>
@@ -170,7 +242,7 @@
                             d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                     </svg>
                     <div>
-                        <h1 class="text-xl md:text-2xl font-bold text-slate-900 leading-none">Pro Gravel Calculator</h1>
+                        <span class="text-xl md:text-2xl font-bold text-slate-900 leading-none block">Pro Gravel Calculator</span>
                         <p class="text-xs text-slate-600 hidden md:block">Professional material estimation tool</p>
                     </div>
                 </a>
@@ -178,9 +250,9 @@
                 <!-- Main Menu right (single line) -->
                 <nav class="flex flex-wrap justify-center md:justify-end gap-6 md:gap-10 text-base font-medium">
                     <a href="index.html" class="text-slate-700 hover:text-blue-600 transition-colors">Calculator</a>
-                    <a href="best-gravel-types-2026.html"
+                    <a href="best-gravel-types.html"
                         class="text-slate-700 hover:text-blue-600 transition-colors">Gravel Types</a>
-                    <a href="driveway-cost-2026.html"
+                    <a href="driveway-cost-guide.html"
                         class="text-slate-700 hover:text-blue-600 transition-colors">DriveAway Cost</a>
                     <a href="about.html" class="text-slate-700 hover:text-blue-600 transition-colors">About</a>
                     <a href="contact.html" class="text-slate-700 hover:text-blue-600 transition-colors">Contact</a>
@@ -189,7 +261,7 @@
         </header>
 
         <!-- Top Ad Container -->
-        <div class="container mx-auto px-4 pt-6">
+        <div class="container mx-auto px-4 pt-6 ad-slot">
             <div class="ad-label">ADVERTISEMENT</div>
             <div id="ad-top" class="ad-container ad-horizontal">
                 <!-- AdSense code will be inserted here -->
@@ -198,6 +270,11 @@
 
         <!-- Main Content -->
         <main class="container mx-auto px-4 py-8">
+            <!-- Page H1 + subheading variants (SEO) -->
+            <div class="mb-6">
+                <h1 class="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">Free Pro Gravel &amp; Yard Calculator</h1>
+                <p class="text-slate-500 text-sm mt-1">Instantly estimate cubic yards, tons, and 50 lb bags for any shape area.</p>
+            </div>
             <!-- Flex-col on mobile for reordering, Grid on lg+ for desktop layout -->
             <div class="flex flex-col lg:grid lg:grid-cols-3 gap-8">
 
@@ -272,7 +349,7 @@
                                         <div class="relative">
                                             <input type="number" id="rect-length-ft"
                                                 class="dimension-input w-full px-4 py-3 pr-12 text-lg font-medium bg-white border-2 border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-slate-300"
-                                                placeholder="0" min="0">
+                                                value="10" placeholder="0" min="0">
                                             <span
                                                 class="unit-label-large absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-slate-500 pointer-events-none"
                                                 data-unit="large">ft</span>
@@ -280,7 +357,7 @@
                                         <div class="relative">
                                             <input type="number" id="rect-length-in"
                                                 class="dimension-input w-full px-4 py-3 pr-12 text-lg font-medium bg-white border-2 border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-slate-300"
-                                                placeholder="0" min="0" max="11">
+                                                value="0" placeholder="0" min="0" max="11">
                                             <span
                                                 class="unit-label-small absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-slate-500 pointer-events-none"
                                                 data-unit="small">in</span>
@@ -294,7 +371,7 @@
                                         <div class="relative">
                                             <input type="number" id="rect-width-ft"
                                                 class="dimension-input w-full px-4 py-3 pr-12 text-lg font-medium bg-white border-2 border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-slate-300"
-                                                placeholder="0" min="0">
+                                                value="10" placeholder="0" min="0">
                                             <span
                                                 class="unit-label-large absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-slate-500 pointer-events-none"
                                                 data-unit="large">ft</span>
@@ -302,7 +379,7 @@
                                         <div class="relative">
                                             <input type="number" id="rect-width-in"
                                                 class="dimension-input w-full px-4 py-3 pr-12 text-lg font-medium bg-white border-2 border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-slate-300"
-                                                placeholder="0" min="0" max="11">
+                                                value="0" placeholder="0" min="0" max="11">
                                             <span
                                                 class="unit-label-small absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-slate-500 pointer-events-none"
                                                 data-unit="small">in</span>
@@ -471,6 +548,11 @@
                     <!-- SEO Content Section: How to Measure (Order 6 - Mobile) -->
                     <section id="gravel-guide"
                         class="bg-slate-50 border border-slate-200 rounded-xl p-6 md:p-12 mt-8 order-6">
+                        <!-- Gravel Road Calculator & Gravel Estimator H2 variants for query coverage -->
+                        <div class="sr-only">
+                            <h2>Gravel Road Calculator</h2>
+                            <h2>Gravel Estimator for Driveways and Patios</h2>
+                        </div>
                         <div class="flex flex-col-reverse md:grid md:grid-cols-5 gap-8 items-center">
 
                             <!-- Text Block (Left/Bottom) -->
@@ -553,7 +635,7 @@
                                     stone. Our calculator uses a standard density that works for most common gravels,
                                     but every local rock is a little different! </p>
 
-                                <p class="mt-4 text-blue-600 font-medium"><a href="best-gravel-types-2026.html"
+                                <p class="mt-4 text-blue-600 font-medium"><a href="best-gravel-types.html"
                                         class="hover:underline">Not sure which gravel is best for your project? Read our
                                         full 2026 comparison: Pea Gravel vs Crushed Stone vs River Rock →</a></p>
 
@@ -576,7 +658,7 @@
                                     measure twice, and let us handle the heavy math! </p>
 
                                 <div class="mt-6 p-4 bg-blue-50 rounded-lg text-center"><a
-                                        href="best-gravel-types-2026.html"
+                                        href="best-gravel-types.html"
                                         class="text-blue-700 font-semibold hover:underline">Learn which gravel type fits
                                         your project best in 2026 →</a></div>
                             </div>
@@ -584,9 +666,12 @@
                             <!-- Image Block (Right/Top) -->
                             <div class="md:col-span-2 w-full">
                                 <div class="bg-white p-2 rounded-xl shadow-lg border border-slate-200">
-                                    <img src="image_8.png"
-                                        alt="Diagram showing how to divide an L-shaped area into two rectangles"
-                                        class="w-full h-auto rounded-lg" loading="lazy">
+                                    <picture>
+                                        <source srcset="image_8.webp" type="image/webp">
+                                        <img src="image_8.png"
+                                            alt="Diagram showing how to divide an L-shaped area into two rectangles"
+                                            class="w-full h-auto rounded-lg" loading="lazy" width="800" height="450">
+                                    </picture>
                                 </div>
                                 <p class="text-sm text-slate-500 text-center mt-3">Figure 1: Dividing an L-shaped path
                                     into simpler rectangles.</p>
@@ -596,7 +681,7 @@
                     </section>
 
                     <!-- Native Ad Container (Order 7 - Mobile, 150px spacing) -->
-                    <div class="order-7" style="padding-top: 50px;">
+                    <div class="order-7 ad-slot" style="padding-top: 50px;">
                         <div class="ad-label">ADVERTISEMENT</div>
                         <div id="ad-native" class="ad-container ad-native">
                             <!-- AdSense Native Ad code will be inserted here -->
@@ -641,7 +726,10 @@
 
                         <!-- Results Card (Order 5 - Mobile, after Material Type) -->
                         <div class="bg-white rounded-xl shadow-lg p-6 order-5">
-                            <h2 class="text-lg font-semibold text-slate-900 mb-4">Results</h2>
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-lg font-semibold text-slate-900">Results</h2>
+                                <span class="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-2 py-0.5" id="fallback-label">Example: 10ft × 10ft × 3in</span>
+                            </div>
                             <div class="space-y-4">
                                 <!-- Volume -->
                                 <div class="result-item">
@@ -653,7 +741,7 @@
                                         </svg>
                                         <span class="text-sm font-medium text-slate-600">Volume</span>
                                     </div>
-                                    <div class="text-3xl font-bold text-blue-600" id="result-volume">0.00</div>
+                                    <div class="text-3xl font-bold text-blue-600" id="result-volume">0.93</div>
                                     <div class="text-sm text-slate-500">Cubic Yards</div>
                                 </div>
 
@@ -669,7 +757,7 @@
                                         </svg>
                                         <span class="text-sm font-medium text-slate-600">Weight</span>
                                     </div>
-                                    <div class="text-3xl font-bold text-blue-600" id="result-weight">0.00</div>
+                                    <div class="text-3xl font-bold text-blue-600" id="result-weight">1.31</div>
                                     <div class="text-sm text-slate-500">Tons</div>
                                 </div>
 
@@ -685,7 +773,7 @@
                                         </svg>
                                         <span class="text-sm font-medium text-slate-600">Bags Needed</span>
                                     </div>
-                                    <div class="text-3xl font-bold text-blue-600" id="result-bags">0</div>
+                                    <div class="text-3xl font-bold text-blue-600" id="result-bags">53</div>
                                     <div class="text-sm text-slate-500">50 lb Bags</div>
                                 </div>
                             </div>
@@ -803,7 +891,7 @@
                     </div>
 
                     <!-- Sidebar Ad Container (Order 8 - Mobile) -->
-                    <div class="order-5">
+                    <div class="order-5 ad-slot">
                         <div class="ad-label">ADVERTISEMENT</div>
                         <div id="ad-sidebar" class="ad-container ad-sidebar">
                             <!-- AdSense Sidebar Ad code will be inserted here -->
@@ -906,7 +994,7 @@
                                     surface that is <strong>perfect for driveways</strong>.</p>
                             </div>
                         </div>
-                        <p class="mt-4"><a href="best-gravel-types-2026.html"
+                        <p class="mt-4"><a href="best-gravel-types.html"
                                 class="text-blue-600 hover:underline font-medium">Want the complete pros/cons, real
                                 costs, and best uses? See our detailed 2026 guide →</a></p>
                     </div>
@@ -1030,7 +1118,7 @@
                     <h4 class="font-bold text-slate-900 mb-3">Quick Links</h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="index.html" class="hover:text-blue-600">Calculator</a></li>
-                        <li><a href="driveway-cost-2026.html" class="hover:text-blue-600">Driveway Cost Guide</a></li>
+                        <li><a href="driveway-cost-guide.html" class="hover:text-blue-600">Driveway Cost Guide</a></li>
                     </ul>
                 </div>
                 <div>
@@ -1048,7 +1136,7 @@
     </footer>
     </div> <!-- End print:hidden wrapper -->
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <script>
         // Quote Navigation Logic
         function getQuote() {

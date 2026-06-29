@@ -1,0 +1,9 @@
+# Apache / cPanel redirect rules
+# 301 Permanent redirects from old -2026 article URLs to clean canonical URLs
+
+Options -MultiViews
+RewriteEngine On
+
+# Redirect old article URLs to canonical clean URLs
+RewriteRule ^best-gravel-types-2026\.html$ /best-gravel-types.html [R=301,L]
+RewriteRule ^driveway-cost-2026\.html$     /driveway-cost-guide.html [R=301,L]

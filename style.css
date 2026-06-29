@@ -221,12 +221,16 @@ input[type="number"] {
     }
 }
 
-/* Placeholder styling when ad is loading */
+/* Hide entire ad slot (label + container) when no ad has loaded.
+   :has() is supported in all modern browsers (Chrome 105+, Firefox 121+, Safari 15.4+).
+   Falls back gracefully: older browsers just see the empty placeholder. */
+.ad-slot:has(.ad-container:empty) {
+    display: none;
+}
+
+/* Placeholder styling when ad is loading (visible only in unsupporting browsers) */
 .ad-container:empty::before {
-    content: 'Advertisement Space';
-    color: #cbd5e1;
-    font-size: 0.875rem;
-    font-weight: 500;
+    content: '';
 }
 
 /* ========================================

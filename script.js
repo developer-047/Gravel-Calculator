@@ -498,11 +498,92 @@ document.addEventListener('DOMContentLoaded', function () {
     performCalculation();
 });
 
+function loadQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    
+    // 1. Unit (Must do this first so input labels match)
+    const unitParam = params.get('unit');
+    if (unitParam === 'metric' || unitParam === 'imperial') {
+        currentUnit = unitParam;
+        updateUnitUI();
+    }
+    
+    // 2. Shape
+    const shapeParam = params.get('shape');
+    if (['rectangle', 'circle', 'lshape'].includes(shapeParam)) {
+        currentShape = shapeParam;
+        
+        // Update shape buttons
+        document.querySelectorAll('.shape-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        const shapeBtn = document.querySelector(`[data-shape="${shapeParam}"]`);
+        if (shapeBtn) shapeBtn.classList.add('active');
+
+        // Update dimension panels
+        document.querySelectorAll('.dimensions-panel').forEach(panel => {
+            panel.classList.remove('active');
+        });
+        const dimPanel = document.getElementById(`inputs-${shapeParam}`);
+        if (dimPanel) dimPanel.classList.add('active');
+
+        // Update SVG shapes
+        document.querySelectorAll('.svg-shape').forEach(svg => {
+            svg.classList.remove('active');
+        });
+        const svgShape = document.getElementById(`svg-${shapeParam}`);
+        if (svgShape) svgShape.classList.add('active');
+    }
+    
+    // 3. Material
+    const materialParam = params.get('material');
+    if (DENSITIES[materialParam]) {
+        currentMaterial = materialParam;
+        document.getElementById('material-select').value = materialParam;
+    }
+    
+    // 4. Depth
+    const depthParam = parseFloat(params.get('depth'));
+    if (!isNaN(depthParam) && depthParam >= 0 && depthParam <= 24) {
+        currentDepthInches = depthParam;
+        document.getElementById('depth-slider').value = depthParam;
+    }
+    
+    // 5. Dimension Inputs mapping
+    const mappings = {
+        'rect_l_ft': 'rect-length-ft',
+        'rect_l_in': 'rect-length-in',
+        'rect_w_ft': 'rect-width-ft',
+        'rect_w_in': 'rect-width-in',
+        'circle_d_ft': 'circle-diameter-ft',
+        'circle_d_in': 'circle-diameter-in',
+        'l_a_l_ft': 'lshape-a-length-ft',
+        'l_a_l_in': 'lshape-a-length-in',
+        'l_a_w_ft': 'lshape-a-width-ft',
+        'l_a_w_in': 'lshape-a-width-in',
+        'l_b_l_ft': 'lshape-b-length-ft',
+        'l_b_l_in': 'lshape-b-length-in',
+        'l_b_w_ft': 'lshape-b-width-ft',
+        'l_b_w_in': 'lshape-b-width-in'
+    };
+    
+    for (const [paramKey, elemId] of Object.entries(mappings)) {
+        const val = params.get(paramKey);
+        if (val !== null) {
+            const parsed = parseFloat(val);
+            if (!isNaN(parsed) && parsed >= 0) {
+                document.getElementById(elemId).value = parsed;
+            }
+        }
+    }
+}
+
 // ========================================
 // INITIALIZATION
 // ========================================
 
 // Set initial values
+loadQueryParams();
 currentMaterial = document.getElementById('material-select').value;
 updateDepth(); // Set initial depth display
 

@@ -1,0 +1,5 @@
+# Netlify / Cloudflare Pages / Render redirect rules
+# Format: /old-path  /new-path  301
+
+/best-gravel-types-2026.html  /best-gravel-types.html  301
+/driveway-cost-2026.html      /driveway-cost-guide.html  301
