@@ -890,3 +890,64 @@ function showShareFeedback(message, success) {
         setTimeout(() => toast.remove(), 300);
     }, 2500);
 }
+
+/**
+ * Monitors advertisement slots and shows them only when an ad is actually loaded.
+ */
+function initAdObserver() {
+    const adContainers = document.querySelectorAll('.ad-container');
+    
+    adContainers.forEach(container => {
+        const slot = container.closest('.ad-slot');
+        if (!slot) return;
+
+        function checkAd() {
+            // Check if there is an iframe inside the container
+            const hasIframe = container.querySelector('iframe') !== null;
+            
+            // Check if there is an ins element with data-ad-status="filled"
+            const insElement = container.querySelector('ins.adsbygoogle');
+            const isFilled = insElement && insElement.getAttribute('data-ad-status') === 'filled';
+            
+            // General check: does it have any non-empty element that is not a comment/script?
+            const hasRealContent = Array.from(container.children).some(child => {
+                const tagName = child.tagName.toLowerCase();
+                // Ignore script tags
+                if (tagName === 'script') return false;
+                // If it's an ins tag, check if it has children (like an iframe) or is marked as filled
+                if (tagName === 'ins') {
+                    return child.children.length > 0 || child.getAttribute('data-ad-status') === 'filled';
+                }
+                return true;
+            });
+
+            if (hasIframe || isFilled || hasRealContent) {
+                slot.classList.add('ad-filled');
+            } else {
+                slot.classList.remove('ad-filled');
+            }
+        }
+
+        // Run initial check
+        checkAd();
+
+        // Create observer to watch for dynamic insertions (like AdSense loading)
+        const observer = new MutationObserver(() => {
+            checkAd();
+        });
+
+        observer.observe(container, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['data-ad-status']
+        });
+    });
+}
+
+// Initialize ad observer
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAdObserver);
+} else {
+    initAdObserver();
+}

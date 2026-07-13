@@ -168,69 +168,104 @@ input[type="number"] {
     margin-bottom: 8px;
     text-align: center;
     font-weight: 600;
+    display: none; /* Hidden by default */
 }
 
 .ad-container {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: transparent;
+    border: none;
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    margin-bottom: 0;
+    height: 0;
+    min-height: 0;
+}
+
+/* --- Collapsed Ad Slot (Default State) --- */
+.ad-slot {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* --- Expanded Ad Slot (When Ad is Loaded) --- */
+/* Top Ad Slot (has container class) */
+.ad-slot.container.ad-filled,
+.ad-slot.container:has(iframe),
+.ad-slot.container:has(ins > iframe),
+.ad-slot.container:has(.adsbygoogle[data-ad-status="filled"]) {
+    padding-top: 1.5rem !important; /* Equivalent to pt-6 */
+}
+
+/* Native Ad Slot (order-7) */
+.ad-slot.order-7.ad-filled,
+.ad-slot.order-7:has(iframe),
+.ad-slot.order-7:has(ins > iframe),
+.ad-slot.order-7:has(.adsbygoogle[data-ad-status="filled"]) {
+    padding-top: 50px !important;
+}
+
+/* Styles for ad-label and ad-container when ad is loaded */
+.ad-slot.ad-filled .ad-label,
+.ad-slot:has(iframe) .ad-label,
+.ad-slot:has(ins > iframe) .ad-label,
+.ad-slot:has(.adsbygoogle[data-ad-status="filled"]) .ad-label {
+    display: block;
+}
+
+.ad-slot.ad-filled .ad-container,
+.ad-slot:has(iframe) .ad-container,
+.ad-slot:has(ins > iframe) .ad-container,
+.ad-slot:has(.adsbygoogle[data-ad-status="filled"]) .ad-container {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
     margin-bottom: 1rem;
+    overflow: visible;
 }
 
 /* Top Banner Ad - Horizontal (CLS Prevention) */
-.ad-horizontal {
+.ad-slot.ad-filled .ad-horizontal,
+.ad-slot:has(iframe) .ad-horizontal,
+.ad-slot:has(ins > iframe) .ad-horizontal,
+.ad-slot:has(.adsbygoogle[data-ad-status="filled"]) .ad-horizontal {
+    height: 90px;
     min-height: 90px;
     max-height: 90px;
     width: 100%;
 }
 
-@media (min-width: 768px) {
-    .ad-horizontal {
-        min-height: 90px;
-        max-height: 90px;
-    }
-}
-
 /* Sidebar Ad - Vertical Rectangle (CLS Prevention) */
-.ad-sidebar {
+.ad-slot.ad-filled .ad-sidebar,
+.ad-slot:has(iframe) .ad-sidebar,
+.ad-slot:has(ins > iframe) .ad-sidebar,
+.ad-slot:has(.adsbygoogle[data-ad-status="filled"]) .ad-sidebar {
+    height: 250px;
     min-height: 250px;
     max-height: 250px;
     width: 100%;
 }
 
-@media (min-width: 768px) {
-    .ad-sidebar {
-        min-height: 250px;
-        max-height: 250px;
-    }
-}
-
 /* Native Ad - Responsive (CLS Prevention) */
-.ad-native {
+.ad-slot.ad-filled .ad-native,
+.ad-slot:has(iframe) .ad-native,
+.ad-slot:has(ins > iframe) .ad-native,
+.ad-slot:has(.adsbygoogle[data-ad-status="filled"]) .ad-native {
+    height: auto;
     min-height: 250px;
     width: 100%;
 }
 
 @media (min-width: 768px) {
-    .ad-native {
+    .ad-slot.ad-filled .ad-native,
+    .ad-slot:has(iframe) .ad-native,
+    .ad-slot:has(ins > iframe) .ad-native,
+    .ad-slot:has(.adsbygoogle[data-ad-status="filled"]) .ad-native {
         min-height: 280px;
     }
-}
-
-/* Hide entire ad slot (label + container) when no ad has loaded.
-   :has() is supported in all modern browsers (Chrome 105+, Firefox 121+, Safari 15.4+).
-   Falls back gracefully: older browsers just see the empty placeholder. */
-.ad-slot:has(.ad-container:empty) {
-    display: none;
-}
-
-/* Placeholder styling when ad is loading (visible only in unsupporting browsers) */
-.ad-container:empty::before {
-    content: '';
 }
 
 /* ========================================
