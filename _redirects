@@ -1,5 +1,10 @@
 # Netlify / Cloudflare Pages / Render redirect rules
 # Format: /old-path  /new-path  301
 
+# One canonical host and one canonical homepage URL.
+https://progravelcalculator.online/*  https://www.progravelcalculator.online/:splat  301!
+/index.html  /  301!
+
+# Retired article URLs
 /best-gravel-types-2026.html  /best-gravel-types.html  301
 /driveway-cost-2026.html      /driveway-cost-guide.html  301

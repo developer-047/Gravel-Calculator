@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Utility pages are noindex and should not be requested as search results.
+Disallow: /thankyou.html
+Disallow: /404.html
+
 Sitemap: https://www.progravelcalculator.online/sitemap.xml

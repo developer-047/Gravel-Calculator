@@ -3,128 +3,239 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Privacy Policy for Pro Gravel Calculator – how we handle data, AdSense cookies, and analytics on our free gravel estimator tool." />
+    <meta name="description" content="How Pro Gravel Calculator handles calculator inputs, quote requests, cookies and analytics, including your privacy rights and consent choices." />
     <meta name="robots" content="index, follow" />
     <title>Privacy Policy – Pro Gravel Calculator</title>
     <link rel="canonical" href="https://www.progravelcalculator.online/privacy.html" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#2563eb" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Privacy Policy – Pro Gravel Calculator" />
-    <meta property="og:description" content="How Pro Gravel Calculator handles your data and cookies." />
+    <meta property="og:description" content="Calculator inputs stay in your browser. Analytics is optional and currently inactive. Read the full policy." />
     <meta property="og:url" content="https://www.progravelcalculator.online/privacy.html" />
+    <meta property="og:image" content="https://www.progravelcalculator.online/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Pro Gravel Calculator – free gravel estimator" />
     <meta property="og:site_name" content="Pro Gravel Calculator" />
+    <meta property="og:locale" content="en_US" />
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Privacy Policy – Pro Gravel Calculator" />
-    <meta name="twitter:description" content="How Pro Gravel Calculator handles your data and cookies." />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css" />
+    <meta name="twitter:description" content="Calculator inputs stay in your browser. Analytics is optional and currently inactive." />
+    <meta name="twitter:image" content="https://www.progravelcalculator.online/og-image.png" />
+    <meta name="twitter:image:alt" content="Pro Gravel Calculator – free gravel estimator" />
+    <link rel="stylesheet" href="/tailwind.css">
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/analytics-config.js" defer></script>
+    <script src="/analytics.js" defer></script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.progravelcalculator.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Privacy Policy",
+          "item": "https://www.progravelcalculator.online/privacy.html"
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="bg-slate-50 min-h-screen flex flex-col">
-<header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-    <a href="index.html" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
-      <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-      </svg>
-      <div>
-        <span class="text-xl md:text-2xl font-bold text-slate-900 leading-none block">Pro Gravel Calculator</span>
-        <p class="text-xs text-slate-600 hidden md:block">Professional material estimation tool</p>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+          <div>
+            <span class="text-xl md:text-2xl font-bold text-slate-900 leading-none block">Pro Gravel Calculator</span>
+            <p class="text-xs text-slate-600 hidden md:block">Professional material estimation tool</p>
+          </div>
+        </a>
+        <nav class="flex flex-wrap justify-center md:justify-end gap-6 md:gap-10 text-base font-medium" aria-label="Main navigation">
+          <a href="/" class="text-slate-700 hover:text-blue-600 transition-colors">Calculator</a>
+          <a href="/best-gravel-types.html" class="text-slate-700 hover:text-blue-600 transition-colors">Gravel Types</a>
+          <a href="/driveway-cost-guide.html" class="text-slate-700 hover:text-blue-600 transition-colors">Driveway Cost</a>
+          <a href="/about.html" class="text-slate-700 hover:text-blue-600 transition-colors">About</a>
+          <a href="/contact.html" class="text-slate-700 hover:text-blue-600 transition-colors">Contact</a>
+        </nav>
       </div>
-    </a>
-    <nav class="flex flex-wrap justify-center md:justify-end gap-6 md:gap-10 text-base font-medium">
-      <a href="index.html" class="text-slate-700 hover:text-blue-600 transition-colors">Calculator</a>
-      <a href="best-gravel-types.html" class="text-slate-700 hover:text-blue-600 transition-colors">Gravel Types</a>
-      <a href="driveway-cost-guide.html" class="text-slate-700 hover:text-blue-600 transition-colors">DriveAway Cost</a>
-      <a href="about.html" class="text-slate-700 hover:text-blue-600 transition-colors">About</a>
-      <a href="contact.html" class="text-slate-700 hover:text-blue-600 transition-colors">Contact</a>
-    </nav>
-  </div>
-</header>
+    </header>
 
-    <main class="flex-grow container mx-auto px-4 py-12">
-      <div
-        class="max-w-3xl mx-auto prose prose-slate prose-lg bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-200"
-      >
-        <h1 class="text-3xl font-bold text-slate-900 mb-6">Privacy Policy</h1>
-        <p class="text-sm text-slate-500">Last updated: January 2026</p>
+    <main id="main-content" class="flex-grow container mx-auto px-4 py-10 md:py-14">
+      <nav class="max-w-3xl mx-auto mb-6 text-sm text-slate-600" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href="/" class="hover:text-blue-700 underline underline-offset-2">Home</a></li>
+          <li aria-hidden="true">›</li>
+          <li class="text-slate-800 font-medium" aria-current="page">Privacy Policy</li>
+        </ol>
+      </nav>
 
-        <h2>1. Personal Information</h2>
+      <article class="max-w-3xl mx-auto bg-white p-7 md:p-12 rounded-2xl shadow-sm border border-slate-200 prose prose-slate prose-lg">
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Privacy Policy</h1>
+        <p class="text-sm text-slate-600"><time datetime="2026-11-01">Last updated: November 1, 2026</time></p>
+
         <p>
-          We do not collect personal information (like names or email addresses)
-          unless you voluntarily provide it through our "Request a Quote" form.
-          This information is used solely to facilitate your quote request and
-          is not sold to third parties.
+          This policy explains what Pro Gravel Calculator collects, why, and the choices you have. It covers the calculator, the guides and the contact page at <strong>progravelcalculator.online</strong>.
         </p>
 
-        <h2>2. Google AdSense and Cookies</h2>
+        <h2 id="summary">The short version</h2>
+        <ul>
+          <li>Calculator inputs stay in your browser. We do not receive your measurements, material choice or results.</li>
+          <li>We do not run third-party advertising today. If that changes, this policy will be updated before ads go live.</li>
+          <li>Analytics is optional and loads only after you press <strong>Accept analytics</strong>.</li>
+          <li>If you send a quote request or correction, we use your details only to respond.</li>
+        </ul>
+
+        <h2 id="calculator">Calculator inputs</h2>
         <p>
-          We use Google AdSense to serve ads on our site. Google uses cookies
-          (specifically the DART cookie) to serve ads based on your visit to
-          progravelcalculator.online and other sites on the internet. You may
-          opt out of the use of the DART cookie by visiting the Google Ad and
-          Content Network privacy policy.
+          All calculations happen locally in your browser using JavaScript. Dimensions, shape, depth and material selection are not transmitted to our servers, stored in a database or linked to your identity. If you use the share button, the recipient receives a link; check the link before sharing it.
         </p>
 
-        <h2>3. Analytics</h2>
+        <h2 id="information-you-provide">Information you choose to provide</h2>
         <p>
-          We may use tools like Google Analytics to understand how visitors use
-          our site (e.g., which pages are visited most). This data is anonymized
-          and helps us improve the calculator.
+          The contact page includes a quote-request form. When form delivery is enabled, the information you enter — such as your name, email address, phone number and project details — is used solely to review and respond to your request. We do not sell it or add you to a marketing list.
+        </p>
+        <p>
+          Please do not send sensitive personal information, payment details or site plans you are not authorised to share. Quote requests are not a secure channel for financial data.
         </p>
 
-        <h2>4. Contact Us</h2>
+        <h2 id="analytics">Analytics and consent</h2>
         <p>
-          If you have questions about this privacy policy, please contact us via
-          our <a href="contact.html">Contact Page</a>.
+          <strong>Analytics is not connected on this site yet.</strong> The site includes consent-aware analytics code, but no Google Analytics measurement ID has been configured. Until one is, no analytics script is loaded, no analytics cookies are set and no usage data is collected. The privacy-first defaults described below apply when analytics is switched on.
+        </p>
+        <p>
+          When analytics is configured, it will use Google Analytics 4 to understand which pages and calculator features are useful. It will be <strong>off by default</strong>: the Google tag will not load until you choose <strong>Accept analytics</strong> in the consent banner. You can change your choice at any time using the <button type="button" class="underline underline-offset-2 font-medium text-blue-700" data-open-consent>Cookie settings</button> control.
+        </p>
+        <p>
+          Once enabled, Google Analytics may collect page views, approximate location (derived from IP address), device and browser information, referral source, and interactions such as calculator completion, print, share and outbound quote clicks. We do not send names, email addresses, phone numbers or the dimensions you enter to analytics. Google states that Google Analytics 4 does not log or store individual IP addresses; see <a href="https://support.google.com/analytics/answer/12017362" rel="noopener">Google's Analytics data collection explanation</a>.
         </p>
 
-        <h2>5. Data Security &amp; Incident Disclosure</h2>
-        <p>
-          At progravelcalculator.online, we implement industry-standard security
-          measures to protect your browsing data. However, please be aware that
-          no method of transmission over the internet or electronic storage is
-          100% secure.
-        </p>
-        <div class="bg-red-50 border-l-4 border-red-600 p-4 my-6">
-          <p class="font-bold text-red-900 m-0">Data Leakage Disclaimer</p>
-          <p class="text-red-800 mt-2">
-            While we strive to use commercially acceptable means to protect your
-            information, we cannot guarantee its absolute security. By using our
-            service, you acknowledge that Pro Gravel Calculator Online is not
-            liable for any damages resulting from unauthorized access, technical
-            malfunctions, or unforeseen data leakage incidents.
-          </p>
+        <h2 id="cookies">Cookies and local storage</h2>
+        <div class="not-prose overflow-x-auto my-6">
+          <table class="w-full text-sm border-collapse bg-white rounded-lg overflow-hidden">
+            <caption class="sr-only">Cookies and local storage used by this site</caption>
+            <thead>
+              <tr class="bg-slate-800 text-white">
+                <th scope="col" class="text-left py-3 px-4">Name</th>
+                <th scope="col" class="text-left py-3 px-4">Purpose</th>
+                <th scope="col" class="text-left py-3 px-4">Set by</th>
+                <th scope="col" class="text-left py-3 px-4">When</th>
+              </tr>
+            </thead>
+            <tbody class="text-slate-700">
+              <tr class="border-b border-slate-200"><th scope="row" class="text-left py-3 px-4 font-medium">pgc_consent</th><td class="py-3 px-4">Remembers your analytics choice</td><td class="py-3 px-4">This site (local storage)</td><td class="py-3 px-4">When you choose</td></tr>
+              <tr class="bg-slate-50 border-b border-slate-200"><th scope="row" class="text-left py-3 px-4 font-medium">_ga, _ga_*</th><td class="py-3 px-4">Distinguishes visitors and sessions for analytics. Not set while no measurement ID is configured.</td><td class="py-3 px-4">Google Analytics</td><td class="py-3 px-4">Only after a measurement ID is configured and you accept</td></tr>
+            </tbody>
+          </table>
         </div>
-      </div>
+        <p>
+          The consent record is kept for up to 12 months so we can respect your choice. If analytics is configured later, its cookies will be retained according to the Google Analytics settings, typically up to 14 months. Declining analytics has no effect on the calculator.
+        </p>
+
+        <h2 id="advertising">Advertising</h2>
+        <p>
+          We do not currently display third-party ads, and no advertising script is installed. If we add Google AdSense or another advertising partner, we will update this policy, add the required consent controls, and give you a way to manage personalised advertising before any ads are served. The presence of an <code>ads.txt</code> file does not mean ads are live.
+        </p>
+
+        <h2 id="third-parties">Service providers</h2>
+        <ul>
+          <li><strong>Vercel</strong> hosts the site and processes standard server logs such as IP address, request time and user agent for security and reliability.</li>
+          <li><strong>Google Analytics</strong> is not currently connected. If configured, it will process analytics data only after consent, under Google's terms and privacy policy.</li>
+          <li><strong>cdnjs (Cloudflare)</strong> delivers the optional PDF library when you press <strong>Save PDF</strong>. That request is made only when you use the feature.</li>
+        </ul>
+        <p>
+          These providers may process data in the United States or other countries. Where required, transfers rely on appropriate safeguards such as standard contractual clauses.
+        </p>
+
+        <h2 id="legal-bases">Legal bases</h2>
+        <p>
+          For visitors in the European Economic Area or United Kingdom, we rely on: consent for analytics and any future advertising cookies; legitimate interests for site security, debugging and responding to messages; and, where applicable, performance of a request you have made. You may withdraw consent at any time.
+        </p>
+
+        <h2 id="rights">Your rights</h2>
+        <p>
+          Depending on where you live, you may have the right to access, correct, delete or port your personal data, object to or restrict processing, or withdraw consent. California residents may have rights to know, delete, correct and opt out of the sale or sharing of personal information. We do not sell personal information.
+        </p>
+        <p>
+          To make a request, use the <a href="/contact.html">contact page</a> and describe the data and right involved. We may need to verify your identity before acting. You also have the right to complain to your local data protection authority.
+        </p>
+
+        <h2 id="retention">Retention and security</h2>
+        <p>
+          Quote-request messages are kept only as long as needed to respond and to keep a record of the enquiry, then deleted or anonymised. The site is served over HTTPS. Because the calculator is static and browser-based, there is no database of calculator inputs to breach. No method of transmission over the internet is completely secure.
+        </p>
+
+        <h2 id="children">Children</h2>
+        <p>
+          The site is intended for homeowners, contractors and other adults planning material purchases. It is not directed to children under 13, and we do not knowingly collect personal information from them. If you believe a child has sent us personal data, contact us and we will delete it.
+        </p>
+
+        <h2 id="changes">Changes to this policy</h2>
+        <p>
+          We will update the date at the top when this policy changes. Material changes — such as enabling advertising or a new analytics provider — will be announced on this page and, where required, through a new consent request.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          Questions about this policy or a data request can be sent through the <a href="/contact.html">contact page</a>. Please include enough detail for us to identify the page or message concerned. We do not publish a postal address.
+        </p>
+      </article>
     </main>
 
-<footer class="bg-white border-t border-slate-200 mt-16">
-  <div class="max-w-7xl mx-auto px-6 py-10">
-    <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
-      <div>
-        <h4 class="font-bold text-slate-900 mb-3">Pro Gravel Calculator</h4>
-        <p class="text-sm text-slate-600">Professional material estimation tool</p>
+    <footer class="bg-white border-t border-slate-200 mt-16">
+      <div class="max-w-7xl mx-auto px-6 py-10">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center sm:text-left">
+          <div>
+            <p class="font-bold text-slate-900 mb-3">Pro Gravel Calculator</p>
+            <p class="text-sm text-slate-600">Free, transparent material estimation for gravel, sand and stone.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-slate-900 mb-3">Calculators &amp; guides</h2>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/" class="text-slate-600 hover:text-blue-700">Gravel calculator</a></li>
+              <li><a href="/best-gravel-types.html" class="text-slate-600 hover:text-blue-700">Gravel types</a></li>
+              <li><a href="/driveway-cost-guide.html" class="text-slate-600 hover:text-blue-700">Driveway cost guide</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="font-bold text-slate-900 mb-3">Company</h2>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/about.html" class="text-slate-600 hover:text-blue-700">About &amp; method</a></li>
+              <li><a href="/contact.html" class="text-slate-600 hover:text-blue-700">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="font-bold text-slate-900 mb-3">Legal</h2>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/privacy.html" class="text-slate-600 hover:text-blue-700">Privacy policy</a></li>
+              <li><a href="/terms.html" class="text-slate-600 hover:text-blue-700">Terms of service</a></li>
+              <li><button type="button" class="text-slate-600 hover:text-blue-700" data-open-consent>Cookie settings</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center text-xs text-slate-600 mt-8 border-t border-slate-100 pt-6">
+          © 2026 Pro Gravel Calculator. All rights reserved. Independent tool — not a quarry or contractor.
+        </div>
       </div>
-      <div>
-        <h4 class="font-bold text-slate-900 mb-3">Quick Links</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="index.html" class="hover:text-blue-600">Calculator</a></li>
-          <li><a href="driveway-cost-guide.html" class="hover:text-blue-600">Driveway Cost Guide</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold text-slate-900 mb-3">Legal</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="privacy.html" class="hover:text-blue-600">Privacy Policy</a></li>
-          <li><a href="terms.html" class="hover:text-blue-600">Terms of Service</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="text-center text-xs text-slate-400 mt-8 border-t border-slate-100 pt-6">
-      © 2026 Pro Gravel Calculator. All rights reserved.
-    </div>
-  </div>
-</footer>
+    </footer>
   </body>
 </html>

@@ -1,10 +1,11 @@
 /* ========================================
-   CUSTOM STYLES (Standard CSS for Tailwind CDN)
+   CUSTOM STYLES (used with the local Tailwind build)
    ======================================== */
 
-/* 
-   Base styles are now in index.html via Tailwind utility classes.
-   This file handles dynamic states (active), animations, and complex selectors.
+/*
+   Tailwind utilities are compiled into /tailwind.css by `npm run build:css`.
+   This file handles dynamic states (active), animations, consent, forms and
+   accessibility details that are clearer as plain CSS.
 */
 
 /* Shape Button - Active State (Toggled by JS) */
@@ -569,6 +570,273 @@ input[type="number"] {
     padding: 0.625rem 0.875rem;
     margin-top: 0.5rem;
     margin-bottom: 0 !important;
+}
+
+/* ========================================
+   GLOBAL ACCESSIBILITY, CONSENT AND FORM STATES
+   ======================================== */
+
+/* Honour the hidden attribute even when a component sets its own display. */
+[hidden] {
+    display: none !important;
+}
+
+/* Keyboard skip link */
+.skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background: #1e3a8a;
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+    transform: translateY(-200%);
+    transition: transform 0.15s ease-out;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    transform: translateY(0);
+    outline: 3px solid #f59e0b;
+    outline-offset: 3px;
+}
+
+/* Consistent, visible keyboard focus. Do not remove outlines globally. */
+:focus-visible {
+    outline: 3px solid #1d4ed8;
+    outline-offset: 3px;
+}
+
+/* Keep anchor destinations clear of the sticky header. */
+[id] {
+    scroll-margin-top: 7rem;
+}
+
+@media (max-width: 767px) {
+    [id] {
+        scroll-margin-top: 11rem;
+    }
+}
+
+.shape-btn:focus-visible,
+.faq-summary:focus-visible {
+    outline: 3px solid #1d4ed8;
+    outline-offset: 3px;
+    border-radius: 0.75rem;
+}
+
+/* Skip the animated transition for visitors who ask for less motion. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .dimensions-panel.active,
+    .result-item,
+    .faq-answer {
+        animation: none !important;
+    }
+}
+
+/* ========================================
+   ANALYTICS CONSENT BANNER
+   ======================================== */
+
+.consent-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    padding: 1rem;
+    background: #ffffff;
+    border-top: 1px solid #cbd5e1;
+    box-shadow: 0 -12px 32px rgba(15, 23, 42, 0.14);
+}
+
+.consent-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.consent-copy {
+    flex: 1 1 24rem;
+    min-width: 0;
+}
+
+.consent-title {
+    margin: 0 0 0.35rem;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.consent-text {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #334155;
+}
+
+.consent-text a {
+    color: #1d4ed8;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.consent-btn {
+    min-height: 44px;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.consent-btn-primary {
+    border: 2px solid #1d4ed8;
+    background: #1d4ed8;
+    color: #ffffff;
+}
+
+.consent-btn-primary:hover {
+    background: #1e40af;
+    border-color: #1e40af;
+}
+
+.consent-btn-secondary {
+    border: 2px solid #cbd5e1;
+    background: #ffffff;
+    color: #1e293b;
+}
+
+.consent-btn-secondary:hover {
+    border-color: #94a3b8;
+    background: #f8fafc;
+}
+
+@media (max-width: 640px) {
+    .consent-banner {
+        padding: 0.875rem;
+    }
+
+    .consent-inner {
+        display: block;
+    }
+
+    .consent-actions {
+        margin-top: 0.75rem;
+    }
+
+    .consent-btn {
+        flex: 1 1 10rem;
+    }
+}
+
+/* Keep the fixed banner from covering footer links while it is open. */
+body.has-consent-banner {
+    padding-bottom: 10rem;
+}
+
+@media (max-width: 640px) {
+    body.has-consent-banner {
+        padding-bottom: 14rem;
+    }
+}
+
+/* ========================================
+   FORM VALIDATION AND STATUS MESSAGES
+   ======================================== */
+
+.form-error {
+    margin-top: 0.375rem;
+    color: #b91c1c;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.form-status {
+    margin-top: 1rem;
+    padding: 0.875rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+.form-status:empty {
+    display: none;
+}
+
+.form-status-error {
+    border-color: #fecaca;
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.form-status-info {
+    border-color: #bfdbfe;
+    background: #eff6ff;
+    color: #1e40af;
+}
+
+.form-status-success {
+    border-color: #a7f3d0;
+    background: #ecfdf5;
+    color: #065f46;
+}
+
+[aria-invalid="true"] {
+    border-color: #dc2626 !important;
+}
+
+[aria-invalid="true"]:focus {
+    outline-color: #dc2626;
+}
+
+/* ========================================
+   PRINT
+   ======================================== */
+
+@media print {
+    .consent-banner,
+    .skip-link,
+    #share-toast,
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        background: #ffffff !important;
+        padding-bottom: 0 !important;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 }
 
 /* Mobile tweaks for the FAQ */

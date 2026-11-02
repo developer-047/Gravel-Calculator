@@ -15,10 +15,22 @@ let currentShape = 'rectangle';
 let currentMaterial = 'pea_gravel';
 let currentDepthInches = 3; // Slider value in inches
 let currentUnit = 'imperial'; // 'imperial' or 'metric'
+let hasTrackedCompletion = false;
+let lastAnnouncement = '';
 
 // ========================================
 // HELPER FUNCTIONS
 // ========================================
+
+/**
+ * Sends an analytics event only when consent-aware analytics is available.
+ * Never include raw dimensions or contact details in the payload.
+ */
+function trackEvent(name, params) {
+    if (window.PGC && typeof window.PGC.track === 'function') {
+        window.PGC.track(name, params || {});
+    }
+}
 
 /**
  * Converts input values to feet for uniform calculation
@@ -255,6 +267,40 @@ function displayResults(volume, weight, bags) {
     const pdfBtnMobile = document.getElementById('btn-pdf-mobile');
     if (printBtnMobile) printBtnMobile.disabled = !hasData;
     if (pdfBtnMobile) pdfBtnMobile.disabled = !hasData;
+
+    // Announce the estimate without repeating the same sentence for every keystroke.
+    const summary = document.getElementById('results-summary');
+    if (summary) {
+        if (displayResults.announceTimer) {
+            window.clearTimeout(displayResults.announceTimer);
+        }
+        displayResults.announceTimer = window.setTimeout(function () {
+            const materialSelect = document.getElementById('material-select');
+            const materialText = materialSelect && materialSelect.selectedIndex >= 0
+                ? materialSelect.options[materialSelect.selectedIndex].text.replace(/\s*\([^)]*\)\s*$/, '')
+                : 'gravel';
+            const message = volume > 0
+                ? 'Estimate: ' + volume.toFixed(2) + ' cubic yards, ' + weight.toFixed(2) +
+                  ' short tons, or ' + bags.toLocaleString() + ' fifty pound bags of ' + materialText +
+                  '. This excludes waste.'
+                : 'Enter length, width or diameter and depth to see an estimate.';
+
+            if (message !== lastAnnouncement) {
+                summary.textContent = message;
+                lastAnnouncement = message;
+            }
+        }, 600);
+    }
+
+    // One completion event per page view avoids firing on every keystroke.
+    if (hasData && !hasTrackedCompletion) {
+        hasTrackedCompletion = true;
+        trackEvent('calculator_complete', {
+            material: currentMaterial,
+            shape: currentShape,
+            unit: currentUnit
+        });
+    }
 }
 
 // ========================================
@@ -264,11 +310,12 @@ function displayResults(volume, weight, bags) {
 function switchShape(shape) {
     currentShape = shape;
 
-    // Update shape buttons
+    // Update shape buttons and their pressed state
     document.querySelectorAll('.shape-btn').forEach(btn => {
-        btn.classList.remove('active');
+        const isActive = btn.getAttribute('data-shape') === shape;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
-    document.querySelector(`[data-shape="${shape}"]`).classList.add('active');
 
     // Update dimension panels
     document.querySelectorAll('.dimensions-panel').forEach(panel => {
@@ -282,6 +329,8 @@ function switchShape(shape) {
     });
     document.getElementById(`svg-${shape}`).classList.add('active');
 
+    trackEvent('shape_change', { shape: shape });
+
     // Recalculate
     performCalculation();
 }
@@ -289,6 +338,7 @@ function switchShape(shape) {
 function updateMaterial() {
     const select = document.getElementById('material-select');
     currentMaterial = select.value;
+    trackEvent('material_change', { material: currentMaterial });
     performCalculation();
 }
 
@@ -296,7 +346,6 @@ function updateDepth() {
     const slider = document.getElementById('depth-slider');
     currentDepthInches = parseFloat(slider.value);
 
-    // Update display
     // Update display
     const display = document.getElementById('depth-display');
     if (currentDepthInches === 0) {
@@ -325,6 +374,10 @@ function updateDepth() {
         }
     }
 
+    if (slider) {
+        slider.setAttribute('aria-valuetext', display.textContent);
+    }
+
     performCalculation();
 }
 
@@ -347,6 +400,8 @@ function toggleUnits() {
     // 4. Recalculate
     updateDepth(); // Updates depth display label
     performCalculation();
+
+    trackEvent('unit_change', { unit: currentUnit });
 }
 
 /**
@@ -356,7 +411,7 @@ function convertValues(toUnit) {
     const inputs = document.querySelectorAll('.dimension-input');
 
     // We process "ft/m" (large) and "in/cm" (small) separately based on ID naming
-    // But since logic is local, we can just iterate. 
+    // But since logic is local, we can just iterate.
     // Actually, converting individually is tricky because say 1ft 6in -> 0m 45cm.
     // It's a combined unit conversion.
     // Strategy: Read pair by pair.
@@ -416,7 +471,7 @@ function convertValues(toUnit) {
         }
     });
 
-    // Handle Depth Slider conversion? 
+    // Handle Depth Slider conversion?
     // The slider value is always in inches stored in `currentDepthInches`.
     // It is view-independent. We only update the label text in `updateDepth()`.
 }
@@ -435,23 +490,21 @@ function updateUnitUI() {
     const btnImp = document.getElementById('btn-imperial');
     const btnMet = document.getElementById('btn-metric');
 
-    if (currentUnit === 'imperial') {
-        pill.style.transform = 'translateX(0)';
-        btnImp.classList.replace('text-slate-500', 'text-blue-600');
-        btnMet.classList.replace('text-blue-600', 'text-slate-500');
-    } else {
-        pill.style.transform = 'translateX(100%)';
-        // Need to account for the gap? 
-        // css logic: left-1. 100% moves it to right edge aligned? 
-        // actually w-[calc(50%-4px)]. 
-        // parent padding-1. relative.
-        // translate-x-full works if width is exactly 50%.
-        // Let's rely on simple pixel math or percentage if possible.
-        // Tailwind 'translate-x-[104%]' might be needed or standard css.
-        pill.style.transform = 'translateX(calc(100% + 4px))'; // Move over width + gap
+    function setPressed(button, isPressed) {
+        if (!button) return;
+        button.setAttribute('aria-pressed', isPressed ? 'true' : 'false');
+        button.classList.toggle('text-blue-700', isPressed);
+        button.classList.toggle('text-slate-600', !isPressed);
+    }
 
-        btnImp.classList.replace('text-blue-600', 'text-slate-500');
-        btnMet.classList.replace('text-slate-500', 'text-blue-600');
+    if (currentUnit === 'imperial') {
+        if (pill) pill.style.transform = 'translateX(0)';
+        setPressed(btnImp, true);
+        setPressed(btnMet, false);
+    } else {
+        if (pill) pill.style.transform = 'translateX(calc(100% + 4px))';
+        setPressed(btnImp, false);
+        setPressed(btnMet, true);
     }
 }
 
@@ -473,6 +526,20 @@ document.addEventListener('DOMContentLoaded', function () {
             switchShape(shape);
         });
     });
+
+    // Unit toggle listeners
+    const imperialBtn = document.getElementById('btn-imperial');
+    const metricBtn = document.getElementById('btn-metric');
+    if (imperialBtn) {
+        imperialBtn.addEventListener('click', function () {
+            if (currentUnit !== 'imperial') toggleUnits();
+        });
+    }
+    if (metricBtn) {
+        metricBtn.addEventListener('click', function () {
+            if (currentUnit !== 'metric') toggleUnits();
+        });
+    }
 
     // Material selection listener
     document.getElementById('material-select').addEventListener('change', updateMaterial);
@@ -500,25 +567,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function loadQueryParams() {
     const params = new URLSearchParams(window.location.search);
-    
+
     // 1. Unit (Must do this first so input labels match)
     const unitParam = params.get('unit');
     if (unitParam === 'metric' || unitParam === 'imperial') {
         currentUnit = unitParam;
         updateUnitUI();
     }
-    
+
     // 2. Shape
     const shapeParam = params.get('shape');
     if (['rectangle', 'circle', 'lshape'].includes(shapeParam)) {
         currentShape = shapeParam;
-        
-        // Update shape buttons
+
+        // Update shape buttons and pressed state
         document.querySelectorAll('.shape-btn').forEach(btn => {
-            btn.classList.remove('active');
+            const isActive = btn.getAttribute('data-shape') === shapeParam;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
-        const shapeBtn = document.querySelector(`[data-shape="${shapeParam}"]`);
-        if (shapeBtn) shapeBtn.classList.add('active');
 
         // Update dimension panels
         document.querySelectorAll('.dimensions-panel').forEach(panel => {
@@ -534,21 +601,21 @@ function loadQueryParams() {
         const svgShape = document.getElementById(`svg-${shapeParam}`);
         if (svgShape) svgShape.classList.add('active');
     }
-    
+
     // 3. Material
     const materialParam = params.get('material');
     if (DENSITIES[materialParam]) {
         currentMaterial = materialParam;
         document.getElementById('material-select').value = materialParam;
     }
-    
+
     // 4. Depth
     const depthParam = parseFloat(params.get('depth'));
     if (!isNaN(depthParam) && depthParam >= 0 && depthParam <= 24) {
         currentDepthInches = depthParam;
         document.getElementById('depth-slider').value = depthParam;
     }
-    
+
     // 5. Dimension Inputs mapping
     const mappings = {
         'rect_l_ft': 'rect-length-ft',
@@ -566,7 +633,7 @@ function loadQueryParams() {
         'l_b_w_ft': 'lshape-b-width-ft',
         'l_b_w_in': 'lshape-b-width-in'
     };
-    
+
     for (const [paramKey, elemId] of Object.entries(mappings)) {
         const val = params.get(paramKey);
         if (val !== null) {
@@ -649,31 +716,69 @@ function preparePrintView() {
 }
 
 // Hook into window print event
-window.onbeforeprint = preparePrintView;
+window.addEventListener('beforeprint', preparePrintView);
 
 /**
- * Lazy loads html2pdf and generates PDF
+ * Lazy loads html2pdf and generates a PDF from the print layout.
+ * Accepts the clicked button so desktop and mobile controls both work.
  */
-function generatePDF() {
-    const btn = document.getElementById('btn-pdf');
+function generatePDF(trigger) {
+    const btn = trigger && trigger.nodeType === 1
+        ? trigger
+        : document.getElementById('btn-pdf');
+    if (!btn || btn.disabled) return;
+
     const originalContent = btn.innerHTML;
+    const status = document.getElementById('pdf-status');
 
-    // Loading State
-    btn.innerHTML = `<svg class="animate-spin h-5 w-5 text-slate-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> <span>Generating...</span>`;
+    function setStatus(message) {
+        if (status) status.textContent = message;
+    }
+
+    function restoreButton() {
+        btn.innerHTML = originalContent;
+        btn.disabled = false;
+        btn.removeAttribute('aria-busy');
+    }
+
+    function showError(message) {
+        setStatus(message);
+        if (typeof showShareFeedback === 'function') {
+            showShareFeedback(message, false);
+        }
+        restoreButton();
+    }
+
+    btn.innerHTML =
+        '<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+            '<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>' +
+            '<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>' +
+        '</svg><span>Generating…</span>';
     btn.disabled = true;
+    btn.setAttribute('aria-busy', 'true');
+    setStatus('Preparing the PDF. This can take a few seconds.');
 
-    // Load Library
+    // Load the PDF library only when the visitor needs it.
     if (!window.html2pdf) {
         const script = document.createElement('script');
         script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
-        script.onload = () => createPdf(btn, originalContent);
+        script.onload = function () {
+            if (typeof window.html2pdf === 'function') {
+                createPdf(btn, originalContent, setStatus, showError);
+            } else {
+                showError('The PDF library did not load. Use Print instead, or try again.');
+            }
+        };
+        script.onerror = function () {
+            showError('The PDF library could not be loaded. Use Print instead, or check your connection.');
+        };
         document.head.appendChild(script);
     } else {
-        createPdf(btn, originalContent);
+        createPdf(btn, originalContent, setStatus, showError);
     }
 }
 
-function createPdf(btn, originalContent) {
+function createPdf(btn, originalContent, setStatus, showError) {
     preparePrintView();
 
     // Get the hidden print wrapper
@@ -739,9 +844,7 @@ function createPdf(btn, originalContent) {
     container.appendChild(clone);
     document.body.appendChild(container);
 
-    // Loading State
-    btn.innerHTML = `<svg class="animate-spin h-5 w-5 text-slate-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> <span>Generating...</span>`;
-    btn.disabled = true;
+    // The trigger button is already in its loading state.
 
     const opt = {
         margin: [0.5, 0.5, 0.5, 0.5], // Top, Left, Bottom, Right
@@ -756,22 +859,23 @@ function createPdf(btn, originalContent) {
         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
 
-    html2pdf().set(opt).from(clone).save().then(() => {
+    window.html2pdf().set(opt).from(clone).save().then(() => {
         // Cleanup
-        document.body.removeChild(container);
+        if (document.body.contains(container)) {
+            document.body.removeChild(container);
+        }
         btn.innerHTML = originalContent;
         btn.disabled = false;
+        btn.removeAttribute('aria-busy');
+        setStatus('PDF downloaded.');
+        trackEvent('pdf_download', { material: currentMaterial });
     }).catch(err => {
         console.error(err);
         // Cleanup on error
         if (document.body.contains(container)) {
             document.body.removeChild(container);
         }
-        btn.innerHTML = '<span>Error</span>';
-        setTimeout(() => {
-            btn.innerHTML = originalContent;
-            btn.disabled = false;
-        }, 2000);
+        showError('The PDF could not be created. Use Print instead, or try again.');
     });
 }
 
@@ -793,7 +897,7 @@ function shareTool() {
     if (navigator.share) {
         navigator.share(shareData)
             .then(() => {
-                console.log('Shared successfully');
+                trackEvent('share', { method: 'web_share' });
             })
             .catch((err) => {
                 // User cancelled or error - fallback to clipboard
@@ -815,6 +919,7 @@ function copyToClipboard() {
 
     navigator.clipboard.writeText(url).then(() => {
         showShareFeedback('Link copied to clipboard!', true);
+        trackEvent('share', { method: 'clipboard' });
     }).catch(() => {
         // Final fallback for older browsers
         const textArea = document.createElement('textarea');
@@ -827,6 +932,7 @@ function copyToClipboard() {
         try {
             document.execCommand('copy');
             showShareFeedback('Link copied to clipboard!', true);
+            trackEvent('share', { method: 'clipboard_fallback' });
         } catch (err) {
             showShareFeedback('Could not copy link', false);
         }
@@ -896,7 +1002,7 @@ function showShareFeedback(message, success) {
  */
 function initAdObserver() {
     const adContainers = document.querySelectorAll('.ad-container');
-    
+
     adContainers.forEach(container => {
         const slot = container.closest('.ad-slot');
         if (!slot) return;
@@ -904,11 +1010,11 @@ function initAdObserver() {
         function checkAd() {
             // Check if there is an iframe inside the container
             const hasIframe = container.querySelector('iframe') !== null;
-            
+
             // Check if there is an ins element with data-ad-status="filled"
             const insElement = container.querySelector('ins.adsbygoogle');
             const isFilled = insElement && insElement.getAttribute('data-ad-status') === 'filled';
-            
+
             // General check: does it have any non-empty element that is not a comment/script?
             const hasRealContent = Array.from(container.children).some(child => {
                 const tagName = child.tagName.toLowerCase();

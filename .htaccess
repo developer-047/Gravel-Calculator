@@ -1,9 +1,47 @@
-# Apache / cPanel redirect rules
-# 301 Permanent redirects from old -2026 article URLs to clean canonical URLs
+# Apache / cPanel redirects, headers, compression and caching
+# The primary host is https://www.progravelcalculator.online
 
 Options -MultiViews
 RewriteEngine On
 
-# Redirect old article URLs to canonical clean URLs
+# Force the canonical www host and HTTPS.
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^progravelcalculator\.online$ [NC]
+RewriteRule ^ https://www.progravelcalculator.online%{REQUEST_URI} [R=301,L]
+
+# One canonical homepage URL.
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Retired article URLs
 RewriteRule ^best-gravel-types-2026\.html$ /best-gravel-types.html [R=301,L]
 RewriteRule ^driveway-cost-2026\.html$     /driveway-cost-guide.html [R=301,L]
+
+# Custom error page
+ErrorDocument 404 /404.html
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 hour"
+  ExpiresByType application/javascript "access plus 1 hour"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>

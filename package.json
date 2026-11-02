@@ -1,0 +1,14 @@
+{
+  "name": "pro-gravel-calculator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static gravel calculator and material guides",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind-input.css -o ./tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./src/tailwind-input.css -o ./tailwind.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "tailwindcss": "^3.4.17"
+  }
+}

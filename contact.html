@@ -3,23 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Request a free quote for your gravel or aggregate project. Share your calculator results and get competitive pricing from professionals." />
+    <meta name="description" content="Contact Pro Gravel Calculator with a calculation question, correction or project enquiry. Include dimensions, material and location so we can reply." />
     <meta name="robots" content="index, follow" />
-    <title>Request a Free Quote – Pro Gravel Calculator</title>
+    <title>Contact Pro Gravel Calculator</title>
     <link rel="canonical" href="https://www.progravelcalculator.online/contact.html" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#2563eb" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Request a Free Gravel Quote – Pro Gravel Calculator" />
-    <meta property="og:description" content="Share your project dimensions and get competitive gravel pricing from professionals." />
+    <meta property="og:title" content="Contact Pro Gravel Calculator" />
+    <meta property="og:description" content="Ask a calculation question, report a correction or prepare a project enquiry." />
     <meta property="og:url" content="https://www.progravelcalculator.online/contact.html" />
-    <meta property="og:image" content="https://www.progravelcalculator.online/image_8.png" />
+    <meta property="og:image" content="https://www.progravelcalculator.online/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Pro Gravel Calculator – free gravel estimator" />
     <meta property="og:site_name" content="Pro Gravel Calculator" />
+    <meta property="og:locale" content="en_US" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Request a Free Gravel Quote – Pro Gravel Calculator" />
-    <meta name="twitter:description" content="Share your project dimensions and get competitive gravel pricing from professionals." />
-    <meta name="twitter:image" content="https://www.progravelcalculator.online/image_8.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="twitter:title" content="Contact Pro Gravel Calculator" />
+    <meta name="twitter:description" content="Ask a calculation question, report a correction or prepare a project enquiry." />
+    <meta name="twitter:image" content="https://www.progravelcalculator.online/og-image.png" />
+    <meta name="twitter:image:alt" content="Pro Gravel Calculator – free gravel estimator" />
+    <link rel="stylesheet" href="/tailwind.css">
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/analytics-config.js" defer></script>
+    <script src="/analytics.js" defer></script>
+
     <!-- BreadcrumbList Schema -->
     <script type="application/ld+json">
     {
@@ -35,201 +49,335 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Contact Us",
+          "name": "Contact",
           "item": "https://www.progravelcalculator.online/contact.html"
         }
       ]
     }
     </script>
+
+    <!-- ContactPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact Pro Gravel Calculator",
+      "url": "https://www.progravelcalculator.online/contact.html",
+      "description": "Contact page for calculation questions, corrections and project enquiries."
+    }
+    </script>
   </head>
   <body class="bg-slate-50 min-h-screen flex flex-col">
-<header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-    <a href="index.html" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
-      <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-      </svg>
-      <div>
-        <span class="text-xl md:text-2xl font-bold text-slate-900 leading-none block">Pro Gravel Calculator</span>
-        <p class="text-xs text-slate-600 hidden md:block">Professional material estimation tool</p>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+          <div>
+            <span class="text-xl md:text-2xl font-bold text-slate-900 leading-none block">Pro Gravel Calculator</span>
+            <p class="text-xs text-slate-600 hidden md:block">Professional material estimation tool</p>
+          </div>
+        </a>
+        <nav class="flex flex-wrap justify-center md:justify-end gap-6 md:gap-10 text-base font-medium" aria-label="Main navigation">
+          <a href="/" class="text-slate-700 hover:text-blue-600 transition-colors">Calculator</a>
+          <a href="/best-gravel-types.html" class="text-slate-700 hover:text-blue-600 transition-colors">Gravel Types</a>
+          <a href="/driveway-cost-guide.html" class="text-slate-700 hover:text-blue-600 transition-colors">Driveway Cost</a>
+          <a href="/about.html" class="text-slate-700 hover:text-blue-600 transition-colors">About</a>
+          <a href="/contact.html" class="text-blue-700 font-semibold" aria-current="page">Contact</a>
+        </nav>
       </div>
-    </a>
-    <nav class="flex flex-wrap justify-center md:justify-end gap-6 md:gap-10 text-base font-medium">
-      <a href="index.html" class="text-slate-700 hover:text-blue-600 transition-colors">Calculator</a>
-      <a href="best-gravel-types.html" class="text-slate-700 hover:text-blue-600 transition-colors">Gravel Types</a>
-      <a href="driveway-cost-guide.html" class="text-slate-700 hover:text-blue-600 transition-colors">DriveAway Cost</a>
-      <a href="about.html" class="text-slate-700 hover:text-blue-600 transition-colors">About</a>
-      <a href="contact.html" class="text-slate-700 hover:text-blue-600 transition-colors">Contact</a>
-    </nav>
-  </div>
-</header>
+    </header>
 
-    <!-- Main Content -->
-    <main class="flex-grow container mx-auto px-4 py-8 md:py-12">
-      <div
-        class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden"
-      >
-        <div class="bg-blue-600 px-6 py-8 text-center">
-          <h1 class="text-3xl font-bold text-white mb-2">Request a Free Quote</h1>
-          <p class="text-blue-100">
-            Send us your project details and get a competitive price.
-          </p>
-        </div>
+    <main id="main-content" class="flex-grow container mx-auto px-4 py-10 md:py-14">
+      <nav class="max-w-5xl mx-auto mb-6 text-sm text-slate-600" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href="/" class="hover:text-blue-700 underline underline-offset-2">Home</a></li>
+          <li aria-hidden="true">›</li>
+          <li class="text-slate-800 font-medium" aria-current="page">Contact</li>
+        </ol>
+      </nav>
 
-        <div class="p-6 md:p-10">
-          <form class="space-y-6">
-            <!-- Contact Info -->
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
-                  >Full Name</label
-                >
-                <input
-                  type="text"
-                  class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
-                  placeholder="John Doe"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2"
-                  >Email Address</label
-                >
-                <input
-                  type="email"
-                  class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
-                  placeholder="john@example.com"
-                />
-              </div>
+      <div class="max-w-5xl mx-auto grid lg:grid-cols-3 gap-8">
+        <section class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-blue-700 px-6 py-8 md:px-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Contact Pro Gravel Calculator</h1>
+            <p class="text-blue-100">
+              Ask a calculation question, report a correction, or prepare the details of a project you are planning.
+            </p>
+          </div>
+
+          <div class="p-6 md:p-10">
+            <div class="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900" role="note">
+              <strong>Message delivery is not connected yet.</strong> The form checks your details, but submitting it does not send a message. Please use the calculator and guides for now; delivery will be enabled in a later update.
             </div>
+            <form id="quote-form" class="space-y-6" novalidate data-endpoint="">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label for="full-name" class="block text-sm font-semibold text-slate-800 mb-2">Full name <span class="text-red-700" aria-hidden="true">*</span></label>
+                  <input
+                    type="text"
+                    id="full-name"
+                    name="name"
+                    required
+                    autocomplete="name"
+                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
+                    placeholder="John Doe"
+                    aria-describedby="name-error"
+                  />
+                  <p id="name-error" class="form-error" hidden>Please enter your name.</p>
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-semibold text-slate-800 mb-2">Email address <span class="text-red-700" aria-hidden="true">*</span></label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    autocomplete="email"
+                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
+                    placeholder="john@example.com"
+                    aria-describedby="email-error"
+                  />
+                  <p id="email-error" class="form-error" hidden>Please enter a valid email address.</p>
+                </div>
+              </div>
 
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-2"
-                >Phone Number</label
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label for="phone" class="block text-sm font-semibold text-slate-800 mb-2">Phone number <span class="text-slate-600 font-normal">(optional)</span></label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    autocomplete="tel"
+                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
+                    placeholder="(555) 123-4567"
+                  />
+                </div>
+                <div>
+                  <label for="project-type" class="block text-sm font-semibold text-slate-800 mb-2">Project type</label>
+                  <select
+                    id="project-type"
+                    name="project_type"
+                    class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
+                  >
+                    <option value="">Select a project type</option>
+                    <option value="driveway">Driveway</option>
+                    <option value="path-patio">Path or patio</option>
+                    <option value="drainage">Drainage or French drain</option>
+                    <option value="garden">Garden or landscape</option>
+                    <option value="correction">Correction or question about a page</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                  <label for="project-message" class="block text-sm font-semibold text-slate-800">Project details <span class="text-red-700" aria-hidden="true">*</span></label>
+                  <span class="text-xs text-blue-700 font-medium bg-blue-50 px-2 py-1 rounded" id="auto-fill-badge" hidden>Auto-filled from the calculator</span>
+                </div>
+                <textarea
+                  id="project-message"
+                  name="message"
+                  rows="7"
+                  required
+                  class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-slate-800"
+                  placeholder="Include the area dimensions, depth, material, location and any deadline. Do not include payment details."
+                  aria-describedby="message-help message-error"
+                ></textarea>
+                <p id="message-help" class="text-xs text-slate-600 mt-1">Dimensions, depth, material and location help us give a useful answer.</p>
+                <p id="message-error" class="form-error" hidden>Please add a few details about your project.</p>
+              </div>
+
+              <!-- Honeypot: hidden from people, attractive to simple bots -->
+              <div class="hidden" aria-hidden="true">
+                <label for="company-website">Company website</label>
+                <input type="text" id="company-website" name="company_website" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <div class="flex items-start gap-3">
+                <input type="checkbox" id="privacy-consent" name="privacy_consent" required class="mt-1 h-5 w-5 rounded border-slate-300 text-blue-700 focus:ring-blue-500" aria-describedby="privacy-error" />
+                <label for="privacy-consent" class="text-sm text-slate-700 leading-relaxed">
+                  I agree to the <a href="/privacy.html" class="text-blue-700 underline underline-offset-2">privacy policy</a> and understand that my details will be used to respond to this message.
+                </label>
+              </div>
+              <p id="privacy-error" class="form-error" hidden>Please agree to the privacy policy before sending.</p>
+
+              <button
+                type="submit"
+                class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 rounded-xl shadow-md hover:shadow-lg transition-all active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
               >
-              <input
-                type="tel"
-                class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
-                placeholder="(555) 123-4567"
-              />
-            </div>
+                Send message
+              </button>
 
-            <!-- Project Details -->
-            <div>
-              <div class="flex justify-between items-center mb-2">
-                <label class="block text-sm font-semibold text-slate-700"
-                  >Project Details</label
-                >
-                <span
-                  class="text-xs text-blue-600 font-medium bg-blue-50 px-2 py-1 rounded"
-                  id="auto-fill-badge"
-                  style="display: none"
-                  >✨ Auto-filled from Calculator</span
-                >
-              </div>
-              <textarea
-                id="project-message"
-                rows="6"
-                class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-slate-700"
-                placeholder="Please describe your project needs..."
-              ></textarea>
-            </div>
+              <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
 
-            <button
-              type="button"
-              class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-md hover:shadow-lg transition-all transform active:scale-[0.98]"
-            >
-              Send Quote Request
-            </button>
-          </form>
-        </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                This form is not a live quote service. We are an independent calculator, not a contractor marketplace, and we cannot provide binding prices or emergency assistance. Never send payment details through this form.
+              </p>
+            </form>
+          </div>
+        </section>
+
+        <aside class="space-y-6">
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+            <h2 class="text-lg font-bold text-slate-900 mb-3">What to include</h2>
+            <ul class="space-y-3 text-sm text-slate-700">
+              <li class="flex gap-2"><span class="text-blue-700 font-bold" aria-hidden="true">1.</span><span>Area shape and dimensions (length × width, diameter, or both L-shape sections).</span></li>
+              <li class="flex gap-2"><span class="text-blue-700 font-bold" aria-hidden="true">2.</span><span>Planned depth and material, if you have chosen them.</span></li>
+              <li class="flex gap-2"><span class="text-blue-700 font-bold" aria-hidden="true">3.</span><span>Your city or region, because delivery and material prices vary locally.</span></li>
+              <li class="flex gap-2"><span class="text-blue-700 font-bold" aria-hidden="true">4.</span><span>For a correction, the page URL and the source that supports the change.</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+            <h2 class="text-lg font-bold text-slate-900 mb-3">Get an instant estimate first</h2>
+            <p class="text-sm text-slate-700 leading-relaxed mb-4">
+              The calculator runs entirely in your browser and does not send your dimensions anywhere. It is the fastest way to check volume, weight and bags before you write to us.
+            </p>
+            <a href="/" class="inline-flex items-center gap-2 text-blue-700 font-semibold underline underline-offset-2">
+              Open the free calculator
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+            </a>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+            <h2 class="text-lg font-bold text-slate-900 mb-3">Privacy</h2>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Calculator inputs stay in your browser. Analytics is optional and off until you accept it. Read the <a href="/privacy.html" class="text-blue-700 underline underline-offset-2">privacy policy</a> for the full detail.
+            </p>
+          </div>
+        </aside>
       </div>
 
-      <!-- Trust Indicators -->
-      <div
-        class="max-w-2xl mx-auto mt-8 grid grid-cols-3 gap-4 text-center text-slate-500 text-sm"
-      >
-        <div class="flex flex-col items-center gap-2">
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <span>Fast Response</span>
+      <div class="max-w-5xl mx-auto mt-8 grid sm:grid-cols-3 gap-4 text-center text-slate-700 text-sm">
+        <div class="bg-white border border-slate-200 rounded-xl p-4">
+          <p class="font-semibold text-slate-900">Free calculator</p>
+          <p class="text-slate-600">No account and no paywall.</p>
         </div>
-        <div class="flex flex-col items-center gap-2">
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <span>Verified Pros</span>
+        <div class="bg-white border border-slate-200 rounded-xl p-4">
+          <p class="font-semibold text-slate-900">Privacy-first</p>
+          <p class="text-slate-600">Dimensions stay in your browser.</p>
         </div>
-        <div class="flex flex-col items-center gap-2">
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
-            />
-          </svg>
-          <span>Competitive Rates</span>
+        <div class="bg-white border border-slate-200 rounded-xl p-4">
+          <p class="font-semibold text-slate-900">Clear method</p>
+          <p class="text-slate-600">Formulas and densities are published.</p>
         </div>
       </div>
     </main>
 
-<footer class="bg-white border-t border-slate-200 mt-16">
-  <div class="max-w-7xl mx-auto px-6 py-10">
-    <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
-      <div>
-        <h4 class="font-bold text-slate-900 mb-3">Pro Gravel Calculator</h4>
-        <p class="text-sm text-slate-600">Professional material estimation tool</p>
+    <footer class="bg-white border-t border-slate-200 mt-16">
+      <div class="max-w-7xl mx-auto px-6 py-10">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center sm:text-left">
+          <div>
+            <p class="font-bold text-slate-900 mb-3">Pro Gravel Calculator</p>
+            <p class="text-sm text-slate-600">Free, transparent material estimation for gravel, sand and stone.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-slate-900 mb-3">Calculators &amp; guides</h2>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/" class="text-slate-600 hover:text-blue-700">Gravel calculator</a></li>
+              <li><a href="/best-gravel-types.html" class="text-slate-600 hover:text-blue-700">Gravel types</a></li>
+              <li><a href="/driveway-cost-guide.html" class="text-slate-600 hover:text-blue-700">Driveway cost guide</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="font-bold text-slate-900 mb-3">Company</h2>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/about.html" class="text-slate-600 hover:text-blue-700">About &amp; method</a></li>
+              <li><a href="/contact.html" class="text-slate-600 hover:text-blue-700">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="font-bold text-slate-900 mb-3">Legal</h2>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/privacy.html" class="text-slate-600 hover:text-blue-700">Privacy policy</a></li>
+              <li><a href="/terms.html" class="text-slate-600 hover:text-blue-700">Terms of service</a></li>
+              <li><button type="button" class="text-slate-600 hover:text-blue-700" data-open-consent>Cookie settings</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center text-xs text-slate-600 mt-8 border-t border-slate-100 pt-6">
+          © 2026 Pro Gravel Calculator. All rights reserved. Independent tool — not a quarry or contractor.
+        </div>
       </div>
-      <div>
-        <h4 class="font-bold text-slate-900 mb-3">Quick Links</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="index.html" class="hover:text-blue-600">Calculator</a></li>
-          <li><a href="driveway-cost-guide.html" class="hover:text-blue-600">Driveway Cost Guide</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold text-slate-900 mb-3">Legal</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="privacy.html" class="hover:text-blue-600">Privacy Policy</a></li>
-          <li><a href="terms.html" class="hover:text-blue-600">Terms of Service</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="text-center text-xs text-slate-400 mt-8 border-t border-slate-100 pt-6">
-      © 2026 Pro Gravel Calculator. All rights reserved.
-    </div>
-  </div>
-</footer>
+    </footer>
 
     <script>
-      // Data Parser Logic
       document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("quote-form");
+        if (!form) return;
+
+        const status = document.getElementById("form-status");
+        const fields = {
+          name: document.getElementById("full-name"),
+          email: document.getElementById("email"),
+          message: document.getElementById("project-message"),
+          consent: document.getElementById("privacy-consent"),
+          honeypot: document.getElementById("company-website")
+        };
+        const errors = {
+          name: document.getElementById("name-error"),
+          email: document.getElementById("email-error"),
+          message: document.getElementById("message-error"),
+          consent: document.getElementById("privacy-error")
+        };
+
+        const setError = (key, message) => {
+          if (errors[key]) {
+            errors[key].textContent = message;
+            errors[key].hidden = false;
+          }
+          if (fields[key]) fields[key].setAttribute("aria-invalid", "true");
+        };
+
+        const clearError = (key) => {
+          if (errors[key]) errors[key].hidden = true;
+          if (fields[key]) fields[key].removeAttribute("aria-invalid");
+        };
+
+        Object.entries(fields).forEach(([key, field]) => {
+          if (!field || key === "honeypot") return;
+          field.addEventListener("input", () => clearError(key));
+          field.addEventListener("change", () => clearError(key));
+        });
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          status.className = "form-status";
+          status.textContent = "";
+
+          let valid = true;
+          if (!fields.name.value.trim()) { setError("name", "Please enter your name."); valid = false; }
+          if (!fields.email.value.trim() || !fields.email.validity.valid) { setError("email", "Please enter a valid email address."); valid = false; }
+          if (fields.message.value.trim().length < 20) { setError("message", "Please add at least 20 characters about your project."); valid = false; }
+          if (!fields.consent.checked) { setError("consent", "Please agree to the privacy policy before sending."); valid = false; }
+
+          if (!valid) {
+            status.classList.add("form-status-error");
+            status.textContent = "Please correct the highlighted fields and try again.";
+            const firstInvalid = form.querySelector('[aria-invalid="true"]');
+            if (firstInvalid) firstInvalid.focus();
+            return;
+          }
+
+          // Form delivery is intentionally disabled until an endpoint is configured.
+          // Set data-endpoint on the form and replace this branch with a fetch() POST.
+          if (!form.dataset.endpoint) {
+            status.classList.add("form-status-info");
+            status.textContent = "Online delivery is being connected. Your details have not been sent. Please check back shortly, or use the calculator and guides in the meantime.";
+            return;
+          }
+
+          status.classList.add("form-status-info");
+          status.textContent = "Sending your message…";
+        });
+
+        // Data parser: prefill project details from calculator query parameters.
         const params = new URLSearchParams(window.location.search);
         const material = params.get("material");
         const volume = params.get("volume");
@@ -239,24 +387,19 @@
 
         if (material || volume) {
           const materialName = material
-            ? material
-                .replace("_", " ")
-                .replace(/\b\w/g, (c) => c.toUpperCase())
+            ? material.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
             : "Aggregate";
 
-          let message = `Hello, I would like a quote for the following project:\n\n`;
-          message += `📋 Material: ${materialName}\n`;
-          if (shape)
-            message += `📐 Shape: ${shape.charAt(0).toUpperCase() + shape.slice(1)}\n`;
-          if (volume) message += `📦 Volume: ${volume} Cubic Yards\n`;
-          if (weight) message += `⚖️ Est. Weight: ${weight} Tons\n`;
-          if (bags) message += `🛍️ Est. Bags: ${bags} (50lb)\n\n`;
-          message += `Please verify availability and delivery cost to my location.`;
+          let message = "Hello, I would like help with the following project:\n\n";
+          message += `Material: ${materialName}\n`;
+          if (shape) message += `Shape: ${shape.charAt(0).toUpperCase() + shape.slice(1)}\n`;
+          if (volume) message += `Volume: ${volume} cubic yards\n`;
+          if (weight) message += `Estimated weight: ${weight} tons\n`;
+          if (bags) message += `Estimated bags: ${bags} (50 lb)\n\n`;
+          message += "Please check the estimate and let me know what else you need.";
 
-          const textarea = document.getElementById("project-message");
-          textarea.value = message;
-          document.getElementById("auto-fill-badge").style.display =
-            "inline-block";
+          fields.message.value = message;
+          document.getElementById("auto-fill-badge").hidden = false;
         }
       });
     </script>

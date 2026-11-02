@@ -3,23 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="About Pro Gravel Calculator – built with civil engineers for homeowners and contractors who need accurate free material estimates." />
+    <meta name="description" content="How Pro Gravel Calculator estimates volume, weight and bags, the density values it uses, and the sources and limits behind every result." />
     <meta name="robots" content="index, follow" />
-    <title>About Us – Pro Gravel Calculator</title>
+    <title>About Pro Gravel Calculator – Method &amp; Sources</title>
     <link rel="canonical" href="https://www.progravelcalculator.online/about.html" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#2563eb" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="About Pro Gravel Calculator" />
-    <meta property="og:description" content="Learn about Pro Gravel Calculator – a free, precision material estimator built with civil engineering input." />
+    <meta property="og:title" content="About Pro Gravel Calculator – Method &amp; Sources" />
+    <meta property="og:description" content="The formulas, density assumptions, sources and limits behind Pro Gravel Calculator." />
     <meta property="og:url" content="https://www.progravelcalculator.online/about.html" />
-    <meta property="og:image" content="https://www.progravelcalculator.online/image_8.png" />
+    <meta property="og:image" content="https://www.progravelcalculator.online/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Pro Gravel Calculator – free gravel estimator" />
     <meta property="og:site_name" content="Pro Gravel Calculator" />
+    <meta property="og:locale" content="en_US" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="About Pro Gravel Calculator" />
-    <meta name="twitter:description" content="Learn about Pro Gravel Calculator – a free, precision material estimator built with civil engineering input." />
-    <meta name="twitter:image" content="https://www.progravelcalculator.online/image_8.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="twitter:title" content="About Pro Gravel Calculator – Method &amp; Sources" />
+    <meta name="twitter:description" content="The formulas, density assumptions, sources and limits behind Pro Gravel Calculator." />
+    <meta name="twitter:image" content="https://www.progravelcalculator.online/og-image.png" />
+    <meta name="twitter:image:alt" content="Pro Gravel Calculator – free gravel estimator" />
+    <link rel="stylesheet" href="/tailwind.css">
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/analytics-config.js" defer></script>
+    <script src="/analytics.js" defer></script>
+
     <!-- Organization Schema -->
     <script type="application/ld+json">
     {
@@ -27,8 +41,25 @@
       "@type": "Organization",
       "name": "Pro Gravel Calculator",
       "url": "https://www.progravelcalculator.online/",
-      "logo": "https://www.progravelcalculator.online/image_8.png",
-      "description": "Professional construction material calculator specializing in gravel, sand, and stone aggregates."
+      "logo": "https://www.progravelcalculator.online/icon-512.png",
+      "description": "Independent free calculator for gravel, sand and stone aggregate estimates."
+    }
+    </script>
+
+    <!-- AboutPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "About Pro Gravel Calculator",
+      "url": "https://www.progravelcalculator.online/about.html",
+      "description": "The formulas, density assumptions, sources and limits behind Pro Gravel Calculator.",
+      "dateModified": "2026-11-01",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Pro Gravel Calculator",
+        "url": "https://www.progravelcalculator.online/"
+      }
     }
     </script>
 
@@ -47,7 +78,7 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "About Us",
+          "name": "About",
           "item": "https://www.progravelcalculator.online/about.html"
         }
       ]
@@ -55,121 +86,169 @@
     </script>
   </head>
   <body class="bg-slate-50 min-h-screen flex flex-col">
-<header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-    <!-- Logo left -->
-    <a href="index.html" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
-      <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-      </svg>
-      <div>
-        <span class="text-xl md:text-2xl font-bold text-slate-900 leading-none block">Pro Gravel Calculator</span>
-        <p class="text-xs text-slate-600 hidden md:block">Professional material estimation tool</p>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+          <div>
+            <span class="text-xl md:text-2xl font-bold text-slate-900 leading-none block">Pro Gravel Calculator</span>
+            <p class="text-xs text-slate-600 hidden md:block">Professional material estimation tool</p>
+          </div>
+        </a>
+        <nav class="flex flex-wrap justify-center md:justify-end gap-6 md:gap-10 text-base font-medium" aria-label="Main navigation">
+          <a href="/" class="text-slate-700 hover:text-blue-600 transition-colors">Calculator</a>
+          <a href="/best-gravel-types.html" class="text-slate-700 hover:text-blue-600 transition-colors">Gravel Types</a>
+          <a href="/driveway-cost-guide.html" class="text-slate-700 hover:text-blue-600 transition-colors">Driveway Cost</a>
+          <a href="/about.html" class="text-blue-700 font-semibold" aria-current="page">About</a>
+          <a href="/contact.html" class="text-slate-700 hover:text-blue-600 transition-colors">Contact</a>
+        </nav>
       </div>
-    </a>
+    </header>
 
-    <!-- Main Menu right (single line) -->
-    <nav class="flex flex-wrap justify-center md:justify-end gap-6 md:gap-10 text-base font-medium">
-      <a href="index.html" class="text-slate-700 hover:text-blue-600 transition-colors">Calculator</a>
-      <a href="best-gravel-types.html" class="text-slate-700 hover:text-blue-600 transition-colors">Gravel Types</a>
-      <a href="driveway-cost-guide.html" class="text-slate-700 hover:text-blue-600 transition-colors">DriveAway Cost</a>
-      <a href="about.html" class="text-slate-700 hover:text-blue-600 transition-colors">About</a>
-      <a href="contact.html" class="text-slate-700 hover:text-blue-600 transition-colors">Contact</a>
-    </nav>
-  </div>
-</header>
+    <main id="main-content" class="flex-grow container mx-auto px-4 py-10 md:py-14">
+      <nav class="max-w-3xl mx-auto mb-6 text-sm text-slate-600" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href="/" class="hover:text-blue-700 underline underline-offset-2">Home</a></li>
+          <li aria-hidden="true">›</li>
+          <li class="text-slate-800 font-medium" aria-current="page">About</li>
+        </ol>
+      </nav>
 
-    <main class="flex-grow container mx-auto px-4 py-12">
-      <div
-        class="max-w-3xl mx-auto prose prose-slate prose-lg bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-200"
-      >
-        <h1 class="text-3xl font-bold text-slate-900 mb-6">
-          About Pro Gravel Calculator
-        </h1>
-
-        <h2 class="text-xl font-bold mt-6 mb-2">
-          Welcome to Pro Gravel Calculator Online
-        </h2>
-
-        <p class="lead">
-          Welcome to Pro Gravel Calculator, the industry-standard tool designed
-          for homeowners, contractors, and landscape architects who demand
-          precision in their material estimation.
+      <article class="max-w-3xl mx-auto bg-white p-7 md:p-12 rounded-2xl shadow-sm border border-slate-200 prose prose-slate prose-lg">
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">About Pro Gravel Calculator</h1>
+        <p class="text-lg text-slate-700 leading-relaxed">
+          Pro Gravel Calculator is an independent, free estimating tool for gravel, sand and stone. It turns three measurements — area, depth and material — into the volume, weight and bag count you need before ordering.
+        </p>
+        <p class="text-sm text-slate-600">
+          <time datetime="2026-11-01">Last updated: November 1, 2026</time>
         </p>
 
-        <h2>Our Mission</h2>
+        <h2 id="what-it-does">What the calculator does</h2>
         <p>
-          In the construction world, we know that "close enough" isn't good
-          enough. Under-ordering leads to project delays and costly delivery
-          fees, while over-ordering results in wasted budget and disposal
-          headaches. Our mission is to eliminate that guesswork.
+          The calculator supports rectangular, circular and L-shaped areas in imperial or metric units. It reports volume in cubic yards, estimated weight in short tons and the number of 50 lb bags. Every result is an estimate for planning; it is not a substitute for a site survey or a supplier's own quantity calculation.
+        </p>
+        <p>
+          The site is not a quarry, contractor or materials marketplace. We do not sell aggregate and we do not earn a commission from the suppliers you contact.
         </p>
 
-        <h2>Why Trust Us? (E-E-A-T)</h2>
+        <h2 id="methodology">How the estimate is calculated</h2>
+        <ol>
+          <li><strong>Convert every dimension to feet.</strong> Feet and inches are added together as <code>feet + inches ÷ 12</code>. Metres and centimetres are converted to feet.</li>
+          <li><strong>Calculate the area.</strong> Rectangle: length × width. Circle: π × radius². L-shape: Section A + Section B.</li>
+          <li><strong>Convert depth to feet.</strong> Inches are divided by 12.</li>
+          <li><strong>Calculate volume.</strong> <code>cubic yards = area (ft²) × depth (ft) ÷ 27</code>.</li>
+          <li><strong>Estimate weight.</strong> <code>short tons = cubic yards × 27 × density (lb/ft³) ÷ 2,000</code>.</li>
+          <li><strong>Estimate bags.</strong> Total pounds ÷ 50, rounded up to the next whole bag.</li>
+        </ol>
+
+        <h2 id="densities">Density values used</h2>
         <p>
-          This tool was developed with direct input from civil engineers and
-          hardscaping professionals.
+          Weight depends on the material and on how loose or compacted it is. The calculator uses these typical <em>loose bulk</em> densities:
+        </p>
+        <div class="not-prose overflow-x-auto my-6">
+          <table class="w-full text-sm border-collapse bg-white rounded-lg overflow-hidden">
+            <caption class="sr-only">Density values used by the gravel calculator</caption>
+            <thead>
+              <tr class="bg-slate-800 text-white">
+                <th scope="col" class="text-left py-3 px-4">Material</th>
+                <th scope="col" class="text-left py-3 px-4">lb/ft³</th>
+                <th scope="col" class="text-left py-3 px-4">lb/yd³</th>
+                <th scope="col" class="text-left py-3 px-4">Short tons/yd³</th>
+              </tr>
+            </thead>
+            <tbody class="text-slate-700">
+              <tr class="border-b border-slate-200"><th scope="row" class="text-left py-3 px-4 font-medium">Pea gravel</th><td class="py-3 px-4">105</td><td class="py-3 px-4">2,835</td><td class="py-3 px-4">≈ 1.42</td></tr>
+              <tr class="bg-slate-50 border-b border-slate-200"><th scope="row" class="text-left py-3 px-4 font-medium">Crushed stone</th><td class="py-3 px-4">100</td><td class="py-3 px-4">2,700</td><td class="py-3 px-4">≈ 1.35</td></tr>
+              <tr class="border-b border-slate-200"><th scope="row" class="text-left py-3 px-4 font-medium">Sand</th><td class="py-3 px-4">110</td><td class="py-3 px-4">2,970</td><td class="py-3 px-4">≈ 1.49</td></tr>
+              <tr class="bg-slate-50"><th scope="row" class="text-left py-3 px-4 font-medium">River rock</th><td class="py-3 px-4">108</td><td class="py-3 px-4">2,916</td><td class="py-3 px-4">≈ 1.46</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="density-note">Why you may see 2,835 lb/yd³ for crushed stone</h2>
+        <p>
+          The 2,835 lb/yd³ figure is a legitimate reference point: it is 105 lb/ft³, a density often quoted for compacted or higher-specific-gravity crushed stone. This calculator deliberately uses <strong>100 lb/ft³ (2,700 lb/yd³)</strong> for crushed stone because that is a more typical <em>loose</em> bulk density for the material most suppliers deliver.
+        </p>
+        <p>
+          The difference is about 5%. For a 10-ton order that is roughly half a ton, which matters at the scale of a driveway. If your supplier publishes a test density or a weight per cubic yard, use their number instead of our default. The calculator is a planning aid, not a laboratory result for your specific pile.
+        </p>
+
+        <h2 id="allowances">Allowances, rounding and limits</h2>
+        <ul>
+          <li><strong>No automatic waste allowance.</strong> The result is the geometric volume. Order about 10% extra for compaction, spillage and uneven ground. Increase to 15% for loose rounded stone, sloped sites or a soft subgrade.</li>
+          <li><strong>Two-decimal display.</strong> Volume and weight are rounded for readability. Bags are rounded up so you do not see a fractional bag.</li>
+          <li><strong>Compaction changes volume.</strong> Gravel is usually sold loose but compacted in place. A 4-inch loose layer can finish thinner after compaction; plan lifts and depths accordingly.</li>
+          <li><strong>Moisture changes weight.</strong> Wet sand and gravel weigh more than dry material. Suppliers price by weight or volume; confirm which unit their quote uses.</li>
+          <li><strong>Shape assumptions.</strong> The L-shape mode adds two rectangles. It does not account for curves, cut-outs, retaining walls or over-excavation.</li>
+        </ul>
+
+        <h2 id="sources">Sources and references</h2>
+        <p>
+          Density values are typical planning figures compiled from published aggregate supplier data and standard estimating references. They are presented as ranges in practice, not as universal constants. Our cost guides use the published U.S. price data described on those pages, including:
         </p>
         <ul>
-          <li>
-            <strong>Expertise:</strong> Our density formulas are based on
-            standard aggregate specific gravities used in civil engineering
-            (e.g., 2,835 lbs/yd³ for crushed stone).
-          </li>
-          <li>
-            <strong>Experience:</strong> We understand real-world site
-            conditions, which is why we emphasize the "Waste Factor" rule.
-          </li>
-          <li>
-            <strong>Authority:</strong> We are a trusted resource for quickly
-            estimating tons, yards, and bags for driveways, patios, and drainage
-            projects.
-          </li>
+          <li><a href="https://goodgravel.com/gravel/prices" rel="noopener">GoodGravel, Gravel Prices by State (October 2026 edition)</a> — median and middle-half prices from 10,101 published listings across 522 U.S. supply yards.</li>
+          <li><a href="https://www.usgs.gov/centers/national-minerals-information-center/crushed-stone-statistics-and-information" rel="noopener">U.S. Geological Survey, Crushed Stone Statistics and Information</a> — background on crushed stone production and use.</li>
         </ul>
+        <p>
+          Where a figure is an illustrative planning example rather than a published measurement, the page says so. We do not present invented customer bills, review counts or search data as facts.
+        </p>
 
-        <h2 class="font-bold">Commitment to Quality</h2>
+        <h2 id="corrections">Corrections and editorial standards</h2>
         <p>
-          We continuously update our database to reflect accurate material
-          densities and best practices. Whether you are laying a simple garden
-          path or a commercial parking lot, Pro Gravel Calculator is your
-          reliable partner.
+          If you find an error, a broken source or a density that does not match your supplier's data, please <a href="/contact.html">contact us</a> with the page and the evidence. Corrections are reviewed against the source before publication. Commercial relationships do not determine which materials or methods we recommend.
         </p>
         <p>
-          Operating at progravelcalculator.online, we are a dedicated digital
-          resource for civil engineers, landscaping professionals, and
-          homeowners. Our tool is built on high-precision mathematical formulas
-          to ensure that your construction project—whether a garden path or a
-          commercial driveway—starts with the exact material volume needed.
+          The calculator and guides are written for a U.S. audience, with metric inputs and outputs for international visitors. Local codes, quarry specifications and site conditions always take precedence over a general guide.
         </p>
-      </div>
+
+        <div class="not-prose mt-8 rounded-xl bg-blue-50 border border-blue-200 p-5">
+          <p class="text-sm text-blue-900 leading-relaxed">
+            <strong>Ready to estimate?</strong> <a href="/" class="text-blue-700 font-semibold underline underline-offset-2">Open the free gravel calculator</a>, or read the <a href="/best-gravel-types.html" class="text-blue-700 font-semibold underline underline-offset-2">gravel type comparison</a> before you choose a material.
+          </p>
+        </div>
+      </article>
     </main>
 
-<footer class="bg-white border-t border-slate-200 mt-16">
-  <div class="max-w-7xl mx-auto px-6 py-10">
-    <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
-      <div>
-        <h4 class="font-bold text-slate-900 mb-3">Pro Gravel Calculator</h4>
-        <p class="text-sm text-slate-600">Professional material estimation tool</p>
+    <footer class="bg-white border-t border-slate-200 mt-16">
+      <div class="max-w-7xl mx-auto px-6 py-10">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center sm:text-left">
+          <div>
+            <p class="font-bold text-slate-900 mb-3">Pro Gravel Calculator</p>
+            <p class="text-sm text-slate-600">Free, transparent material estimation for gravel, sand and stone.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-slate-900 mb-3">Calculators &amp; guides</h2>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/" class="text-slate-600 hover:text-blue-700">Gravel calculator</a></li>
+              <li><a href="/best-gravel-types.html" class="text-slate-600 hover:text-blue-700">Gravel types</a></li>
+              <li><a href="/driveway-cost-guide.html" class="text-slate-600 hover:text-blue-700">Driveway cost guide</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="font-bold text-slate-900 mb-3">Company</h2>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/about.html" class="text-slate-600 hover:text-blue-700">About &amp; method</a></li>
+              <li><a href="/contact.html" class="text-slate-600 hover:text-blue-700">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="font-bold text-slate-900 mb-3">Legal</h2>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/privacy.html" class="text-slate-600 hover:text-blue-700">Privacy policy</a></li>
+              <li><a href="/terms.html" class="text-slate-600 hover:text-blue-700">Terms of service</a></li>
+              <li><button type="button" class="text-slate-600 hover:text-blue-700" data-open-consent>Cookie settings</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center text-xs text-slate-600 mt-8 border-t border-slate-100 pt-6">
+          © 2026 Pro Gravel Calculator. All rights reserved. Independent tool — not a quarry or contractor.
+        </div>
       </div>
-      <div>
-        <h4 class="font-bold text-slate-900 mb-3">Quick Links</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="index.html" class="hover:text-blue-600">Calculator</a></li>
-          <li><a href="driveway-cost-guide.html" class="hover:text-blue-600">Driveway Cost Guide</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold text-slate-900 mb-3">Legal</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="privacy.html" class="hover:text-blue-600">Privacy Policy</a></li>
-          <li><a href="terms.html" class="hover:text-blue-600">Terms of Service</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="text-center text-xs text-slate-400 mt-8 border-t border-slate-100 pt-6">
-      © 2026 Pro Gravel Calculator. All rights reserved.
-    </div>
-  </div>
-</footer>
+    </footer>
   </body>
 </html>
