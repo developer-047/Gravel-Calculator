@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="French drain gravel calculator: calculate #57 stone, pipe length and filter fabric for a French drain. Get cubic yards, tons, bags and cost with trench geometry and pipe deduction.">
+    <title>French Drain Gravel Calculator - Stone, Pipe & Fabric</title>
+    <link rel="canonical" href="https://www.progravelcalculator.online/french-drain-gravel-calculator/">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="French Drain Gravel Calculator - Stone, Pipe & Fabric">
+    <meta property="og:description" content="Calculate #57 stone, pipe length and filter fabric for a French drain. Includes trench volume, pipe deduction, slope and cost.">
+    <meta property="og:url" content="https://www.progravelcalculator.online/french-drain-gravel-calculator/">
+    <meta property="og:image" content="/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pro Gravel Calculator – free gravel estimator">
+    <meta property="og:site_name" content="Pro Gravel Calculator">
+    <meta property="og:locale" content="en_US">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="French Drain Gravel Calculator - Stone, Pipe & Fabric">
+    <meta name="twitter:description" content="Calculate #57 stone, pipe length and filter fabric for a French drain. Includes trench volume, pipe deduction, slope and cost.">
+    <meta name="twitter:image" content="/og-image.png">
+    <meta name="twitter:image:alt" content="Pro Gravel Calculator – free gravel estimator">
+    <link rel="stylesheet" href="/tailwind.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/analytics-config.js" defer></script>
+    <script src="/analytics.js" defer></script>
+
+    <!-- JSON-LD Schema for SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Pro Gravel Calculator",
+      "url": "https://www.progravelcalculator.online/french-drain-gravel-calculator/",
+      "description": "Free gravel and aggregate calculator for French drains, trenches and drainage projects. Estimate cubic yards or cubic metres, short tons or metric tonnes, and 50 lb or 25 kg bags with pipe volume deduction and filter fabric calculation.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pro Gravel Calculator",
+        "url": "https://www.progravelcalculator.online/"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD Schema for HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Calculate Gravel for a French Drain",
+      "description": "Step-by-step guide to calculate the amount of gravel, stone and filter fabric needed for a French drain, including pipe volume deduction and slope guidance.",
+      "totalTime": "PT5M",
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "Pro Gravel Calculator"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Select trench shape and enter dimensions",
+          "text": "Choose rectangular trench and input length, width and depth. Use feet and inches or metres and centimetres."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Enter pipe diameter and length for volume deduction",
+          "text": "Add the pipe diameter and length running through the trench. The calculator automatically subtracts the pipe volume from the total gravel needed."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Select stone type and set allowances",
+          "text": "Preset stone types: #57 stone (100 lb/ft³), drainage rock, or pea gravel. Set waste (0-25%) and compaction (0-20%) allowances."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Review results and estimate fabric",
+          "text": "The calculator shows cubic yards/m³, short tons/metric tonnes, bag counts and pallet quantities. Filter fabric length is calculated from trench circumference plus overlap."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Order extra and verify slope",
+          "text": "Order about 10% extra for compaction. Minimum 1% slope (1/8\" per foot) is required for proper drainage. Verify with local contractor for structural work."
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD Schema for WebPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "French Drain Gravel Calculator - Stone, Pipe & Fabric",
+      "url": "https://www.progravelcalculator.online/french-drain-gravel-calculator/",
+      "description": "French drain gravel calculator: calculate #57 stone, pipe length and filter fabric for a French drain. Get cubic yards, tons, bags and cost with trench geometry and pipe deduction.",
+      "dateModified": "2026-11-08",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Pro Gravel Calculator",
+        "url": "https://www.progravelcalculator.online/"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD Schema for BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.progravelcalculator.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "French Drain Gravel Calculator",
+          "item": "https://www.progravelcalculator.online/french-drain-gravel-calculator/"
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body class="bg-slate-50 min-h-screen">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Main content -->
+    <main id="main-content">
+        <header class="bg-white shadow-md border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-6 py-4">
+                <h1 class="text-3xl font-bold text-slate-900">French Drain Gravel Calculator</h1>
+                <p class="text-slate-500">Calculate #57 stone, pipe length and filter fabric for a French drain. Includes trench volume, pipe deduction, slope and cost.</p>
+            </div>
+        </header>
+
+        <!-- Calculator form -->
+        <section class="max-w-7xl mx-auto bg-white p-6 md:p-8">
+            <form id="fd-calc-form" class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <!-- Trench dimensions (rectangle shape for engine) -->
+                <div>
+                    <label for="fd-trench-length-ft" class="block text-sm font-medium text-slate-700 mb-1">Trench Length (ft)</label>
+                    <input type="number" id="fd-trench-length-ft" name="rect_l_ft" step="0.01" min="0" value="50" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <p class="text-xs text-slate-400"> <em class="text-slate-500">(also inches: <input type="number" id="fd-trench-length-in" name="rect_l_in" step="1" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em>)</p>
+                </div>
+
+                <div>
+                    <label for="fd-trench-width-ft" class="block text-sm font-medium text-slate-700 mb-1">Trench Width (ft)</label>
+                    <input type="number" id="fd-trench-width-ft" name="rect_w_ft" step="0.01" min="0" value="1" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <p class="text-xs text-slate-400"> <em class="text-slate-500">(also inches: <input type="number" id="fd-trench-width-in" name="rect_w_in" step="1" min="0" value="12" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em>)</p>
+                </div>
+
+                <div>
+                    <label for="fd-trench-depth" class="block text-sm font-medium text-slate-700 mb-1">Trench Depth (inches)</label>
+                    <input type="number" id="fd-trench-depth" name="depth" min="1" max="24" value="18" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <p class="text-xs text-slate-400">Typical range: 12–24″</p>
+                </div>
+
+                <!-- Pipe diameter (volume deduction) -->
+                <div>
+                    <label for="fd-pipe-diameter" class="block text-sm font-medium text-slate-700 mb-1">Pipe Diameter (inches, for volume deduction)</label>
+                    <input type="number" id="fd-pipe-diameter" step="0.1" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <p class="text-xs text-slate-400">Enter 0 if no pipe. <em class="text-blue-600">Volume deduction: π × (d/2)² × depth</em></p>
+                </div>
+
+                <!-- Pipe length -->
+                <div>
+                    <label for="fd-pipe-length" class="block text-sm font-medium text-slate-700 mb-1">Pipe Length Through Trench (ft)</label>
+                    <input type="number" id="fd-pipe-length" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <p class="text-xs text-slate-400">Enter 0 if pipe does not cross the trench.</p>
+                </div>
+
+                <!-- Stone type -->
+                <div>
+                    <label for="fd-stone-type" class="block text-sm font-medium text-slate-700 mb-1">Stone Type</label>
+                    <select id="fd-stone-type" name="material" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="pea_gravel">Pea Gravel (105 lb/ft³ · ≈ 1,682 kg/m³)</option>
+                        <option value="crushed_stone">#57 Stone (100 lb/ft³ · ≈ 1,602 kg/m³)</option>
+                        <option value="drainage rock">Drainage Rock (105 lb/ft³ · ≈ 1,682 kg/m³)</option>
+                    </select>
+                    <p class="text-xs text-slate-400">Density affects weight and bag counts.</p>
+                </div>
+
+                <!-- Allowances -->
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label for="fd-waste" class="block text-sm font-medium text-slate-700 mb-1">Waste Allowance</label>
+                        <input type="range" id="fd-waste" name="waste" min="0" max="25" value="10" class="mt-1 block w-full accent-blue-600">
+                        <div class="flex justify-between text-xs text-slate-500"><span>0%</span><span>25%</span></div>
+                    </div>
+                    <div>
+                        <label for="fd-compaction" class="block text-sm font-medium text-slate-700 mb-1">Compaction Allowance</label>
+                        <input type="range" id="fd-compaction" name="compaction" min="0" max="20" value="5" class="mt-1 block w-full accent-blue-600">
+                        <div class="flex justify-between text-xs text-slate-500"><span>0%</span><span>20%</span></div>
+                    </div>
+                </div>
+
+                <!-- Bag size -->
+                <div>
+                    <label for="fd-bag-size" class="block text-sm font-medium text-slate-700 mb-1">Bag Size</label>
+                    <select id="fd-bag-size" name="bag" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="50">50 lb bags (standard)</option>
+                        <option value="25">25 kg bags (metric)</option>
+                        <option value="40">40 kg bags (metric)</option>
+                    </select>
+                    <p class="text-xs text-slate-400"> <em class="text-slate-500">Defaults to 50 lb.</em></p>
+                </div>
+
+                <!-- Price estimator -->
+                <div class="mt-4">
+                    <label for="fd-price-amount" class="block text-sm font-medium text-slate-700 mb-1">Price per Ton (optional)</label>
+                    <input type="number" id="fd-price-amount" name="price" step="0.01" min="0" value="" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm input-meta">
+                    <p class="text-xs text-slate-500">Leave blank for no cost estimate.</p>
+                    <input type="hidden" name="basis" value="short_ton">
+                    <select name="cur" class="mt-2 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="USD">USD</option>
+                        <option value="CAD">CAD</option>
+                        <option value="GBP">GBP</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                    <label for="fd-delivery" class="block text-sm font-medium text-slate-700 mt-2">Delivery Fee</label>
+                    <input type="number" id="fd-delivery" name="delivery" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <label for="fd-tax" class="block text-sm font-medium text-slate-700 mt-2">Tax Rate</label>
+                    <input type="number" id="fd-tax" name="tax" step="1" min="0" max="100" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <!-- Calculate button -->
+                <div class="col-span-2 md:col-span-1 mt-4">
+                    <button type="submit" id="fd-calc-btn" class="w-full bg-blue-600 text-white font-medium py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition">
+                        Calculate
+                    </button>
+                </div>
+            </form>
+
+            <!-- Quick results preview -->
+            <div id="fd-results" class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 hidden">
+                <div>
+                    <h3 class="text-font text-sm font-bold text-slate-600 uppercase tracking-wider mb-3">Volume</h3>
+                    <p class="text-3xl font-bold text-blue-600" id="fd-volume">–</p>
+                    <p class="text-xs text-slate-500" id="fd-volume-alt">–</p>
+                </div>
+                <div>
+                    <h3 class="text-font text-sm font-bold text-slate-600 uppercase tracking-wider mb-3">Estimated Weight</h3>
+                    <p class="text-3xl font-bold text-blue-600" id="fd-weight">–</p>
+                    <p class="text-xs text-slate-500" id="fd-weight-alt">–</p>
+                </div>
+            </div>
+
+            <!-- Pipe deduction & fabric section -->
+            <div id="fd-extra" class="mt-6 p-4 bg-slate-50 rounded-lg hidden">
+                <h3 class="text-font text-sm font-medium text-slate-600 uppercase tracking-wider mb-3">French Drain Extras</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm font-medium text-slate-700">Pipe volume deduction</p>
+                        <p class="text-xs text-slate-500" id="fd-pipe-deduction">–</p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-slate-700">Filter fabric estimate</p>
+                        <p class="text-xs text-slate-500" id="fd-fabric-estimate">–</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content sections -->
+        <section class="bg-white py-8">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- 1. How to use -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">How to use this calculator</h2>
+                    <ol class="list-decimal list-inside space-y-4 text-slate-600">
+                        <li class="space-y-2">
+                            <p class="font-medium text-slate-700">Step 1: Enter trench dimensions.</p>
+                            <p>Input the length and width of your French drain trench. Use feet and inches for residential projects, or metres and centimetres for metric. Typical residential French drains are 12″ wide and 18–24″ deep.</p>
+                        </li>
+                        <li class="space-y-2">
+                            <p class="font-medium text-slate-700">Step 2: Enter pipe diameter (if applicable).</p>
+                            <p>If a perforated pipe will run through the trench, enter its diameter. The calculator automatically subtracts the pipe volume from the total gravel needed. This is the key differentiator from generic gravel calculators.</p>
+                        </li>
+                        <li class="space-y-2">
+                            <p class="font-medium text-slate-700">Step 3: Select stone type and set allowances.</p>
+                            <p>Choose #57 stone (the most common for French drains), drainage rock, or pea gravel. Set waste allowance (typically 10% for clean stone) and compaction allowance (5% is standard).</p>
+                        </li>
+                        <li class="space-y-2">
+                            <p class="font-medium text-slate-700">Step 4: Review results.</p>
+                            <p>The calculator shows cubic yards/m³, short tons/metric tonnes, bag counts and pallet quantities. Filter fabric length is also calculated from trench circumference plus overlap.</p>
+                        </li>
+                        <li class="space-y-2">
+                            <p class="font-medium text-slate-700">Step 5: Order extra and verify slope.</p>
+                            <p>Order about 10% extra for compaction and settling. A minimum 1% slope (1/8″ per foot of trench length) is required for proper drainage. Verify with a local contractor for structural work.</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- 2. Worked example -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Worked example: 50‑ft French drain</h2>
+                    <p class="text-slate-500 mb-4">Project: Residential French drain, 50 ft long, 12″ wide, 18″ deep, with 4″ pipe running the full length.</p>
+                    <div class="bg-slate-50 rounded-lg p-6 mb-6">
+                        <p class="text-sm text-slate-600">Inputs:</p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                            <li>Trench length: 50 ft</li>
+                            <li>Trench width: 12 in</li>
+                            <li>Trench depth: 18 in</li>
+                            <li>Pipe diameter: 4 in</li>
+                            <li>Pipe length: 50 ft</li>
+                            <li>Stone type: #57 (pea_gravel engine material)</li>
+                            <li>Waste: 10%</li>
+                            <li>Compaction: 5%</li>
+                            <li>Bag size: 50 lb</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 rounded-lg p-6">
+                        <p class="text-sm font-medium text-blue-600">Results (engine output):</p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>Volume: 5.94 cubic yards (before allowances)</li>
+                            <li>Adjusted volume (10% waste + 5% compaction): 7.34 cubic yards</li>
+                            <li>Weight: 734 lb/yd³ × 7.34 yd³ = 5,388 lb ≈ 2.69 short tons</li>
+                            <li>Bags: 5,388 lb ÷ 50 lb per bag ≈ 108 bags</li>
+                            <li>Pallets: 1 full pallet (40 bags) + 68 loose bags</li>
+                        </ul>
+                        <p class="text-slate-500 mt-2">Pipe deduction (client-side estimate, not engine-computed): <strong>≈ 3.9 cubic yards</strong> (π × (4/12/2)² × 18″ × 50 ft ÷ 27). Adjusted volume after deduction ≈ 3.44 yd³.</p>
+                    </div>
+                    <p class="text-slate-500 mt-4">This example demonstrates the pipe deduction: without deducting the 4″ pipe volume, the calculator would suggest ≈ 7.54 yd³, a difference of ≈ 0.6 yd³ (about 10%).</p>
+                </div>
+
+                <!-- 3. Depth and slope -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">French drain depth and slope</h2>
+                    <p class="text-slate-500 mb-4">A properly sloped French drain ensures water flows to the outlet.</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-600">
+                        <li><strong>Minimum slope:</strong> 1% (1/8″ per foot of trench length, or 1 cm per meter). Fall less than this and water may pool.</li>
+                        <li><strong>Typical depth:</strong> 12–24 inches for residential drains; deeper for high-water-table sites.</li>
+                        <li><strong>Outlet:</strong> The drain must day-light at the lower end or connect to a sump/catch basin.</li>
+                        <li><strong>Warning:</strong> This calculator provides estimates only. Confirm slope and design with a licensed contractor or engineer before excavation.</li>
+                    </ul>
+                </div>
+
+                <!-- 4. Gravel size -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">What size gravel for a French drain?</h2>
+                    <p class="text-slate-500 mb-4">The gravel size affects both drainage performance and clogging risk.</p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <p class="font-medium text-slate-700">#57 Stone (¾″)</p>
+                            <p class="text-slate-600">Most common for French drains. Provides good drainage while resisting clogging. The ¾″ size allows water to flow while keeping fines out.</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-slate-700">#4 Gravel (1½″)</p>
+                            <p class="text-slate-600">Larger stone; used for heavy-duty drainage or when extra void space is needed. More material per cubic yard, higher cost.</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-slate-700">Pea Gravel (½″ rounded)</p>
+                            <p class="text-slate-600">Smooth, rounded particles pack more tightly and can reduce drainage speed. Not recommended for primary French drains unless combined with filter fabric.</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-500">Why #57 wins: angular faces interlock when compacted, creating stable yet permeable fill. Rounded pea gravel can shift and reduce void space over time.</p>
+                </div>
+
+                <!-- 5. Filter fabric -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Filter fabric: how much do you need?</h2>
+                    <p class="text-slate-500 mb-4">Filter fabric (also called landscape fabric or geotextile) prevents soil from migrating into the gravel while allowing water to pass.</p>
+                    <div class="bg-slate-50 rounded-lg p-6">
+                        <p class="text-sm text-slate-600">Calculation: <strong>Fabric length ≈ π × (trench width/2 + pipe diameter/2 + overlap)</strong></p>
+                        <p class="text-slate-600 mt-2">Typical overlap: 12–18 inches at seams. For a 12″ wide trench with no pipe: <code>π × (6″ + 12″) ≈ 17.3 ft</code> per linear foot of trench.</p>
+                        <p class="text-slate-600 mt-2">Always extend fabric at least 6 inches beyond the trench edges on all sides, and overlap seams by minimum 12 inches.</p>
+                    </div>
+                    <p class="text-slate-500">Do not skip filter fabric: without it, native soil can fill the gravel voids and reduce drainage performance, especially in fine‑textured soils.</p>
+                </div>
+
+                <!-- 6. Cost (user-entered) -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">French drain gravel cost</h2>
+                    <p class="text-slate-500 mb-4">Enter your supplier's price to get a total cost estimate.</p>
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-3 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700">Price per ton</label>
+                            <input type="number" step="0.01" min="0" value="" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700">Currency</label>
+                            <select class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                <option value="USD">USD</option>
+                                <option value="CAD">CAD</option>
+                                <option value="GBP">GBP</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700">Delivery fee</label>
+                            <input type="number" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+                    <p class="text-slate-500">Note: This calculator does not invent prices. Enter the price your supplier quoted; do not rely on a single estimate for structural or drainage work.</p>
+                </div>
+
+                <!-- 7. Common mistakes -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Common mistakes</h2>
+                    <ul class="list-disc list-inside space-y-3 text-slate-600">
+                        <li><strong>No pipe deduction:</strong> Forgetting to subtract the pipe volume leads to over‑ordering. For a 4″ pipe in a 50‑ft trench, the error is ≈ 0.6 yd³ (10%).</li>
+                        <li><strong>Wrong stone size:</strong> Using pea gravel without adequate fabric, or #4 stone when #57 suffices, affects both cost and drainage speed.</li>
+                        <li><strong>Skipping slope:</strong> A French drain without minimum 1% slope will pool water instead of draining it.</li>
+                        <li><strong>No filter fabric:</strong> Soil migration into the gravel destroys permeability over time.</li>
+                        <li><strong>Under‑ordering:</strong> Not adding waste (10%) and compaction (5%) allowances means you'll run short mid‑project.</li>
+                    </ul>
+                </div>
+
+                <!-- 8. FAQ -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">FAQ</h2>
+                    <dl class="grid grid-cols-2 gap-6 md:grid-cols-3 text-slate-600">
+                        <dt class="font-medium text-slate-700">How deep should a French drain be?</dt>
+                        <dd>12–24 inches for residential; deeper if the water table is high or the driveway/area requires it. Minimum 1% slope required.</dd>
+
+                        <dt class="font-medium text-slate-700">Do I need a pipe in my French drain?</dt>
+                        <dd>Not required, but a perforated pipe collects and directs water more effectively, especially in high‑water‑table areas.</dd>
+
+                        <dt class="font-medium text-slate-700">How much gravel per foot of French drain?</dt>
+                        <dd>Roughly 0.12 cubic yards per foot for a 12″ wide, 18″ deep trench with #57 stone (before allowances). Varies with width, depth and stone type.</dd>
+
+                        <dt class="font-medium text-slate-700">Can I use pea gravel instead of #57?</dt>
+                        <dd>Possible, but #57 is recommended. If using pea gravel, increase filter fabric coverage and order 10–15% extra.</dd>
+
+                        <dt class="font-medium text-slate-700">How much does a French drain cost?</dt>
+                        <dd>Job‑dependent. Material (gravel + fabric) for a typical 50‑ft residential drain runs $500–$1,500 depending on stone type and local prices. Labour if contracted adds $1,000–$3,000. This calculator estimates material quantities only; do not rely on it for budget quotes.</dd>
+
+                        <dt class="font-medium text-slate-700">Is 10% waste allowance enough?</dt>
+                        <dd>For #57 stone in a typical residential French drain, 10% waste + 5% compaction is standard. Add 15% if the subgrade is soft or the stone is rounded (pea gravel).</dd>
+                    </dl>
+                </div>
+
+                <!-- 9. Related calculators -->
+                <div class="mt-10 pt-8 border-t border-slate-200">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Related calculators</h2>
+                    <p class="text-slate-500 mb-4">These tools share your project context and can help you plan the full drainage system.</p>
+                    <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+                        <a href="/gravel-calculator-tons/" class="group inline-block text-blue-600 underline group-hover underline-offset-2">
+                            <div class="flex items-center gap-2">
+                                <span>Gravel Calculator (Tons)</span>
+                            </div>
+                        </a>
+                        <a href="/crushed-stone-calculator/" class="group inline-block text-blue-600 underline group-hover underline-offset-2">
+                            <div class="flex items-center gap-2">
+                                <span>Crushed Stone Calculator</span>
+                            </div>
+                        </a>
+                        <a href="/gravel-cost-calculator/" class="group inline-block text-blue-600 underline group-hover underline-offset-2">
+                            <div class="flex items-center gap-2">
+                                <span>Gravel Cost Calculator</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Internal links -->
+        <footer class="bg-white border-t border-slate-200 py-6 mt-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <p class="text-slate-500 text-sm">
+                    <a href="/" class="font-medium text-blue-600 underline" title="Homepage">Home</a> |
+                    <a href="/crushed-stone-calculator/" class="font-medium text-blue-600 underline" title="Crushed stone calculator">Crushed Stone</a> |
+                    <a href="/gravel-cost-calculator/" class="font-medium text-blue-600 underline" title="Gravel cost calculator">Cost</a> |
+                    <a href="/about.html" class="font-medium text-blue-600 underline" title="About">About</a> |
+                    <a href="/privacy.html" class="font-medium text-blue-600 underline" title="Privacy">Privacy</a>
+                </p>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

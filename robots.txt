@@ -5,4 +5,11 @@ Allow: /
 Disallow: /thankyou.html
 Disallow: /404.html
 
+# Internal documentation and strategy files
+Disallow: /memory.md
+Disallow: /SEO%20Prompt.md
+Disallow: /SEO%20Prompt%20-%202.md
+Disallow: /seo-research/
+Disallow: /README.md
+
 Sitemap: https://www.progravelcalculator.online/sitemap.xml

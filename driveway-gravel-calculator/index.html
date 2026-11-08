@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Driveway gravel calculator: calculate gravel for base and surface layers. Material selection, density presets, depth guide, bag and pallet breakdown.">
+    <title>Driveway Gravel Calculator - Layers, Materials & Coverage</title>
+    <link rel="canonical" href="https://www.progravelcalculator.online/driveway-gravel-calculator/">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Driveway Gravel Calculator - Layers, Materials & Coverage">
+    <meta property="og:description" content="Calculate gravel for driveway base and surface. Choose material, depth and layer configuration. See cubic yards, tons, bags and pallets needed.">
+    <meta property="og:url" content="https://www.progravelcalculator.online/driveway-gravel-calculator/">
+    <meta property="og:image" content="/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pro Gravel Calculator – free gravel estimator">
+    <meta property="og:site_name" content="Pro Gravel Calculator">
+    <meta property="og:locale" content="en_US">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Driveway Gravel Calculator - Layers, Materials & Coverage">
+    <meta name="twitter:description" content="Calculate gravel for driveway base and surface. Choose material, depth and layer configuration. See cubic yards, tons, bags and pallets needed.">
+    <meta name="twitter:image" content="/og-image.png">
+    <meta name="twitter:image:alt" content="Pro Gravel Calculator – free gravel estimator">
+    <link rel="stylesheet" href="/tailwind.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/analytics-config.js" defer></script>
+    <script src="/analytics.js" defer></script>
+
+    <!-- JSON-LD Schema for SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Pro Gravel Calculator",
+      "url": "https://www.progravelcalculator.online/driveway-gravel-calculator/",
+      "description": "Free gravel and driveway calculator with base and surface layer configuration. Material density presets, depth guide, bag and pallet breakdown for residential driveways.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pro Gravel Calculator",
+        "url": "https://www.progravelcalculator.online/"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD Schema for HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Calculate Driveway Gravel",
+      "description": "Step-by-step guide to calculate gravel for a driveway with base and surface layers, material selection and depth guidance.",
+      "totalTime": "PT5M",
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "Pro Gravel Calculator"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Select material",
+          "text": "Preset densities: pea gravel 105 lb/ft³, #57 stone 100 lb/ft³, crusher run 105 lb/ft³, 304 stone 105 lb/ft³. Or enter custom density."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Choose layer configuration",
+          "text": "Base layer (recommended 4″ of crusher run or 304 stone) + Surface layer (choice of size and depth, typically 2″). Select base-only, surface-only, or both."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Enter driveway dimensions",
+          "text": "Rectangle or circle. Input length, width or diameter in feet/inches or metres/centimetres."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Review results",
+          "text": "Calculator shows cubic yards, short tons or metric tonnes, 50 lb bag count, pallet count (40 bags/pallet), and cost estimates if prices entered."
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD Schema for WebPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Driveway Gravel Calculator - Layers, Materials & Coverage",
+      "url": "https://www.progravelcalculator.online/driveway-gravel-calculator/",
+      "description": "Calculate gravel for driveway base and surface. Choose material, depth and layer configuration. See cubic yards, tons, bags and pallets needed.",
+      "dateModified": "2026-11-08",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Pro Gravel Calculator",
+        "url": "https://www.progravelcalculator.online/"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD Schema for BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.progravelcalculator.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Driveway Gravel Calculator",
+          "item": "https://www.progravelcalculator.online/driveway-gravel-calculator/"
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body class="bg-slate-50 min-h-screen">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Main content -->
+    <main id="main-content">
+        <header class="bg-white shadow-md border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-6 py-4">
+                <h1 class="text-3xl font-bold text-slate-900">Driveway Gravel Calculator</h1>
+                <p class="text-slate-500">Calculate gravel for base and surface layers of a driveway.</p>
+            </div>
+        </header>
+
+        <!-- Calculator form -->
+        <section class="max-w-7xl mx-auto bg-white p-6 md:p-8">
+            <form id="driveway-calc-form" class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <!-- Material -->
+                <div>
+                    <label for="driveway-material" class="block text-sm font-medium text-slate-700 mb-1">Material</label>
+                    <select id="driveway-material" name="material" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="pea_gravel">Pea Gravel (105 lb/ft³)</option>
+                        <option value="#57">#57 Stone (100 lb/ft³)</option>
+                        <option value="crusher_run">Crusher Run (105 lb/ft³)</option>
+                        <option value="stone_304">304 Stone (105 lb/ft³)</option>
+                        <option value="custom">Custom density (lb/ft³)</option>
+                    </select>
+                    <input type="number" id="driveway-custom-density" name="custom_density" step="1" min="0" value="" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm hidden">
+                    <p class="text-xs text-slate-400 mt-2">Enter custom density if selected above.</p>
+                </div>
+
+                <!-- Layer configuration -->
+                <div>
+                    <label for="driveway-config" class="block text-sm font-medium text-slate-700 mb-1">Layer Configuration</label>
+                    <select id="driveway-config" name="config" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="base-only">Base only (4″ recommended)</option>
+                        <option value="surface-only">Surface only (2″ recommended)</option>
+                        <option value="base-and-surface">Base + Surface (4″ base + 2″ surface)</option>
+                    </select>
+                    <p class="text-xs text-slate-400">Base provides foundation; surface provides driving surface.</p>
+                </div>
+
+                <div class="md:grid-cols-2 gap-2">
+                    <!-- Rectangle dimensions -->
+                    <div id="driveway-rect-dimensions" class="space-y-2">
+                        <div>
+                            <label for="driveway-rect-length-ft" class="block text-sm font-medium text-slate-700 mb-1">Length (ft)</label>
+                            <input type="number" id="driveway-rect-length-ft" name="rect_l_ft" step="0.01" min="0" value="20" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <p class="text-xs text-slate-400"> <em class="text-slate-500">inches: <input type="number" id="driveway-rect-length-in" name="rect_l_in" step="1" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em></p>
+                        </div>
+                        <div>
+                            <label for="driveway-rect-width-ft" class="block text-sm font-medium text-slate-700 mb-1">Width (ft)</label>
+                            <input type="number" id="driveway-rect-width-ft" name="rect_w_ft" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <p class="text-xs text-slate-400"> <em class="text-slate-500">inches: <input type="number" id="driveway-rect-width-in" name="rect_w_in" step="1" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em></p>
+                        </div>
+                    </div>
+
+                    <!-- Circle dimensions -->
+                    <div id="driveway-circle-dimensions" class="space-y-2 hidden">
+                        <div>
+                            <label for="driveway-circle-diameter-ft" class="block text-sm font-medium text-slate-700 mb-1">Diameter (ft)</label>
+                            <input type="number" id="driveway-circle-diameter-ft" name="circle_d_ft" step="0.01" min="0" value="20" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depth -->
+                <div>
+                    <label for="driveway-depth" class="block text-sm font-medium text-slate-700 mb-1">Depth (inches)</label>
+                    <input type="number" id="driveway-depth" name="depth" min="1" max="24" value="4" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <p class="text-xs text-slate-400">Base: 4″ typical. Surface: 2″ typical.</p>
+                </div>
+
+                <!-- Calculate button -->
+                <div class="col-span-2 md:col-span-1 mt-4">
+                    <button type="submit" id="driveway-calc-btn" class="w-full bg-blue-600 text-white font-medium py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition">
+                        Calculate
+                    </button>
+                </div>
+            </form>
+
+            <!-- Results -->
+            <div id="driveway-results" class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 hidden">
+                <div>
+                    <h3 class="text-font text-sm font-bold text-slate-600 uppercase tracking-wider mb-3">Volume</h3>
+                    <p class="text-3xl font-bold text-blue-600" id="driveway-volume">–</p>
+                    <p class="text-xs text-slate-500" id="driveway-volume-alt">–</p>
+                </div>
+                <div>
+                    <h3 class="text-font text-sm font-bold text-slate-600 uppercase tracking-wider mb-3">Weight</h3>
+                    <p class="text-3xl font-bold text-blue-600" id="driveway-weight">–</p>
+                    <p class="text-xs text-slate-500" id="driveway-weight-alt">–</p>
+                </div>
+                <div>
+                    <h3 class="text-font text-sm font-bold text-slate-600 uppercase tracking-wider mb-3">Bags & Pallets</h3>
+                    <p class="text-3xl font-bold text-blue-600" id="driveway-bags">–</p>
+                    <p class="text-xs text-slate-500" id="driveway-bags-alt">–</p>
+                </div>
+            </div>
+
+            <!-- Coverage table -->
+            <div id="driveway-coverage" class="mt-8 p-6 bg-slate-50 rounded-lg hidden">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">Coverage per Ton by Depth</h2>
+                <p class="text-slate-500 mb-4">How much area gravel covers at different depths for driveways.</p>
+                <div>
+                    <table class="w-full rounded-lg border border-slate-200">
+                        <thead>
+                            <tr class="bg-slate-50">
+                                <th class="p-3 text-left text-sm font-medium text-slate-600">Depth</th>
+                                <th class="p-3 text-left text-sm font-medium text-slate-600">ft² per ton</th>
+                                <th class="p-3 text-left text-sm font-medium text-slate-600">Bags per ton</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="p-3">2″</td>
+                                <td class="p-3">90</td>
+                                <td class="p-3">27</td>
+                            </tr>
+                            <tr class="bg-white border-b">
+                                <td class="p-3">4″</td>
+                                <td class="p-3">45</td>
+                                <td class="p-3">13</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content sections -->
+        <section class="bg-white py-8">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- 1. Overview -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Driveway Gravel Calculator Overview</h2>
+                    <p class="text-slate-500 mb-4">Calculate the right amount of gravel for your driveway project, including base and surface layers.</p>
+                    <p class="text-slate-500 mb-4">Gravel is typically sold by the cubic yard or by the ton. The calculator converts your dimensions into the quantity you need, accounting for material density and compaction.</p>
+                    <ul class="list-disc list-inside space-y-3 text-slate-600">
+                        <li>Select your material from presets or enter a custom density (lb/ft³).</li>
+                        <li>Choose your layer configuration: base only, surface only, or base + surface.</li>
+                        <li>Enter your driveway dimensions (length × width, or diameter for circular driveways).</li>
+                        <li>Select depth in inches (base typically 4″, surface typically 2″).</li>
+                        <li>The calculator shows cubic yards, tons, bag counts, and pallet breakdown.</li>
+                    </ul>
+                </div>
+
+                <!-- 2. Material selection -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Material Selection</h2>
+                    <p class="text-slate-500 mb-4">Choose from common driveway gravel types with preset densities.</p>
+                    <div>
+                        <p class="font-medium text-slate-700">Pea Gravel (105 lb/ft³):</p>
+                        <ul class="list-disc list-inside text-slate-600">
+                            <li>Decorative, smooth rounded stones</li>
+                            <li>Typically used for paths and decorative areas</li>
+                            <li>Less compaction, more shifting under vehicle weight</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-medium text-slate-700">#57 Stone (100 lb/ft³):</p>
+                        <ul class="list-disc list-inside text-slate-600">
+                            <li>¾″–1″ crushed stone, good drainage</li>
+                            <li>Common for driveway surface</li>
+                            <li>Interlocks when compacted, stable under traffic</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-medium text-slate-700">Crusher Run / 304 Stone (105 lb/ft³):</p>
+                        <ul class="list-disc list-inside text-slate-600">
+                            <li>Crushed stone with fines, compacts densely</li>
+                            <li>Ideal for base/subgrade layer</li>
+                            <li>Provides stable foundation and frost protection</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-medium text-slate-700">Custom density:</p>
+                        <ul class="list-disc list-inside text-slate-600">
+                            <li>Enter your material's lb/ft³ if different from presets</li>
+                            <li>Common ranges: 95–130 lb/ft³ depending on rock type</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. Layer configuration -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Layer Configuration</h2>
+                    <p class="text-slate-500 mb-4">A typical residential driveway has two layers.</p>
+                    <div>
+                        <p class="font-medium text-slate-700">Base layer (recommended 4″):</p>
+                        <ul class="list-disc list-inside text-slate-600">
+                            <li>Material: Crusher Run or 304 Stone</li>
+                            <li>Purpose: Load distribution, frost protection, stable foundation</li>
+                            <li>Typical depth: 4″ (range 3-6″ depending on soil conditions)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-medium text-slate-700">Surface layer (recommended 2″):</p>
+                        <ul class="list-disc list-inside text-slate-600">
+                            <li>Material: #57 Stone or Pea Gravel</li>
+                            <li>Purpose: Driving surface, drainage, aesthetics</li>
+                            <li>Typical depth: 2″ (range 1.5-3″)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-medium text-slate-700">Total typical thickness:</p>
+                        <ul class="list-disc list-inside text-slate-600">
+                            <li>6″ total (4″ base + 2″ surface) for most residential driveways</li>
+                            <li>Heavier vehicles or poor soil may require 8-12″ total</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 4. Depth guide -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Depth Guide</h2>
+                    <p class="text-slate-500 mb-4">Recommended depths per application.</p>
+                    <div class="grid grid-cols-2 gap-4 text-slate-600">
+                        <div>
+                            <p class="font-medium text-slate-700">Base:</p>
+                            <ul class="list-disc list-inside">
+                                <li>4″ Crusher Run / 304 Stone — most common</li>
+                                <li>3″ for stable, well-drained soil</li>
+                                <li>6″ for weak soil or heavy vehicle load</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-medium text-slate-700">Surface:</p>
+                            <ul class="list-disc list-inside">
+                                <li>2″ #57 Stone — most common</li>
+                                <li>1.5″ for low-traffic areas</li>
+                                <li>3″ for heavier loads or softer material</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Bag and pallet breakdown -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Bag and Pallet Breakdown</h2>
+                    <p class="text-slate-500 mb-4">How your material is packaged and priced.</p>
+                    <div>
+                        <p class="font-medium text-slate-700">Bag sizes:</p>
+                        <ul class="list-disc list-inside text-slate-600">
+                            <li>50 lb bags (most common for pickup truck loads)</li>
+                            <li>40 lb bags (sometimes available)</li>
+                            <li>25 kg bags (metric, ~55 lb)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-medium text-slate-700">Pallet config:</p>
+                        <ul class="list-disc list-inside text-slate-600">
+                            <li>40 bags per pallet (50 lb bags)</li>
+                            <li>~1 ton (2,000 lb) ≈ 40 bags</li>
+                            <li>1 metric tonne (2,205 lb) ≈ 44 bags (50 lb equivalent)</li>
+                        </ul>
+                    </div>
+                    <p class="text-slate-500 mt-3">Example: 4 cubic yards of #57 stone ≈ 4.44 tons ≈ 89 bags ≈ 2.2 pallets.</p>
+                </div>
+
+                <!-- 6. FAQ -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">FAQ</h2>
+                    <dl class="grid grid-cols-2 gap-4 md:grid-cols-3 text-slate-600">
+                        <dt class="font-medium text-slate-700">How much gravel do I need for a driveway?</dt>
+                        <dd>Depends on dimensions and depth. For a 20′ × 10′ driveway with 4″ base + 2″ surface: ~7.4 cubic yards total (~4.2 tons base + 2.2 tons surface).</dd>
+
+                        <dt class="font-medium text-slate-700">What's the best gravel for a driveway base?</dt>
+                        <dd>Crusher Run or 304 Stone — compacts densely, provides stable foundation and frost protection.</dd>
+
+                        <dt class="font-medium text-slate-700">How many tons of gravel per square foot?</dt>
+                        <dd>At 4″ depth: ~0.75 short tons per 100 ft². At 2″ depth: ~0.375 short tons per 100 ft². Varies with material density.</dd>
+
+                        <dt class="font-medium text-slate-700">How many bags of gravel equal a cubic yard?</dt>
+                        <dd>Approx. 54 bags of 50 lb gravel per cubic yard (for density ~100 lb/ft³).</dd>
+
+                        <dt class="font-medium text-slate-700">Do I need a permit for a gravel driveway?</dt>
+                        <dd>Check with your local municipality. Some areas require permits for driveways over a certain size or that affect drainage.</dd>
+                    </dl>
+                </div>
+
+                <!-- 7. Related calculators -->
+                <div class="mt-10 pt-8 border-t border-slate-200">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Related calculators</h2>
+                    <p class="text-slate-500 mb-4">These tools share your project context.</p>
+                    <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+                        <a href="/french-drain-gravel-calculator/" class="group inline-block text-blue-600 underline group-hover underline-offset-2">
+                            <div class="flex items-center gap-2">
+                                <span>French Drain Gravel Calculator</span>
+                            </div>
+                        </a>
+                        <a href="/crushed-stone-calculator/" class="group inline-block text-blue-600 underline group-hover underline-offset-2">
+                            <div class="flex items-center gap-2">
+                                <span>Crushed Stone Calculator</span>
+                            </div>
+                        </a>
+                        <a href="/gravel-bag-calculator/" class="group inline-block text-blue-600 underline group-hover underline-offset-2">
+                            <div class="flex items-center gap-2">
+                                <span>Gravel Bag Calculator</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Internal links -->
+        <footer class="bg-white border-t border-slate-200 py-6 mt-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <p class="text-slate-500 text-sm">
+                    <a href="/" class="font-medium text-blue-600 underline" title="Homepage">Home</a> |
+                    <a href="/french-drain-gravel-calculator/" class="font-medium text-blue-600 underline" title="French drain calculator">French Drain</a> |
+                    <a href="/crushed-stone-calculator/" class="font-medium text-blue-600 underline" title="Crushed stone calculator">Crushed Stone</a> |
+                    <a href="/gravel-bag-calculator/" class="font-medium text-blue-600 underline" title="Gravel bag calculator">Bags</a> |
+                    <a href="/pea-gravel-calculator/" class="font-medium text-blue-600 underline" title="Pea gravel calculator">Pea Gravel</a> |
+                    <a href="/gravel-calculator-tons/" class="font-medium text-blue-600 underline" title="Gravel calculator in tons">Tons</a> |
+                    <a href="/about.html" class="font-medium text-blue-600 underline" title="About">About</a> |
+                    <a href="/privacy.html" class="font-medium text-blue-600 underline" title="Privacy">Privacy</a>
+                </p>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

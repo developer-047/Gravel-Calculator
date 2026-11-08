@@ -384,6 +384,7 @@
         const weight = params.get("weight");
         const bags = params.get("bags");
         const shape = params.get("shape");
+        const metric = params.get("unit") === "metric";
 
         if (material || volume) {
           const materialName = material
@@ -393,9 +394,9 @@
           let message = "Hello, I would like help with the following project:\n\n";
           message += `Material: ${materialName}\n`;
           if (shape) message += `Shape: ${shape.charAt(0).toUpperCase() + shape.slice(1)}\n`;
-          if (volume) message += `Volume: ${volume} cubic yards\n`;
-          if (weight) message += `Estimated weight: ${weight} tons\n`;
-          if (bags) message += `Estimated bags: ${bags} (50 lb)\n\n`;
+          if (volume) message += `Volume: ${volume} ${metric ? "cubic metres (m³)" : "cubic yards"}\n`;
+          if (weight) message += `Estimated weight: ${weight} ${metric ? "metric tonnes" : "short tons"}\n`;
+          if (bags) message += `Estimated bags: ${bags} (${metric ? "25 kg" : "50 lb"})\n\n`;
           message += "Please check the estimate and let me know what else you need.";
 
           fields.message.value = message;

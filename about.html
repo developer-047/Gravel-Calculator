@@ -54,7 +54,7 @@
       "name": "About Pro Gravel Calculator",
       "url": "https://www.progravelcalculator.online/about.html",
       "description": "The formulas, density assumptions, sources and limits behind Pro Gravel Calculator.",
-      "dateModified": "2026-11-01",
+      "dateModified": "2026-11-07",
       "isPartOf": {
         "@type": "WebSite",
         "name": "Pro Gravel Calculator",
@@ -124,12 +124,12 @@
           Pro Gravel Calculator is an independent, free estimating tool for gravel, sand and stone. It turns three measurements — area, depth and material — into the volume, weight and bag count you need before ordering.
         </p>
         <p class="text-sm text-slate-600">
-          <time datetime="2026-11-01">Last updated: November 1, 2026</time>
+          <time datetime="2026-11-07">Last updated: November 7, 2026</time>
         </p>
 
         <h2 id="what-it-does">What the calculator does</h2>
         <p>
-          The calculator supports rectangular, circular and L-shaped areas in imperial or metric units. It reports volume in cubic yards, estimated weight in short tons and the number of 50 lb bags. Every result is an estimate for planning; it is not a substitute for a site survey or a supplier's own quantity calculation.
+          The calculator supports rectangular, circular and L-shaped areas in imperial or metric units. Imperial results show volume in cubic yards, weight in short tons and the number of 50 lb bags. Metric results show volume in cubic metres, weight in metric tonnes and kilograms, and the number of 25 kg bags. Each result also displays the equivalent in the other unit system. Every result is an estimate for planning; it is not a substitute for a site survey or a supplier's own quantity calculation.
         </p>
         <p>
           The site is not a quarry, contractor or materials marketplace. We do not sell aggregate and we do not earn a commission from the suppliers you contact.
@@ -137,12 +137,13 @@
 
         <h2 id="methodology">How the estimate is calculated</h2>
         <ol>
-          <li><strong>Convert every dimension to feet.</strong> Feet and inches are added together as <code>feet + inches ÷ 12</code>. Metres and centimetres are converted to feet.</li>
+          <li><strong>Convert every dimension to feet.</strong> Feet and inches are added together as <code>feet + inches ÷ 12</code>. Metres and centimetres are converted to feet using the exact factor 0.3048 m per foot.</li>
           <li><strong>Calculate the area.</strong> Rectangle: length × width. Circle: π × radius². L-shape: Section A + Section B.</li>
-          <li><strong>Convert depth to feet.</strong> Inches are divided by 12.</li>
-          <li><strong>Calculate volume.</strong> <code>cubic yards = area (ft²) × depth (ft) ÷ 27</code>.</li>
-          <li><strong>Estimate weight.</strong> <code>short tons = cubic yards × 27 × density (lb/ft³) ÷ 2,000</code>.</li>
-          <li><strong>Estimate bags.</strong> Total pounds ÷ 50, rounded up to the next whole bag.</li>
+          <li><strong>Convert depth to feet.</strong> Inches are divided by 12. The metric slider label shows the same depth in millimetres or centimetres.</li>
+          <li><strong>Calculate volume.</strong> <code>cubic yards = area (ft²) × depth (ft) ÷ 27</code>. Metric volume is <code>cubic metres = cubic yards × 0.764554857984</code>.</li>
+          <li><strong>Estimate weight.</strong> <code>short tons = cubic yards × 27 × density (lb/ft³) ÷ 2,000</code>. Metric weight is <code>kilograms = pounds × 0.45359237</code> and <code>metric tonnes = kilograms ÷ 1,000</code>.</li>
+          <li><strong>Estimate bags.</strong> Imperial uses total pounds ÷ 50; metric uses total kilograms ÷ 25. Both are rounded up to the next whole bag.</li>
+          <li><strong>Apply allowances.</strong> Waste (0–25%) and compaction (0–20%) are independent, user-controlled multipliers: <code>adjusted volume = base volume × (1 + waste ÷ 100) × (1 + compaction ÷ 100)</code>.</li>
         </ol>
 
         <h2 id="densities">Density values used</h2>
@@ -158,13 +159,15 @@
                 <th scope="col" class="text-left py-3 px-4">lb/ft³</th>
                 <th scope="col" class="text-left py-3 px-4">lb/yd³</th>
                 <th scope="col" class="text-left py-3 px-4">Short tons/yd³</th>
+                <th scope="col" class="text-left py-3 px-4">kg/m³</th>
+                <th scope="col" class="text-left py-3 px-4">Metric tonnes/m³</th>
               </tr>
             </thead>
             <tbody class="text-slate-700">
-              <tr class="border-b border-slate-200"><th scope="row" class="text-left py-3 px-4 font-medium">Pea gravel</th><td class="py-3 px-4">105</td><td class="py-3 px-4">2,835</td><td class="py-3 px-4">≈ 1.42</td></tr>
-              <tr class="bg-slate-50 border-b border-slate-200"><th scope="row" class="text-left py-3 px-4 font-medium">Crushed stone</th><td class="py-3 px-4">100</td><td class="py-3 px-4">2,700</td><td class="py-3 px-4">≈ 1.35</td></tr>
-              <tr class="border-b border-slate-200"><th scope="row" class="text-left py-3 px-4 font-medium">Sand</th><td class="py-3 px-4">110</td><td class="py-3 px-4">2,970</td><td class="py-3 px-4">≈ 1.49</td></tr>
-              <tr class="bg-slate-50"><th scope="row" class="text-left py-3 px-4 font-medium">River rock</th><td class="py-3 px-4">108</td><td class="py-3 px-4">2,916</td><td class="py-3 px-4">≈ 1.46</td></tr>
+              <tr class="border-b border-slate-200"><th scope="row" class="text-left py-3 px-4 font-medium">Pea gravel</th><td class="py-3 px-4">105</td><td class="py-3 px-4">2,835</td><td class="py-3 px-4">≈ 1.42</td><td class="py-3 px-4">1,682</td><td class="py-3 px-4">≈ 1.68</td></tr>
+              <tr class="bg-slate-50 border-b border-slate-200"><th scope="row" class="text-left py-3 px-4 font-medium">Crushed stone</th><td class="py-3 px-4">100</td><td class="py-3 px-4">2,700</td><td class="py-3 px-4">≈ 1.35</td><td class="py-3 px-4">1,602</td><td class="py-3 px-4">≈ 1.60</td></tr>
+              <tr class="border-b border-slate-200"><th scope="row" class="text-left py-3 px-4 font-medium">Sand</th><td class="py-3 px-4">110</td><td class="py-3 px-4">2,970</td><td class="py-3 px-4">≈ 1.49</td><td class="py-3 px-4">1,762</td><td class="py-3 px-4">≈ 1.76</td></tr>
+              <tr class="bg-slate-50"><th scope="row" class="text-left py-3 px-4 font-medium">River rock</th><td class="py-3 px-4">108</td><td class="py-3 px-4">2,916</td><td class="py-3 px-4">≈ 1.46</td><td class="py-3 px-4">1,730</td><td class="py-3 px-4">≈ 1.73</td></tr>
             </tbody>
           </table>
         </div>
@@ -179,9 +182,9 @@
 
         <h2 id="allowances">Allowances, rounding and limits</h2>
         <ul>
-          <li><strong>No automatic waste allowance.</strong> The result is the geometric volume. Order about 10% extra for compaction, spillage and uneven ground. Increase to 15% for loose rounded stone, sloped sites or a soft subgrade.</li>
-          <li><strong>Two-decimal display.</strong> Volume and weight are rounded for readability. Bags are rounded up so you do not see a fractional bag.</li>
-          <li><strong>Compaction changes volume.</strong> Gravel is usually sold loose but compacted in place. A 4-inch loose layer can finish thinner after compaction; plan lifts and depths accordingly.</li>
+          <li><strong>Waste and compaction are explicit allowances.</strong> Both sliders default to 0%, so the base result is the geometric volume. Set waste to about 10% for typical projects and up to 15% for loose rounded stone, sloped sites or a soft subgrade. Compaction is applied independently after waste: <code>base × (1 + waste ÷ 100) × (1 + compaction ÷ 100)</code>.</li>
+          <li><strong>Two-decimal display.</strong> Volume and weight are rounded for readability. Bags are rounded up so you do not see a fractional bag. Metric results show the same estimate in m³, metric tonnes, kilograms and 25 kg bags.</li>
+          <li><strong>Compaction changes volume.</strong> Gravel is usually sold loose but compacted in place. A 4-inch loose layer can finish thinner after compaction; plan lifts and depths accordingly. The driveway preset uses 12%, the midpoint of the usual 10–15% range.</li>
           <li><strong>Moisture changes weight.</strong> Wet sand and gravel weigh more than dry material. Suppliers price by weight or volume; confirm which unit their quote uses.</li>
           <li><strong>Shape assumptions.</strong> The L-shape mode adds two rectangles. It does not account for curves, cut-outs, retaining walls or over-excavation.</li>
         </ul>

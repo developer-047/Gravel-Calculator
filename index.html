@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free gravel calculator for driveways, patios and yards. Get cubic yards, tons and 50 lb bags in seconds, with metric or imperial inputs.">
+    <meta name="description" content="Free gravel calculator for driveways, patios and yards. Get cubic yards or cubic metres, tons or tonnes and 50 lb or 25 kg bags in seconds.">
     <meta name="robots" content="index, follow">
     <title>Gravel Calculator – Cubic Yards, Tons &amp; Bags</title>
     <link rel="canonical" href="https://www.progravelcalculator.online/">
@@ -42,7 +42,7 @@
       "@type": "SoftwareApplication",
       "name": "Pro Gravel Calculator",
       "url": "https://www.progravelcalculator.online/",
-      "description": "Free gravel and aggregate calculator for driveways, patios, roads and yards. Estimate cubic yards, short tons and 50 lb bags for rectangular, circular and L-shaped areas in metric or imperial units.",
+      "description": "Free gravel and aggregate calculator for driveways, patios, roads and yards. Estimate cubic yards or cubic metres, short tons or metric tonnes, and 50 lb or 25 kg bags for rectangular, circular and L-shaped areas in metric or imperial units.",
       "applicationCategory": "UtilityApplication",
       "operatingSystem": "Any",
       "offers": {
@@ -101,7 +101,7 @@
           "@type": "HowToStep",
           "position": 5,
           "name": "Review results",
-          "text": "The calculator shows cubic yards, estimated short tons and 50 lb bags. Order about 10% extra for compaction, waste and settling."
+          "text": "The calculator shows cubic yards or cubic metres, short tons or metric tonnes, kilograms, and 50 lb or 25 kg bags. Order about 10% extra for compaction, waste and settling."
         }
       ]
     }
@@ -114,8 +114,8 @@
       "@type": "WebPage",
       "name": "Gravel Calculator – Cubic Yards, Tons & Bags",
       "url": "https://www.progravelcalculator.online/",
-      "description": "Free gravel calculator for driveways, patios and yards with metric or imperial inputs.",
-      "dateModified": "2026-11-01",
+      "description": "Free gravel calculator for driveways, patios and yards with metric or imperial inputs and full metric and imperial outputs.",
+      "dateModified": "2026-11-07",
       "isPartOf": {
         "@type": "WebSite",
         "name": "Pro Gravel Calculator",
@@ -148,73 +148,149 @@
     <div id="invoice-wrapper" class="hidden print:block bg-white p-8 max-w-4xl mx-auto">
 
         <!-- Print Header -->
-        <div class="flex justify-between items-center border-b-2 border-slate-800 pb-4 mb-8">
+        <div class="flex justify-between items-center border-b-2 border-slate-800 pb-4 mb-6">
             <div>
                 <p class="text-3xl font-bold text-slate-900">Pro Gravel Calculator</p>
-                <p class="text-sm text-slate-600">Professional Material Estimate</p>
+                <p class="text-sm font-semibold text-blue-700 uppercase tracking-wide">Material Order Sheet &amp; Planning Specification</p>
             </div>
             <div class="text-right">
-                <p class="text-sm font-medium text-slate-500">Date</p>
-                <p class="text-lg font-bold text-slate-900" id="print-date">--</p>
+                <p class="text-xs uppercase font-bold text-slate-500">Date Generated</p>
+                <p class="text-base font-bold text-slate-900" id="print-date">--</p>
+                <p class="text-[11px] text-slate-500 mt-0.5">Ref: <span id="print-ref" class="font-mono font-medium text-slate-700">PGC-2026</span></p>
             </div>
         </div>
 
         <!-- Print Content (Summary Table) -->
-        <div class="bg-slate-50 border border-slate-200 rounded-lg p-6 mb-8">
-            <h2 class="text-xl font-bold text-slate-800 border-b border-slate-200 pb-2 mb-4">Project Summary</h2>
+        <div class="bg-slate-50 border border-slate-200 rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-bold text-slate-800 border-b border-slate-200 pb-2 mb-4">Project &amp; Material Specifications</h2>
 
             <div class="grid grid-cols-2 gap-8">
                 <!-- Left: Inputs -->
                 <div>
-                    <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">Project Details</h3>
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Project Specifications</h3>
                     <div class="space-y-2 text-sm">
                         <div class="flex justify-between border-b border-slate-200 py-1">
                             <span class="text-slate-600">Material:</span>
                             <span class="font-medium text-slate-900" id="print-material">--</span>
                         </div>
                         <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Loose Bulk Density:</span>
+                            <span class="font-medium text-slate-900" id="print-density">--</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
                             <span class="text-slate-600">Shape:</span>
                             <span class="font-medium text-slate-900" id="print-shape">--</span>
                         </div>
                         <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Calculated Area:</span>
+                            <span class="font-medium text-slate-900" id="print-area">--</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
                             <span class="text-slate-600">Dimensions:</span>
                             <span class="font-medium text-slate-900" id="print-dims">--</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Specified Depth:</span>
+                            <span class="font-medium text-slate-900" id="print-depth">--</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Waste allowance:</span>
+                            <span class="font-medium text-slate-900" id="print-waste">0%</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Compaction allowance:</span>
+                            <span class="font-medium text-slate-900" id="print-compaction">0%</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right: Results -->
                 <div>
-                    <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">Estimated Requirements
-                    </h3>
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Estimated Requirements</h3>
                     <div class="space-y-2 text-sm">
                         <div class="flex justify-between border-b border-slate-200 py-1">
                             <span class="text-slate-600">Volume:</span>
-                            <span class="font-bold text-blue-700"><span id="print-volume">0.93</span> cubic yards</span>
+                            <span class="font-bold text-blue-700 text-right">
+                                <span><span id="print-volume">0.93</span> <span id="print-volume-unit">cubic yards (yd³)</span></span>
+                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-volume-alt">0.71 cubic metres (m³)</span>
+                                <span class="block text-[11px] font-normal text-slate-400 mt-0.5" id="print-base-volume-row">Base: <span id="print-base-volume">0.93</span> yd³ (before allowances)</span>
+                            </span>
                         </div>
                         <div class="flex justify-between border-b border-slate-200 py-1">
                             <span class="text-slate-600">Estimated weight:</span>
-                            <span class="font-bold text-blue-700"><span id="print-weight">1.31</span> short tons</span>
+                            <span class="font-bold text-blue-700 text-right">
+                                <span><span id="print-weight">1.31</span> <span id="print-weight-unit">short tons (2,000 lb)</span></span>
+                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-weight-alt">1.19 metric tonnes · 1,191 kg</span>
+                                <span class="block text-[11px] font-normal text-slate-400 mt-0.5" id="print-base-weight-row">Base: <span id="print-base-weight">1.31</span> tons</span>
+                            </span>
                         </div>
                         <div class="flex justify-between border-b border-slate-200 py-1">
                             <span class="text-slate-600">Bags:</span>
-                            <span class="font-bold text-blue-700"><span id="print-bags">53</span> × 50 lb</span>
+                            <span class="font-bold text-blue-700 text-right">
+                                <span><span id="print-bags">53</span> <span id="print-bags-unit">× 50 lb</span></span>
+                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-bags-alt">48 × 25 kg bags</span>
+                            </span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Pallets:</span>
+                            <span class="font-bold text-blue-700 text-right">
+                                <span id="print-pallets">2 pallets</span>
+                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-pallets-breakdown">40 bags/pallet · 1 full + 13 loose</span>
+                            </span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Coverage rate:</span>
+                            <span class="font-medium text-slate-700 text-right text-xs" id="print-coverage-rate">56.7 bags/yd³ · 40.0 bags/ton</span>
+                        </div>
+
+                        <div id="print-cost-block" class="hidden border-t border-slate-300 mt-3 pt-3">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Estimated Cost</h4>
+                            <div class="space-y-1 text-sm">
+                                <div class="flex justify-between border-b border-slate-200 py-1">
+                                    <span class="text-slate-600">Material:</span>
+                                    <span class="font-medium text-slate-900" id="print-cost-material">--</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-200 py-1">
+                                    <span class="text-slate-600">Delivery:</span>
+                                    <span class="font-medium text-slate-900" id="print-cost-delivery">--</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-200 py-1">
+                                    <span class="text-slate-600" id="print-cost-tax-label">Tax:</span>
+                                    <span class="font-medium text-slate-900" id="print-cost-tax">--</span>
+                                </div>
+                                <div class="flex justify-between py-1">
+                                    <span class="font-semibold text-slate-900">Total:</span>
+                                    <span class="font-bold text-blue-700" id="print-cost-total">--</span>
+                                </div>
+                                <div class="flex justify-between py-1" id="print-cost-per-area-row">
+                                    <span class="text-slate-600" id="print-cost-per-area-label">Cost per ft²:</span>
+                                    <span class="font-medium text-slate-900" id="print-cost-per-area">--</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-2" id="print-cost-note"></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Disclaimer -->
-        <div class="border-t border-slate-200 pt-6 text-center">
+        <!-- Supplier & Site Notes -->
+        <div class="bg-blue-50/60 border border-blue-200 rounded-lg p-4 mb-6 text-xs text-blue-900 space-y-1.5" id="print-notes-section">
+            <p class="font-bold uppercase tracking-wider text-[11px] text-blue-800">Supplier &amp; Ordering Notes</p>
+            <p id="print-allowance-note">No allowances are included; allow about 10% extra for compaction and waste.</p>
+            <p id="print-density-note">Weight is calculated using standard loose bulk density. Wet aggregates, quarry variations and heavy machine compaction may increase required tonnage.</p>
+            <p id="print-depth-note">Standard residential paths typically require 2–3 inches (50–75 mm); vehicle driveways typically require 4–6 inches (100–150 mm) compacted over a solid sub-base.</p>
+        </div>
+
+        <!-- Disclaimer & Re-open Link -->
+        <div class="border-t border-slate-200 pt-4 text-center">
             <p class="text-xs text-slate-500 leading-relaxed max-w-2xl mx-auto">
-                <strong>Disclaimer:</strong> This is a planning estimate, not an order quantity. Actual material requirements
-                vary with gradation, moisture, compaction and site conditions. Confirm the quantity and density with your
-                supplier, and allow about 10% extra for compaction and waste. Pro Gravel Calculator is not liable for
-                purchasing decisions made from this estimate.
+                <strong>Disclaimer:</strong> This material order sheet is a planning estimate. Actual requirements
+                vary with quarry gradation, moisture content, compaction effort and subgrade conditions. Confirm order quantities with your aggregate supplier prior to dispatch.
             </p>
-            <div class="text-sm text-slate-500 mt-4">
-                Generated from: <span class="font-medium text-blue-600">www.progravelcalculator.online</span>
+            <div class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100">
+                <span>View or adjust this exact calculation online: </span>
+                <a id="print-project-url" href="https://www.progravelcalculator.online/" target="_blank" class="font-mono text-blue-700 font-medium underline break-all">https://www.progravelcalculator.online/</a>
             </div>
         </div>
     </div>
@@ -254,10 +330,10 @@
             <!-- Page H1 + subheading -->
             <div class="mb-6">
                 <h1 class="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">Gravel Calculator</h1>
-                <p class="text-slate-600 text-sm mt-1">Estimate cubic yards, short tons and 50 lb bags for any shape area.</p>
+                <p class="text-slate-600 text-sm mt-1">Estimate cubic yards or cubic metres, short tons or tonnes, and 50 lb or 25 kg bags for any shape area.</p>
                 <p class="text-xs text-slate-600 mt-2">
                     By Pro Gravel Calculator ·
-                    <time datetime="2026-11-01">Reviewed November 2026</time> ·
+                    <time datetime="2026-11-07">Reviewed November 2026</time> ·
                     <a href="/about.html#methodology" class="text-blue-700 underline underline-offset-2">Method &amp; sources</a>
                 </p>
             </div>
@@ -513,13 +589,62 @@
                                 aria-describedby="depth-help"
                                 class="depth-slider w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
                             <div class="flex justify-between text-xs text-slate-600 mt-1" aria-hidden="true">
-                                <span>0"</span>
-                                <span>6"</span>
-                                <span>12"</span>
-                                <span>18"</span>
-                                <span>24"</span>
+                                <span class="depth-tick">0"</span>
+                                <span class="depth-tick">6"</span>
+                                <span class="depth-tick">12"</span>
+                                <span class="depth-tick">18"</span>
+                                <span class="depth-tick">24"</span>
                             </div>
-                            <p id="depth-help" class="text-xs text-slate-600 mt-2">2–3 in for paths, 4–6 in for driveways. Depth is a starting point; compacted thickness depends on the material and subgrade.</p>
+                            <p id="depth-help" class="text-xs text-slate-600 mt-2">2–3 in (50–75 mm) for paths, 4–6 in (100–150 mm) for driveways. Depth is a starting point; compacted thickness depends on the material and subgrade.</p>
+                        </div>
+
+                        <!-- Waste Allowance (All Shapes) -->
+                        <div class="mt-6 pt-6 border-t border-slate-200">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <label for="waste-slider" class="block text-sm font-medium text-slate-700">
+                                    Waste allowance: <span id="waste-display" class="text-blue-700 font-semibold">0%</span>
+                                </label>
+                                <span class="text-xs font-medium text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-2 py-0.5">Recommended: 10%</span>
+                            </div>
+                            <input type="range" id="waste-slider" min="0" max="25" value="0" step="1"
+                                aria-describedby="waste-help"
+                                class="depth-slider w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-xs text-slate-600 mt-1" aria-hidden="true">
+                                <span>0%</span>
+                                <span>10%</span>
+                                <span>15%</span>
+                                <span>25%</span>
+                            </div>
+                            <p id="waste-help" class="text-xs text-slate-600 mt-2">Adds extra material for spillage, uneven ground and the material left in the truck. Use about 10% for most projects and up to 15% for loose rounded stone, slopes or a soft subgrade.</p>
+                        </div>
+
+                        <!-- Compaction Allowance (All Shapes) -->
+                        <div class="mt-6 pt-6 border-t border-slate-200">
+                            <label for="compaction-slider" class="block text-sm font-medium text-slate-700 mb-3">
+                                Compaction allowance: <span id="compaction-display" class="text-blue-700 font-semibold">0%</span>
+                            </label>
+                            <div class="flex flex-wrap gap-2 mb-3" role="group" aria-label="Compaction presets">
+                                <button type="button"
+                                    class="compaction-preset px-3 py-1.5 text-xs font-semibold rounded-lg border-2 border-blue-500 bg-blue-50 text-blue-700 transition-all"
+                                    data-compaction="0" aria-pressed="true">Decorative 0%</button>
+                                <button type="button"
+                                    class="compaction-preset px-3 py-1.5 text-xs font-semibold rounded-lg border-2 border-slate-200 bg-white text-slate-600 hover:border-blue-300 transition-all"
+                                    data-compaction="5" aria-pressed="false">Walkway 5%</button>
+                                <button type="button"
+                                    class="compaction-preset px-3 py-1.5 text-xs font-semibold rounded-lg border-2 border-slate-200 bg-white text-slate-600 hover:border-blue-300 transition-all"
+                                    data-compaction="12" aria-pressed="false">Driveway 12%</button>
+                            </div>
+                            <input type="range" id="compaction-slider" min="0" max="20" value="0" step="1"
+                                aria-describedby="compaction-help"
+                                class="depth-slider w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-xs text-slate-600 mt-1" aria-hidden="true">
+                                <span>0%</span>
+                                <span>5%</span>
+                                <span>10%</span>
+                                <span>15%</span>
+                                <span>20%</span>
+                            </div>
+                            <p id="compaction-help" class="text-xs text-slate-600 mt-2">Compaction reduces the finished thickness. Driveways typically use 10–15% (the preset uses the 12% midpoint), walkways about 5%, and decorative cover 0%. Applied independently after waste.</p>
                         </div>
                     </div>
 
@@ -534,6 +659,76 @@
                             <option value="sand">Sand (110 lb/ft³)</option>
                             <option value="river_rock">River Rock (108 lb/ft³)</option>
                         </select>
+                    </div>
+
+                    <!-- Optional Cost Estimator Card (Order 4 - Mobile, after Material) -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 order-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <h2 class="text-lg font-semibold text-slate-900">Cost Estimate</h2>
+                            <span class="text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200 rounded-md px-2 py-0.5">Optional</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">Enter your supplier's price to estimate material, delivery, tax and total. Leave the price blank to hide costs.</p>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label for="price-amount" class="block text-sm font-medium text-slate-700 mb-2">Price per unit</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="relative">
+                                        <span class="cost-currency-symbol absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-slate-600 pointer-events-none" aria-hidden="true">$</span>
+                                        <input type="number" id="price-amount" inputmode="decimal" step="0.01" min="0"
+                                            placeholder="Enter price" aria-describedby="price-help"
+                                            class="w-full pl-11 pr-4 py-3 text-lg font-medium bg-white border-2 border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-slate-300">
+                                    </div>
+                                    <select id="cost-currency" aria-label="Currency for the cost estimate"
+                                        class="w-full px-3 py-3 text-lg bg-white border-2 border-slate-200 rounded-lg text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer transition-all">
+                                        <option value="USD" selected>USD $</option>
+                                        <option value="CAD">CAD $</option>
+                                        <option value="GBP">GBP £</option>
+                                        <option value="EUR">EUR €</option>
+                                        <option value="AUD">AUD $</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="price-basis" class="block text-sm font-medium text-slate-700 mb-2">Price basis</label>
+                                <select id="price-basis" aria-describedby="price-help"
+                                    class="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-lg text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer transition-all">
+                                    <optgroup label="Imperial / U.S.">
+                                        <option value="short_ton" selected>Per short ton (2,000 lb)</option>
+                                        <option value="cubic_yard">Per cubic yard (yd³)</option>
+                                        <option value="bag_50lb">Per 50 lb bag</option>
+                                    </optgroup>
+                                    <optgroup label="Metric">
+                                        <option value="metric_tonne">Per metric tonne (1,000 kg)</option>
+                                        <option value="cubic_metre">Per cubic metre (m³)</option>
+                                        <option value="bag_25kg">Per 25 kg bag</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label for="delivery-fee" class="block text-sm font-medium text-slate-700 mb-2">Delivery fee</label>
+                                    <div class="relative">
+                                        <span class="cost-currency-symbol absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-slate-600 pointer-events-none" aria-hidden="true">$</span>
+                                        <input type="number" id="delivery-fee" inputmode="decimal" step="0.01" min="0"
+                                            placeholder="0.00" aria-describedby="price-help"
+                                            class="w-full pl-11 pr-3 py-3 bg-white border-2 border-slate-200 rounded-lg text-slate-900 font-medium placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-slate-300">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="tax-rate" class="block text-sm font-medium text-slate-700 mb-2">Tax rate (%)</label>
+                                    <div class="relative">
+                                        <input type="number" id="tax-rate" inputmode="decimal" step="0.01" min="0" max="100"
+                                            placeholder="0" aria-describedby="price-help"
+                                            class="w-full pl-4 pr-9 py-3 bg-white border-2 border-slate-200 rounded-lg text-slate-900 font-medium placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-slate-300">
+                                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-slate-600 pointer-events-none" aria-hidden="true">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p id="price-help" class="text-xs text-slate-600 mt-3">Prices use the selected currency; no currency conversion is applied. The price basis stays the same when you switch measurement units. Tax is applied to the material and delivery subtotal. Blank fields are treated as zero once a price is entered.</p>
                     </div>
 
                     <!-- Content Section: How to Measure -->
@@ -567,12 +762,12 @@
 
                                 <h3 class="text-xl font-semibold text-slate-800 mb-3">Metric and imperial inputs</h3>
                                 <p class="leading-relaxed text-slate-700 mb-6">
-                                    The unit toggle converts the dimension fields between feet/inches and metres/centimetres. Results are reported in cubic yards and short tons, the units most U.S. quarries use. If your supplier quotes cubic metres or metric tonnes, convert the result before ordering — 1 cubic yard is about 0.765 m³, and 1 short ton is about 0.907 metric tonnes.
+                                    The unit toggle converts the dimension fields between feet/inches and metres/centimetres. Results follow the selected mode: imperial shows cubic yards, short tons and 50 lb bags; metric shows cubic metres, metric tonnes, kilograms and 25 kg bags. Each result also shows the equivalent in the other unit system. U.S. quarries usually quote cubic yards and short tons, so check which unit your supplier uses before ordering.
                                 </p>
 
                                 <h3 class="text-xl font-semibold text-slate-800 mb-3">Add about 10% for compaction and waste</h3>
                                 <p class="leading-relaxed text-slate-700 mb-6">
-                                    The calculator returns the geometric volume. In practice, order about 10% more to cover compaction, spillage, uneven ground and the material that stays in the truck. Loose rounded stone, sloped sites and soft subgrades may need 15%. It is usually cheaper to have a small surplus than to pay a second delivery charge for a few bags.
+                                    With both allowances at 0%, the calculator returns the geometric volume. Set the waste slider to about 10% to cover spillage, uneven ground and the material that stays in the truck. Loose rounded stone, sloped sites and soft subgrades may need 15%. Add the compaction preset for a driveway or walkway as well; the two allowances are applied independently. It is usually cheaper to have a small surplus than to pay a second delivery charge for a few bags.
                                 </p>
 
                                 <h3 class="text-xl font-semibold text-slate-800 mb-3">Pea gravel, crushed stone or river rock?</h3>
@@ -613,13 +808,7 @@
                         </div>
                     </section>
 
-                    <!-- Native Ad Container (Order 7 - Mobile, 150px spacing) -->
-                    <div class="order-7 ad-slot">
-                        <div class="ad-label">ADVERTISEMENT</div>
-                        <div id="ad-native" class="ad-container ad-native">
-                            <!-- AdSense Native Ad code will be inserted here -->
-                        </div>
-                    </div>
+
 
 
                 </div>
@@ -680,7 +869,8 @@
                                         <span class="text-sm font-medium text-slate-600">Volume</span>
                                     </div>
                                     <div class="text-3xl font-bold text-blue-700" id="result-volume">0.93</div>
-                                    <div class="text-sm text-slate-600">cubic yards (yd³)</div>
+                                    <div class="text-sm text-slate-600" id="result-volume-unit">cubic yards (yd³)</div>
+                                    <div class="text-xs text-slate-600 mt-1" id="result-volume-alt">0.71 cubic metres (m³)</div>
                                 </div>
 
                                 <div class="border-t border-slate-200"></div>
@@ -696,31 +886,208 @@
                                         <span class="text-sm font-medium text-slate-600">Estimated weight</span>
                                     </div>
                                     <div class="text-3xl font-bold text-blue-700" id="result-weight">1.31</div>
-                                    <div class="text-sm text-slate-600">short tons (2,000 lb)</div>
+                                    <div class="text-sm text-slate-600" id="result-weight-unit">short tons (2,000 lb)</div>
+                                    <div class="text-xs text-slate-600 mt-1" id="result-weight-alt">1.19 metric tonnes · 1,191 kg</div>
                                 </div>
 
                                 <div class="border-t border-slate-200"></div>
 
                                 <!-- Bags -->
                                 <div class="result-item">
-                                    <div class="flex items-center gap-2 mb-1">
-                                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                        </svg>
-                                        <span class="text-sm font-medium text-slate-600">Bags needed</span>
+                                    <div class="flex items-center justify-between gap-2 mb-1">
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                            </svg>
+                                            <span class="text-sm font-medium text-slate-600">Bags needed</span>
+                                        </div>
                                     </div>
                                     <div class="text-3xl font-bold text-blue-700" id="result-bags">53</div>
-                                    <div class="text-sm text-slate-600">50 lb bags</div>
+                                    <div class="text-sm text-slate-600" id="result-bags-unit">50 lb bags</div>
+                                    <div class="text-xs text-slate-600 mt-1" id="result-bags-alt">48 × 25 kg bags</div>
+
+                                    <!-- Bag Size Selector -->
+                                    <div class="mt-3 pt-3 border-t border-slate-100">
+                                        <div class="flex items-center justify-between gap-2 mb-2">
+                                            <span class="text-xs font-semibold text-slate-700">Bag size:</span>
+                                            <span class="text-xs text-slate-500" id="bag-size-hint">Standard: 50 lb</span>
+                                        </div>
+                                        <div class="grid grid-cols-3 gap-1.5" role="group" aria-label="Bag size selector" id="bag-size-buttons">
+                                            <button type="button" class="bag-size-btn px-2 py-1.5 text-xs font-semibold rounded-lg border-2 border-slate-200 bg-white text-slate-700 hover:border-blue-300 transition-all" data-size="40" aria-pressed="false">40 lb</button>
+                                            <button type="button" class="bag-size-btn px-2 py-1.5 text-xs font-semibold rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-700 transition-all active" data-size="50" aria-pressed="true">50 lb</button>
+                                            <button type="button" class="bag-size-btn px-2 py-1.5 text-xs font-semibold rounded-lg border-2 border-slate-200 bg-white text-slate-700 hover:border-blue-300 transition-all" data-size="60" aria-pressed="false">60 lb</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Pallets Required -->
+                                    <div class="mt-3 rounded-lg border border-slate-200 bg-slate-50 p-2.5 text-xs">
+                                        <div class="flex items-center justify-between">
+                                            <span class="font-medium text-slate-700 flex items-center gap-1.5">
+                                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                                </svg>
+                                                Pallets required:
+                                            </span>
+                                            <span class="font-bold text-blue-700 text-sm"><span id="result-pallets">2</span> <span class="font-normal text-xs text-slate-500">pallets</span></span>
+                                        </div>
+                                        <div class="flex items-center justify-between text-slate-500 mt-1 pt-1 border-t border-slate-200/60">
+                                            <span id="result-pallets-detail">40 bags per pallet</span>
+                                            <span id="result-pallets-breakdown" class="font-medium text-slate-700">1 full + 13 loose</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bag Coverage Reference Rates -->
+                                    <div class="mt-2.5 grid grid-cols-2 gap-2 text-xs">
+                                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-200">
+                                            <span class="text-slate-500 block text-[11px]" id="result-bags-per-vol-label">Bags per cubic yard</span>
+                                            <span class="font-bold text-slate-800 text-sm" id="result-bags-per-vol">56.7</span>
+                                        </div>
+                                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-200">
+                                            <span class="text-slate-500 block text-[11px]" id="result-bags-per-weight-label">Bags per short ton</span>
+                                            <span class="font-bold text-slate-800 text-sm" id="result-bags-per-weight">40.0</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <p class="mt-5 text-xs text-slate-600 leading-relaxed">
-                                This is the geometric quantity and excludes waste. Order about 10% extra; up to 15% for
-                                loose, sloped or soft sites. <a href="/about.html#allowances"
+                            <!-- Optional cost breakdown (hidden until a price is entered) -->
+                            <div id="cost-result" class="mt-5 hidden border-t border-slate-200 pt-4">
+                                <div class="flex items-center justify-between gap-2 mb-3">
+                                    <h3 class="text-sm font-semibold text-slate-900">Estimated cost</h3>
+                                    <span class="text-xs font-medium text-slate-500" id="cost-currency-note">USD</span>
+                                </div>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between gap-4">
+                                        <span class="text-slate-600">Material cost</span>
+                                        <span class="font-semibold text-slate-900" id="cost-material">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between gap-4">
+                                        <span class="text-slate-600">Delivery</span>
+                                        <span class="font-semibold text-slate-900" id="cost-delivery">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between gap-4">
+                                        <span class="text-slate-600" id="cost-tax-label">Tax (0%)</span>
+                                        <span class="font-semibold text-slate-900" id="cost-tax">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between gap-4 border-t border-slate-200 pt-2">
+                                        <span class="font-semibold text-slate-900">Total</span>
+                                        <span class="text-lg font-bold text-blue-700" id="cost-total">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between gap-4" id="cost-per-area-row">
+                                        <span class="text-slate-600" id="cost-per-area-label">Cost per ft²</span>
+                                        <span class="text-right">
+                                            <span class="font-semibold text-slate-900" id="cost-per-area">$0.00</span>
+                                            <span class="block text-xs text-slate-500" id="cost-per-area-alt"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <p class="mt-3 text-xs text-slate-500 leading-relaxed" id="cost-basis-detail"></p>
+                                <p class="mt-1 text-xs text-slate-500 leading-relaxed">Price entered by you. Confirm delivery, tax and the final total with your supplier.</p>
+                                <div id="cost-summary" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+                            </div>
+
+                            <!-- Bulk vs. Bag Cost Comparison -->
+                            <div id="bulk-vs-bag-section" class="mt-5 border-t border-slate-200 pt-4">
+                                <button type="button" id="btn-toggle-bulk-vs-bag"
+                                    class="w-full flex items-center justify-between text-left text-sm font-semibold text-slate-900 hover:text-blue-600 focus:outline-none transition-colors"
+                                    aria-expanded="false" aria-controls="bulk-vs-bag-content">
+                                    <span class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                        </svg>
+                                        <span>Compare Bulk vs. Bagged Cost</span>
+                                    </span>
+                                    <svg id="bulk-vs-bag-icon" class="w-4 h-4 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div id="bulk-vs-bag-content" class="hidden mt-3 space-y-3 text-xs">
+                                    <p class="text-slate-600">Compare buying in bulk (dump truck delivery) versus buying bags at the store.</p>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label for="compare-bulk-price" class="block font-medium text-slate-700 mb-1">Bulk price (<span id="compare-bulk-basis-label">per ton</span>)</label>
+                                            <div class="relative">
+                                                <span class="cost-currency-symbol absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold">$</span>
+                                                <input type="number" id="compare-bulk-price" inputmode="decimal" step="0.01" min="0" placeholder="e.g. 45"
+                                                    class="w-full pl-8 pr-3 py-2 text-sm bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="compare-bag-price" class="block font-medium text-slate-700 mb-1">Bag price (<span id="compare-bag-size-label">per 50 lb bag</span>)</label>
+                                            <div class="relative">
+                                                <span class="cost-currency-symbol absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold">$</span>
+                                                <input type="number" id="compare-bag-price" inputmode="decimal" step="0.01" min="0" placeholder="e.g. 4.50"
+                                                    class="w-full pl-8 pr-3 py-2 text-sm bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label for="compare-bulk-delivery" class="block font-medium text-slate-700 mb-1">Bulk delivery fee</label>
+                                            <div class="relative">
+                                                <span class="cost-currency-symbol absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold">$</span>
+                                                <input type="number" id="compare-bulk-delivery" inputmode="decimal" step="0.01" min="0" placeholder="0.00"
+                                                    class="w-full pl-8 pr-3 py-2 text-sm bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="compare-bag-delivery" class="block font-medium text-slate-700 mb-1">Bag delivery fee</label>
+                                            <div class="relative">
+                                                <span class="cost-currency-symbol absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold">$</span>
+                                                <input type="number" id="compare-bag-delivery" inputmode="decimal" step="0.01" min="0" placeholder="0.00"
+                                                    class="w-full pl-8 pr-3 py-2 text-sm bg-white border border-slate-300 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Comparison Result Box -->
+                                    <div id="compare-result" class="hidden rounded-lg p-3 border transition-all mt-3">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="font-bold text-sm text-slate-900" id="compare-verdict-title">Bulk is cheaper</span>
+                                            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800" id="compare-savings-badge">Save $0.00</span>
+                                        </div>
+                                        <div class="space-y-1 text-slate-700 border-t border-slate-200/80 pt-2 mb-2">
+                                            <div class="flex justify-between">
+                                                <span class="text-slate-600">Total Bulk Cost:</span>
+                                                <strong class="text-slate-900" id="compare-bulk-total">$0.00</strong>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-slate-600">Total Bagged Cost:</span>
+                                                <strong class="text-slate-900" id="compare-bag-total">$0.00</strong>
+                                            </div>
+                                            <div class="flex justify-between font-semibold border-t border-slate-200/80 pt-1">
+                                                <span class="text-slate-700">Cost difference:</span>
+                                                <span id="compare-difference" class="text-blue-700 font-bold">$0.00</span>
+                                            </div>
+                                        </div>
+                                        <p id="compare-recommendation" class="text-slate-600 leading-relaxed text-[11px]"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Assumption Warnings & Recommendations -->
+                            <div id="assumption-warnings" class="mt-4 space-y-2.5 hidden" role="region" aria-label="Project assumptions and recommendations"></div>
+
+                            <div id="allowance-note" class="mt-5 hidden rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-xs text-blue-900 leading-relaxed">
+                                Includes <strong id="allowance-note-summary">no allowances</strong>.
+                                Base geometric quantity: <span id="allowance-note-base-volume">0.00</span>
+                                <span id="allowance-note-base-volume-unit">yd³</span>
+                                (<span id="allowance-note-base-weight">0.00</span>
+                                <span id="allowance-note-base-weight-unit">short tons</span>).
+                            </div>
+                            <p id="results-note" class="mt-5 text-xs text-slate-600 leading-relaxed">
+                                This is the geometric quantity and excludes waste and compaction allowances. Add
+                                allowances above to cover spillage, uneven ground and finished thickness.
+                                <a href="/about.html#allowances"
                                     class="text-blue-700 underline underline-offset-2">Read the allowances and limits</a>.
                             </p>
+                            <div id="metric-mode-note" class="mt-3 hidden rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-xs text-blue-900 leading-relaxed">
+                                <strong>Metric mode:</strong> dimensions use metres and centimetres, and results show
+                                cubic metres (m³), metric tonnes, kilograms and 25 kg bags. Imperial equivalents stay
+                                visible under each result.
+                            </div>
 
                             <!-- Get Quote Button -->
                             <div class="mt-6 border-t border-slate-100 pt-4">
@@ -775,11 +1142,12 @@
                                 </svg>
                                 <div>
                                     <p class="text-xs font-bold text-blue-700 uppercase tracking-wider mb-1">Note</p>
-                                    <p class="text-sm text-blue-900 leading-relaxed">Most suppliers quote by the
+                                    <p class="text-sm text-blue-900 leading-relaxed">Most U.S. suppliers quote by the
                                         short ton, while plans are measured in cubic yards. The conversion depends on
                                         density: one cubic yard of crushed stone is about 1.35 short tons, while pea
-                                        gravel is about 1.42. This calculator applies the density for the material you
-                                        select.</p>
+                                        gravel is about 1.42. In metric terms, one cubic metre of crushed stone weighs
+                                        about 1.60 metric tonnes, and pea gravel about 1.68. This calculator applies
+                                        the density for the material you select and shows both unit systems.</p>
                                 </div>
                             </div>
                         </div>
@@ -826,11 +1194,12 @@
                                 </svg>
                                 <div>
                                     <p class="text-xs font-bold text-blue-700 uppercase tracking-wider mb-1">Note</p>
-                                    <p class="text-sm text-blue-900 leading-relaxed">Most suppliers quote by the
+                                    <p class="text-sm text-blue-900 leading-relaxed">Most U.S. suppliers quote by the
                                         short ton, while plans are measured in cubic yards. The conversion depends on
                                         density: one cubic yard of crushed stone is about 1.35 short tons, while pea
-                                        gravel is about 1.42. This calculator applies the density for the material you
-                                        select.</p>
+                                        gravel is about 1.42. In metric terms, one cubic metre of crushed stone weighs
+                                        about 1.60 metric tonnes, and pea gravel about 1.68. This calculator applies
+                                        the density for the material you select and shows both unit systems.</p>
                                 </div>
                             </div>
                         </div>
@@ -1010,10 +1379,11 @@
                         </svg>
                     </summary>
                     <div class="faq-answer">
-                        <p>Yes. Switch to <strong>Metric</strong> to enter metres and centimetres. Results are still
-                            shown in cubic yards and short tons because most U.S. suppliers quote that way. If your
-                            supplier uses metric units, convert the result: <strong>1 cubic yard ≈ 0.765 m³</strong> and
-                            <strong>1 short ton ≈ 0.907 metric tonnes</strong>.</p>
+                        <p>Yes. Switch to <strong>Metric</strong> to enter metres and centimetres. The results switch to
+                            <strong>cubic metres (m³)</strong>, <strong>metric tonnes</strong>, <strong>kilograms</strong>
+                            and <strong>25 kg bags</strong>, with imperial equivalents shown under each result. U.S.
+                            suppliers usually quote cubic yards and short tons; use the unit toggle to switch back at any
+                            time.</p>
                     </div>
                 </details>
 
@@ -1072,7 +1442,7 @@
           "name": "Can I use the calculator in metric units?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Switch to Metric to enter metres and centimetres. Results are still shown in cubic yards and short tons because most U.S. suppliers quote that way. To convert, 1 cubic yard is about 0.765 m³ and 1 short ton is about 0.907 metric tonnes."
+            "text": "Yes. Switch to Metric to enter metres and centimetres. The results switch to cubic metres (m³), metric tonnes, kilograms and 25 kg bags, with imperial equivalents shown under each result. U.S. suppliers usually quote cubic yards and short tons; use the unit toggle to switch back at any time."
           }
         }
       ]
@@ -1085,9 +1455,9 @@
             <div class="max-w-3xl mx-auto">
                 <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">How the estimate is calculated</h2>
                 <p class="text-slate-700 leading-relaxed mb-8">
-                    The calculator uses the standard volume formula and a material-specific loose bulk density. It does
-                    not guess a waste allowance or add hidden material. That keeps the number reproducible and lets you
-                    compare it with a supplier's quantity.
+                    The calculator uses the standard volume formula and a material-specific loose bulk density. Waste
+                    and compaction are explicit, user-controlled allowances rather than hidden additions: leave both
+                    sliders at 0% to see the raw geometric quantity, or add an allowance to plan the order.
                 </p>
 
                 <div class="grid sm:grid-cols-3 gap-4 mb-8">
@@ -1106,8 +1476,8 @@
                     <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
                         <p class="text-xs font-bold uppercase tracking-wider text-blue-700 mb-1">Step 3</p>
                         <h3 class="font-semibold text-slate-900 mb-1">Apply density</h3>
-                        <p class="text-sm text-slate-700">Convert cubic yards to pounds using the selected material's
-                            density, then to short tons and 50 lb bags.</p>
+                        <p class="text-sm text-slate-700">Convert volume to weight using the selected material's
+                            density, then to short tons or metric tonnes and 50 lb or 25 kg bags.</p>
                     </div>
                 </div>
 
@@ -1120,6 +1490,8 @@
                                 <th scope="col" class="text-left py-3 px-4">lb/ft³</th>
                                 <th scope="col" class="text-left py-3 px-4">lb/yd³</th>
                                 <th scope="col" class="text-left py-3 px-4">Short tons/yd³</th>
+                                <th scope="col" class="text-left py-3 px-4">kg/m³</th>
+                                <th scope="col" class="text-left py-3 px-4">Metric tonnes/m³</th>
                             </tr>
                         </thead>
                         <tbody class="text-slate-700">
@@ -1128,24 +1500,32 @@
                                 <td class="py-3 px-4">105</td>
                                 <td class="py-3 px-4">2,835</td>
                                 <td class="py-3 px-4">≈ 1.42</td>
+                                <td class="py-3 px-4">1,682</td>
+                                <td class="py-3 px-4">≈ 1.68</td>
                             </tr>
                             <tr class="bg-slate-50 border-b border-slate-200">
                                 <th scope="row" class="text-left py-3 px-4 font-medium">Crushed stone</th>
                                 <td class="py-3 px-4">100</td>
                                 <td class="py-3 px-4">2,700</td>
                                 <td class="py-3 px-4">≈ 1.35</td>
+                                <td class="py-3 px-4">1,602</td>
+                                <td class="py-3 px-4">≈ 1.60</td>
                             </tr>
                             <tr class="border-b border-slate-200">
                                 <th scope="row" class="text-left py-3 px-4 font-medium">Sand</th>
                                 <td class="py-3 px-4">110</td>
                                 <td class="py-3 px-4">2,970</td>
                                 <td class="py-3 px-4">≈ 1.49</td>
+                                <td class="py-3 px-4">1,762</td>
+                                <td class="py-3 px-4">≈ 1.76</td>
                             </tr>
                             <tr class="bg-slate-50">
                                 <th scope="row" class="text-left py-3 px-4 font-medium">River rock</th>
                                 <td class="py-3 px-4">108</td>
                                 <td class="py-3 px-4">2,916</td>
                                 <td class="py-3 px-4">≈ 1.46</td>
+                                <td class="py-3 px-4">1,730</td>
+                                <td class="py-3 px-4">≈ 1.73</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1154,15 +1534,20 @@
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-6">
                     <p class="text-sm text-slate-800 font-mono leading-relaxed">
                         cubic yards = area (ft²) × depth (ft) ÷ 27<br>
+                        cubic metres = cubic yards × 0.764554857984<br>
                         short tons = cubic yards × 27 × density (lb/ft³) ÷ 2,000<br>
-                        bags = total pounds ÷ 50
+                        metric tonnes = kilograms ÷ 1,000<br>
+                        50 lb bags = total pounds ÷ 50 · 25 kg bags = total kilograms ÷ 25<br>
+                        adjusted volume = base volume × (1 + waste ÷ 100) × (1 + compaction ÷ 100)
                     </p>
                 </div>
 
                 <p class="text-slate-700 leading-relaxed mb-4">
-                    Results are rounded for readability. Bags are rounded up. The estimate excludes waste, so order
-                    about 10% extra, or up to 15% for loose, sloped or soft sites. Local aggregate can differ from these
-                    typical densities; your supplier's test data takes precedence.
+                    Results are rounded for readability. Bags are rounded up. With both allowances at 0%, the result is
+                    the geometric quantity; add about 10% waste for typical projects, or up to 15% for loose, sloped or
+                    soft sites. Metric mode reports the same estimate in cubic metres, metric tonnes, kilograms and 25 kg
+                    bags. Local aggregate can differ from these typical densities; your supplier's test data takes
+                    precedence.
                 </p>
                 <a href="/about.html#methodology"
                     class="inline-flex items-center gap-2 text-blue-700 font-semibold underline underline-offset-2">
@@ -1250,6 +1635,7 @@
     </footer>
     </div> <!-- End print:hidden wrapper -->
 
+    <script src="/calculator-engine.js" defer></script>
     <script src="script.js" defer></script>
     <script>
         // Quote Navigation Logic
@@ -1258,6 +1644,7 @@
             const volume = document.getElementById('result-volume').innerText;
             const weight = document.getElementById('result-weight').innerText;
             const bags = document.getElementById('result-bags').innerText;
+            const unit = document.documentElement.getAttribute('data-unit') === 'metric' ? 'metric' : 'imperial';
 
             // Gather input config
             const material = document.getElementById('material-select').value;
@@ -1269,13 +1656,14 @@
                 window.PGC.track('quote_click', { material: material, shape: shape });
             }
 
-            // Build URL
+            // Build URL. The unit tells the contact page which result labels to use.
             const params = new URLSearchParams({
                 volume: volume,
                 weight: weight,
                 bags: bags,
                 material: material,
-                shape: shape
+                shape: shape,
+                unit: unit
             });
 
             // Navigate

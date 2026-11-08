@@ -1,0 +1,19 @@
+# Pro Gravel Calculator
+
+> Pro Gravel Calculator provides free, accurate calculation tools and reference guides for landscaping, driveways, walkways, and construction projects. It calculates aggregate volume in cubic yards or cubic metres, weight in US short tons or metric tonnes, and estimated bags in 50 lb or 25 kg sizes across rectangular, circular, and L-shaped project areas.
+
+## Calculators & Tools
+
+- [Gravel Calculator](https://www.progravelcalculator.online/): Interactive gravel calculator estimating volume in cubic yards or cubic metres, weight in short tons, metric tonnes or kilograms, and bag counts in 50 lb or 25 kg sizes for crushed stone, pea gravel, river rock, and sand across rectangular, circular, and L-shaped project areas. Includes independent waste and compaction allowances, metric and imperial unit toggles, and print/PDF order estimates.
+
+## Guides & Reference Data
+
+- [Best Gravel Types Guide](https://www.progravelcalculator.online/best-gravel-types.html): Comprehensive guide to aggregate types including pea gravel, crushed stone (#57, #411), river rock, and decomposed granite. Features density tables, coverage rates, and project selection guidance.
+- [Gravel Driveway Cost Guide](https://www.progravelcalculator.online/driveway-cost-guide.html): Detailed cost guide for gravel driveway projects covering DIY materials, delivery fees, site preparation, grading, and professional contractor installation costs.
+
+## Methodology & Company Information
+
+- [About & Calculation Methodology](https://www.progravelcalculator.online/about.html): Documentation of geometric formulas, bulk density figures (pea gravel: 105 lb/ft³, crushed stone: 100 lb/ft³, sand: 110 lb/ft³, river rock: 108 lb/ft³), waste factor recommendations, and engineering sources.
+- [Contact](https://www.progravelcalculator.online/contact.html): Contact information for calculation questions, data corrections, and feedback.
+- [Privacy Policy](https://www.progravelcalculator.online/privacy.html): User privacy policies and data protection practices.
+- [Terms of Service](https://www.progravelcalculator.online/terms.html): Terms and conditions governing tool usage and material estimation disclaimers.
