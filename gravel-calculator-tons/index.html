@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gravel calculator tons: convert between cubic yards, short tons and metric tonnes. Get coverage per ton at different depths and bidirectional volume-to-weight conversion.">
+    <meta name="description" content="Gravel calculator in tons: convert cubic yards, short tons and metric tonnes, and see coverage per ton at 2, 4 and 6 in deep.">
     <title>Gravel Calculator Tons - Convert Yards, Tons & Coverage</title>
     <link rel="canonical" href="https://www.progravelcalculator.online/gravel-calculator-tons/">
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -113,8 +113,8 @@
       "@type": "WebPage",
       "name": "Gravel Calculator Tons - Convert Yards, Tons & Coverage",
       "url": "https://www.progravelcalculator.online/gravel-calculator-tons/",
-      "description": "Gravel calculator tons: convert between cubic yards, short tons and metric tonnes. Get coverage per ton at different depths and bidirectional volume-to-weight conversion.",
-      "dateModified": "2026-11-08",
+      "description": "Gravel calculator in tons: convert cubic yards, short tons and metric tonnes, and see coverage per ton at 2, 4 and 6 in deep.",
+      "dateModified": "2026-11-09",
       "isPartOf": {
         "@type": "WebSite",
         "name": "Pro Gravel Calculator",
@@ -181,8 +181,11 @@
                         <option value="masonry_sand">Masonry Sand (110 lb/ft³)</option>
                         <option value="custom">Custom density (lb/ft³)</option>
                     </select>
-                    <input type="number" id="tons-custom-density" name="custom_density" step="1" min="0" value="" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm hidden">
-                    <p class="text-xs text-slate-400 mt-2">Enter custom density if selected above.</p>
+                    <div id="tons-custom-density-wrap" class="hidden mt-2">
+                        <label for="tons-custom-density" class="block text-sm font-medium text-slate-700 mb-1">Custom Density (lb/ft³)</label>
+                        <input type="number" id="tons-custom-density" name="custom_density" step="1" min="0" value="" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <p class="text-xs text-slate-400 mt-1">Enter custom density in lb/ft³.</p>
+                    </div>
                 </div>
 
                 <!-- Yards to tons -->
@@ -203,12 +206,12 @@
                         <p class="text-xs text-slate-400">Toggle below.</p>
                     </div>
                     <div class="mt-2">
-                        <label class="flex items-center gap-2">
-                            <input type="radio" name="unit" value="short_tons" checked class="rounded border-gray-300 w-4 h-4 focus:ring-blue-500">
+                        <label for="unit-short-tons" class="flex items-center gap-2">
+                            <input type="radio" id="unit-short-tons" name="unit" value="short_tons" checked aria-label="Short tons (2,000 lb)" class="rounded border-gray-300 w-4 h-4 focus:ring-blue-500">
                             <span class="text-sm text-slate-700">Short tons (2,000 lb)</span>
                         </label>
-                        <label class="flex items-center gap-2">
-                            <input type="radio" name="unit" value="metric tonnes" class="rounded border-gray-300 w-4 h-4 focus:ring-blue-500">
+                        <label for="unit-metric-tonnes" class="flex items-center gap-2">
+                            <input type="radio" id="unit-metric-tonnes" name="unit" value="metric tonnes" aria-label="Metric tonnes (2,204.6 lb)" class="rounded border-gray-300 w-4 h-4 focus:ring-blue-500">
                             <span class="text-sm text-slate-700">Metric tonnes (2,204.6 lb)</span>
                         </label>
                     </div>
@@ -241,10 +244,12 @@
                 </div>
             </form>
 
+            <p id="tons-calc-status" class="mt-4 text-sm text-slate-500" role="status" aria-live="polite"></p>
+
             <!-- Results -->
-            <div id="tons-results" class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 hidden">
+            <div id="tons-results" class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 hidden" aria-live="polite">
                 <div>
-                    <h3 class="text-font text-sm font-bold text-slate-600 uppercase tracking-wider mb-3">Converted Weight</h3>
+                    <h3 id="tons-converted-label" class="text-font text-sm font-bold text-slate-600 uppercase tracking-wider mb-3">Converted Weight</h3>
                     <p class="text-3xl font-bold text-blue-600" id="tons-converted-weight">–</p>
                     <p class="text-xs text-slate-500" id="tons-converted-weight-alt">–</p>
                 </div>
@@ -263,7 +268,7 @@
             <!-- Coverage table -->
             <div id="tons-coverage-table" class="mt-8 p-6 bg-slate-50 rounded-lg hidden">
                 <h2 class="text-2xl font-bold text-slate-800 mb-6">Coverage per Ton by Depth</h2>
-                <p class="text-slate-500 mb-4">How much area 1 ton covers at different depths (imperial, 50 lb bags).</p>
+                <p id="tons-coverage-caption" class="text-slate-500 mb-4">How much area 1 short ton of pea gravel covers at different depths. Calculated at 105 lb/ft³; 50 lb bags.</p>
                 <div>
                     <table class="w-full rounded-lg border border-slate-200">
                         <thead>
@@ -274,36 +279,42 @@
                                 <th class="p-3 text-left text-sm font-medium text-slate-600">Bags per ton</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tons-coverage-body">
                             <tr class="border-b">
                                 <td class="p-3">1″</td>
-                                <td class="p-3">180</td>
-                                <td class="p-3">2,592</td>
-                                <td class="p-3">34</td>
+                                <td class="p-3">229</td>
+                                <td class="p-3">32,914</td>
+                                <td class="p-3">40</td>
                             </tr>
                             <tr class="bg-white border-b">
                                 <td class="p-3">2″</td>
-                                <td class="p-3">90</td>
-                                <td class="p-3">1,296</td>
-                                <td class="p-3">17</td>
+                                <td class="p-3">114</td>
+                                <td class="p-3">16,457</td>
+                                <td class="p-3">40</td>
                             </tr>
                             <tr class="border-b">
                                 <td class="p-3">3″</td>
-                                <td class="p-3">60</td>
-                                <td class="p-3">864</td>
-                                <td class="p-3">11</td>
+                                <td class="p-3">76</td>
+                                <td class="p-3">10,971</td>
+                                <td class="p-3">40</td>
                             </tr>
                             <tr class="bg-white border-b">
                                 <td class="p-3">4″</td>
-                                <td class="p-3">45</td>
-                                <td class="p-3">648</td>
-                                <td class="p-3">8</td>
+                                <td class="p-3">57</td>
+                                <td class="p-3">8,229</td>
+                                <td class="p-3">40</td>
                             </tr>
                             <tr class="border-b">
                                 <td class="p-3">6″</td>
-                                <td class="p-3">30</td>
-                                <td class="p-3">432</td>
-                                <td class="p-3">5</td>
+                                <td class="p-3">38</td>
+                                <td class="p-3">5,486</td>
+                                <td class="p-3">40</td>
+                            </tr>
+                            <tr class="bg-white border-b">
+                                <td class="p-3">12″</td>
+                                <td class="p-3">19</td>
+                                <td class="p-3">2,743</td>
+                                <td class="p-3">40</td>
                             </tr>
                         </tbody>
                     </table>
@@ -317,36 +328,36 @@
                 <!-- 1. How to convert -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">How to convert cubic yards to tons</h2>
-                    <p class="text-slate-500 mb-4">Formula: <strong>tons = cubic yards × density (lb/ft³) ÷ 2000</strong></p>
+                    <p class="text-slate-500 mb-4">Formula: <strong>short tons = cubic yards × 27 × density (lb/ft³) ÷ 2,000</strong></p>
                     <ul class="list-disc list-inside space-y-3 text-slate-600">
-                        <li>Determine the material's density (lb/ft³). Presets: pea gravel 105, #57 stone 100, river rock 108, masonry sand 110.</li>
-                        <li>Multiply cubic yards by density.</li>
-                        <li>Divide by 2000 (short tons) or 2204.6 (metric tonnes).</li>
-                        <li>Example: 2 yd³ of #57 stone (100 lb/ft³) = 2 × 100 ÷ 2000 = 0.1 short tons.</li>
+                        <li>Determine the material's bulk density (lb/ft³). Presets: pea gravel 105, #57 stone 100, river rock 108, masonry sand 110.</li>
+                        <li>Multiply cubic yards by 27 to find cubic feet, then multiply by density to get total weight in pounds.</li>
+                        <li>Divide by 2,000 for US short tons, or by 2,204.62 for metric tonnes.</li>
+                        <li>Example: 2 yd³ of #57 stone (100 lb/ft³) = 2 × 27 × 100 ÷ 2,000 = 2.70 short tons (about 2.45 metric tonnes).</li>
                     </ul>
                 </div>
 
                 <!-- 2. Tons per cubic yard -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Tons per Cubic Yard by Material</h2>
-                    <p class="text-slate-500 mb-4">Pre-calculated: how many short tons or metric tonnes equal one cubic yard of each material (imperial density, rounded).</p>
+                    <p class="text-slate-500 mb-4">Pre-calculated weight per cubic yard (27 ft³ × density ÷ 2,000 for short tons):</p>
                     <div class="grid grid-cols-2 gap-4 text-slate-600">
                         <div>
-                            <p class="font-medium text-slate-700">Short tons/yd³:</p>
+                            <p class="font-medium text-slate-700">Short tons per yd³:</p>
                             <ul class="list-disc list-inside">
-                                <li>Pea Gravel: ~1.75 td³</li>
-                                <li>#57 Stone: ~2.00 td³</li>
-                                <li>River Rock: ~2.16 td³</li>
-                                <li>Masonry Sand: ~2.22 td³</li>
+                                <li>Pea Gravel (105 lb/ft³): ~1.42 short tons</li>
+                                <li>#57 Stone (100 lb/ft³): ~1.35 short tons</li>
+                                <li>River Rock (108 lb/ft³): ~1.46 short tons</li>
+                                <li>Masonry Sand (110 lb/ft³): ~1.49 short tons</li>
                             </ul>
                         </div>
                         <div>
-                            <p class="font-medium text-slate-700">Metric tonnes/yd³:</p>
+                            <p class="font-medium text-slate-700">Metric tonnes per yd³:</p>
                             <ul class="list-disc list-inside">
-                                <li>Pea Gravel: ~1.58 t/yd³</li>
-                                <li>#57 Stone: ~1.81 t/yd³</li>
-                                <li>River Rock: ~1.96 t/yd³</li>
-                                <li>Masonry Sand: ~2.00 t/yd³</li>
+                                <li>Pea Gravel: ~1.29 metric tonnes</li>
+                                <li>#57 Stone: ~1.22 metric tonnes</li>
+                                <li>River Rock: ~1.32 metric tonnes</li>
+                                <li>Masonry Sand: ~1.35 metric tonnes</li>
                             </ul>
                         </div>
                     </div>
@@ -355,24 +366,24 @@
                 <!-- 3. Cubic yards per ton -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Cubic Yards per Ton by Material</h2>
-                    <p class="text-slate-500 mb-4">Reverse lookup: how many cubic yards equal one short ton of each material.</p>
+                    <p class="text-slate-500 mb-4">Reverse lookup: volume yielded by one short ton (2,000 ÷ (27 × density)):</p>
                     <div class="grid grid-cols-2 gap-4 text-slate-600">
                         <div>
                             <p class="font-medium text-slate-700">yd³ per short ton:</p>
                             <ul class="list-disc list-inside">
-                                <li>Pea Gravel: ~0.57 yd³</li>
-                                <li>#57 Stone: ~0.50 yd³</li>
-                                <li>River Rock: ~0.46 yd³</li>
-                                <li>Masonry Sand: ~0.45 yd³</li>
+                                <li>Pea Gravel: ~0.71 yd³</li>
+                                <li>#57 Stone: ~0.74 yd³</li>
+                                <li>River Rock: ~0.69 yd³</li>
+                                <li>Masonry Sand: ~0.67 yd³</li>
                             </ul>
                         </div>
                         <div>
                             <p class="font-medium text-slate-700">m³ per metric tonne:</p>
                             <ul class="list-disc list-inside">
-                                <li>Pea Gravel: ~0.63 m³</li>
-                                <li>#57 Stone: ~0.55 m³</li>
-                                <li>River Rock: ~0.51 m³</li>
-                                <li>Masonry Sand: ~0.50 m³</li>
+                                <li>Pea Gravel: ~0.59 m³</li>
+                                <li>#57 Stone: ~0.62 m³</li>
+                                <li>River Rock: ~0.58 m³</li>
+                                <li>Masonry Sand: ~0.57 m³</li>
                             </ul>
                         </div>
                     </div>
@@ -381,34 +392,35 @@
                 <!-- 4. Coverage per ton -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">How much area does 1 ton cover?</h2>
-                    <p class="text-slate-500 mb-4">Coverage depends on depth. Deeper coverage = less area.</p>
-                    <div>
-                        <p class="font-medium text-slate-700">1 ton at 2″ depth covers ~90 ft² (approximately 8.4 m²).</p>
-                        <p class="font-medium text-slate-700">1 ton at 4″ depth covers ~45 ft² (approximately 4.2 m²).</p>
-                        <p class="font-medium text-slate-700">1 ton at 6″ depth covers ~30 ft² (approximately 2.8 m²).</p>
+                    <p class="text-slate-500 mb-4">Coverage depends on depth and material density. For 1 short ton of pea gravel (105 lb/ft³):</p>
+                    <div class="space-y-1 text-slate-600">
+                        <p class="font-medium text-slate-700">1 ton at 2″ depth covers ~114 ft² (approximately 10.6 m²).</p>
+                        <p class="font-medium text-slate-700">1 ton at 4″ depth covers ~57 ft² (approximately 5.3 m²).</p>
+                        <p class="font-medium text-slate-700">1 ton at 6″ depth covers ~38 ft² (approximately 3.5 m²).</p>
+                        <p class="text-xs text-slate-500 mt-2">For lighter #57 stone (100 lb/ft³): 1 ton covers ~120 ft² at 2″, ~60 ft² at 4″, and ~40 ft² at 6″.</p>
                     </div>
                 </div>
 
                 <!-- 5. How much will 4 tons cover? -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">How much will 4 tons cover?</h2>
-                    <p class="text-slate-500 mb-4">Specific high-volume query example.</p>
-                    <ul class="list-disc list-inside text-slate-600">
-                        <li>4 tons at 2″ depth: ~360 ft² (approx. 33 m²)</li>
-                        <li>4 tons at 4″ depth: ~180 ft² (approx. 17 m²)</li>
-                        <li>4 tons at 6″ depth: ~120 ft² (approx. 11 m²)</li>
+                    <p class="text-slate-500 mb-4">High-volume project coverage for 4 short tons of pea gravel (105 lb/ft³):</p>
+                    <ul class="list-disc list-inside space-y-1 text-slate-600">
+                        <li>4 tons at 2″ depth: ~457 ft² (approx. 42.5 m²)</li>
+                        <li>4 tons at 4″ depth: ~229 ft² (approx. 21.2 m²)</li>
+                        <li>4 tons at 6″ depth: ~152 ft² (approx. 14.2 m²)</li>
                     </ul>
                 </div>
 
                 <!-- 6. Short tons vs metric tonnes -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Short tons vs Metric Tonnes</h2>
-                    <p class="text-slate-500 mb-4">The difference is small but relevant for large orders.</p>
-                    <ul class="list-disc list-inside text-slate-600">
-                        <li>1 short ton = 2,000 lb (used in US and most commercial contexts)</li>
-                        <li>1 metric tonne = 2,204.6 lb (used in scientific, international, and some Canadian contexts)</li>
-                        <li>Difference: ~10 lb per ton, or about 0.5%</li>
-                        <li>For project ordering, the difference is generally negligible unless dealing with very large volumes.</li>
+                    <p class="text-slate-500 mb-4">The difference is important when reviewing supplier quotes:</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-600">
+                        <li>1 short ton = 2,000 lb (standard unit in the US).</li>
+                        <li>1 metric tonne = 2,204.62 lb / 1,000 kg (used internationally and in Canada).</li>
+                        <li>Difference: 204.6 lb per ton (a metric tonne is about 10% heavier than a short ton).</li>
+                        <li>Always confirm which unit your quarry or supplier uses before placing an order.</li>
                     </ul>
                 </div>
 
@@ -417,13 +429,13 @@
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">FAQ</h2>
                     <dl class="grid grid-cols-2 gap-4 md:grid-cols-3 text-slate-600">
                         <dt class="font-medium text-slate-700">How many cubic yards in a ton of gravel?</dt>
-                        <dd>It depends on density. For #57 stone (100 lb/ft³): ~0.50 cubic yards per ton. For pea gravel (105 lb/ft³): ~0.57 cubic yards per ton.</dd>
+                        <dd>It depends on density. For #57 stone (100 lb/ft³): ~0.74 cubic yards per short ton. For pea gravel (105 lb/ft³): ~0.71 cubic yards per short ton.</dd>
 
                         <dt class="font-medium text-slate-700">How much area does 1 ton of gravel cover?</dt>
-                        <dd>At 2″ depth: ~90 ft². At 4″ depth: ~45 ft². At 6″ depth: ~30 ft². Varies with material density.</dd>
+                        <dd>At 2″ depth: ~114 ft² for pea gravel or ~120 ft² for #57 stone. At 4″ depth: ~57 ft² for pea gravel or ~60 ft² for #57 stone.</dd>
 
                         <dt class="font-medium text-slate-700">What's the difference between short tons and metric tonnes?</dt>
-                        <dd>Short ton = 2,000 lb (US customary). Metric tonne = 2,204.6 lb. The difference is ~10 lb per ton, or 0.5%.</dd>
+                        <dd>Short ton = 2,000 lb. Metric tonne = 2,204.6 lb (1,000 kg). A metric tonne is about 10% heavier (a 205 lb difference).</dd>
 
                         <dt class="font-medium text-slate-700">How much extra gravel should I order?</dt>
                         <dd>Add 10% for waste and compaction. For a 2″ deep pathway, order 1.1× the calculated quantity.</dd>
@@ -472,5 +484,8 @@
             </div>
         </footer>
     </main>
+
+    <script src="/calculator-engine.js" defer></script>
+    <script src="/subpage-calculator.js" defer></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Crushed stone calculator: calculate #57, #411, #304 and crusher run for driveways, bases and drainage. Size code presets auto-set density, recommended depths, and coverage per ton.">
+    <meta name="description" content="Crushed stone calculator for #57, #411, #304 and crusher run. Estimate volume, weight in tons, bag counts, base and surface layers.">
     <title>Crushed Stone Calculator - Yards, Tons, Bags & Cost</title>
     <link rel="canonical" href="https://www.progravelcalculator.online/crushed-stone-calculator/">
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -113,8 +113,8 @@
       "@type": "WebPage",
       "name": "Crushed Stone Calculator - Yards, Tons, Bags & Cost",
       "url": "https://www.progravelcalculator.online/crushed-stone-calculator/",
-      "description": "Crushed stone calculator: calculate #57, #411, #304 and crusher run for driveways, bases and drainage. Size code presets auto-set density, recommended depths, and coverage per ton.",
-      "dateModified": "2026-11-08",
+      "description": "Crushed stone calculator for #57, #411, #304 and crusher run. Estimate volume, weight in tons, bag counts, base and surface layers.",
+      "dateModified": "2026-11-09",
       "isPartOf": {
         "@type": "WebSite",
         "name": "Pro Gravel Calculator",
@@ -155,6 +155,7 @@
             <div class="max-w-7xl mx-auto px-6 py-4">
                 <h1 class="text-3xl font-bold text-slate-900">Crushed Stone Calculator</h1>
                 <p class="text-slate-500">Calculate #57, #411, #304 and crusher run for driveways, bases and drainage.</p>
+                <p class="text-xs text-slate-400 mt-1">Last updated: November 9, 2026</p>
             </div>
         </header>
 
@@ -200,12 +201,12 @@
                         <div>
                             <label for="stone-rect-length-ft" class="block text-sm font-medium text-slate-700 mb-1">Length (ft)</label>
                             <input type="number" id="stone-rect-length-ft" name="rect_l_ft" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            <p class="text-xs text-slate-400"> <em class="text-slate-500">inches: <input type="number" id="stone-rect-length-in" name="rect_l_in" step="1" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em></p>
+                            <p class="text-xs text-slate-400"> <em class="text-slate-500">inches: <input type="number" id="stone-rect-length-in" name="rect_l_in" step="1" min="0" value="0" aria-label="Length additional inches" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em></p>
                         </div>
                         <div>
                             <label for="stone-rect-width-ft" class="block text-sm font-medium text-slate-700 mb-1">Width (ft)</label>
                             <input type="number" id="stone-rect-width-ft" name="rect_w_ft" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            <p class="text-xs text-slate-400"> <em class="text-slate-500">inches: <input type="number" id="stone-rect-width-in" name="rect_w_in" step="1" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em></p>
+                            <p class="text-xs text-slate-400"> <em class="text-slate-500">inches: <input type="number" id="stone-rect-width-in" name="rect_w_in" step="1" min="0" value="0" aria-label="Width additional inches" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em></p>
                         </div>
                     </div>
 
@@ -245,6 +246,20 @@
                     <p class="text-xs text-slate-400">Preset depths per size code available.</p>
                 </div>
 
+                <!-- Allowances -->
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label for="stone-waste" class="block text-sm font-medium text-slate-700 mb-1">Waste Allowance (%)</label>
+                        <input type="number" id="stone-waste" name="waste" min="0" max="25" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <p class="text-xs text-slate-400">Typical: 5–10% for clean stone.</p>
+                    </div>
+                    <div>
+                        <label for="stone-compaction" class="block text-sm font-medium text-slate-700 mb-1">Compaction Allowance (%)</label>
+                        <input type="number" id="stone-compaction" name="compaction" min="0" max="20" value="5" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <p class="text-xs text-slate-400">Typical: 5% for stone, 10–20% for base.</p>
+                    </div>
+                </div>
+
                 <!-- Calculate button -->
                 <div class="col-span-2 md:col-span-1 mt-4">
                     <button type="submit" id="stone-calc-btn" class="w-full bg-blue-600 text-white font-medium py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition">
@@ -253,8 +268,10 @@
                 </div>
             </form>
 
+            <p id="stone-calc-status" class="mt-4 text-sm text-slate-500" role="status" aria-live="polite"></p>
+
             <!-- Results -->
-            <div id="stone-results" class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 hidden">
+            <div id="stone-results" class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 hidden" aria-live="polite">
                 <div>
                     <h3 class="text-font text-sm font-bold text-slate-600 uppercase tracking-wider mb-3">Volume</h3>
                     <p class="text-3xl font-bold text-blue-600" id="stone-volume">–</p>
@@ -271,11 +288,12 @@
                     <p class="text-xs text-slate-500" id="stone-bags-alt">–</p>
                 </div>
             </div>
+            <p id="stone-results-note" class="mt-4 text-xs text-slate-500 hidden"></p>
 
             <!-- Coverage table -->
             <div id="stone-coverage" class="mt-8 p-6 bg-slate-50 rounded-lg hidden">
                 <h2 class="text-2xl font-bold text-slate-800 mb-6">Coverage per Ton by Depth</h2>
-                <p class="text-slate-500 mb-4">How much area 1 ton covers at different depths.</p>
+                <p id="stone-coverage-caption" class="text-slate-500 mb-4">How much area 1 short ton of #57 stone covers at different depths. Calculated at 100 lb/ft³; 50 lb bags.</p>
                 <div>
                     <table class="w-full rounded-lg border border-slate-200">
                         <thead>
@@ -285,21 +303,21 @@
                                 <th class="p-3 text-left text-sm font-medium text-slate-600">Bags per ton</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="stone-coverage-body">
                             <tr class="border-b">
                                 <td class="p-3">2″</td>
-                                <td class="p-3">100</td>
-                                <td class="p-3">27</td>
+                                <td class="p-3">120</td>
+                                <td class="p-3">40</td>
                             </tr>
                             <tr class="bg-white border-b">
                                 <td class="p-3">3″</td>
-                                <td class="p-3">67</td>
-                                <td class="p-3">18</td>
+                                <td class="p-3">80</td>
+                                <td class="p-3">40</td>
                             </tr>
                             <tr class="border-b">
                                 <td class="p-3">4″</td>
-                                <td class="p-3">50</td>
-                                <td class="p-3">13</td>
+                                <td class="p-3">60</td>
+                                <td class="p-3">40</td>
                             </tr>
                         </tbody>
                     </table>
@@ -396,15 +414,15 @@
                 <!-- 3. Density by size -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Density by Size Code</h2>
-                    <p class="text-slate-500 mb-4">Typical compacted density ranges (lb/ft³).</p>
+                    <p class="text-slate-500 mb-4">Typical compacted bulk densities and conversion factors (27 ft³ per yd³):</p>
                     <div class="grid grid-cols-2 gap-4 text-slate-600">
                         <div>
                             <p class="font-medium text-slate-700">Compacted density:</p>
                             <ul class="list-disc list-inside">
-                                <li>#57: 100 lb/ft³ (1.60 t/yd³)</li>
-                                <li>#411: 110 lb/ft³ (1.76 t/yd³)</li>
-                                <li>#304: 105 lb/ft³ (1.68 t/yd³)</li>
-                                <li>Crusher Run: 105 lb/ft³ (1.68 t/yd³)</li>
+                                <li>#57: 100 lb/ft³ (~1.35 short tons/yd³ · ~1.22 metric tonnes/yd³)</li>
+                                <li>#411: 110 lb/ft³ (~1.49 short tons/yd³ · ~1.35 metric tonnes/yd³)</li>
+                                <li>#304: 105 lb/ft³ (~1.42 short tons/yd³ · ~1.29 metric tonnes/yd³)</li>
+                                <li>Crusher Run: 105 lb/ft³ (~1.42 short tons/yd³ · ~1.29 metric tonnes/yd³)</li>
                             </ul>
                         </div>
                         <div>
@@ -444,11 +462,12 @@
                 <!-- 5. Coverage per ton -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Coverage per Ton by Depth</h2>
-                    <p class="text-slate-500 mb-4">How much area 1 ton of crushed stone covers at different depths.</p>
-                    <div>
-                        <p class="font-medium text-slate-700">1 ton at 2″ depth: ~100 ft²</p>
-                        <p class="font-medium text-slate-700">1 ton at 3″ depth: ~67 ft²</p>
-                        <p class="font-medium text-slate-700">1 ton at 4″ depth: ~50 ft²</p>
+                    <p class="text-slate-500 mb-4">How much area 1 short ton of crushed stone covers at different depths (#57 stone at 100 lb/ft³):</p>
+                    <div class="space-y-1 text-slate-600">
+                        <p class="font-medium text-slate-700">1 ton at 2″ depth: ~120 ft² (approx. 11.1 m²)</p>
+                        <p class="font-medium text-slate-700">1 ton at 3″ depth: ~80 ft² (approx. 7.4 m²)</p>
+                        <p class="font-medium text-slate-700">1 ton at 4″ depth: ~60 ft² (approx. 5.6 m²)</p>
+                        <p class="text-xs text-slate-500 mt-2">For denser #411 (110 lb/ft³): ~109 ft² at 2″, ~73 ft² at 3″, and ~55 ft² at 4″.</p>
                     </div>
                 </div>
 
@@ -463,7 +482,7 @@
                         <dd>Crushed stone fines that compact into a solid base. Used under pavers, driveways, and as a base before applying surface stone.</dd>
 
                         <dt class="font-medium text-slate-700">How many yards in a ton of #57 stone?</dt>
-                        <dd>~0.50 cubic yards per ton (at 100 lb/ft³ density).</dd>
+                        <dd>~0.74 cubic yards per short ton (at 100 lb/ft³: 2,000 lb ÷ 100 lb/ft³ = 20 ft³ ÷ 27 ft³/yd³ = 0.74 yd³).</dd>
 
                         <dt class="font-medium text-slate-700">What depth for a driveway base?</dt>
                         <dd>4″ of crusher run or #304 is typical for residential driveways. Add 2″ of #57 or #411 as surface.</dd>
@@ -513,5 +532,8 @@
             </div>
         </footer>
     </main>
+
+    <script src="/calculator-engine.js" defer></script>
+    <script src="/subpage-calculator.js" defer></script>
 </body>
 </html>

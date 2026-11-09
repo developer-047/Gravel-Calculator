@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gravel bag calculator: find how many 40, 50 or 60 lb bags of gravel you need, pallet counts and whether bulk is cheaper. Get bags per yard and bags per ton reference tables.">
+    <meta name="description" content="Gravel bag calculator: find 40, 50 or 60 lb bags, pallet counts and bulk-vs-bag cost. Includes bags per cubic yard and per ton.">
     <title>Gravel Bag Calculator - Bags, Pallets & Bulk Cost</title>
     <link rel="canonical" href="https://www.progravelcalculator.online/gravel-bag-calculator/">
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -113,8 +113,8 @@
       "@type": "WebPage",
       "name": "Gravel Bag Calculator - Bags, Pallets & Bulk Cost",
       "url": "https://www.progravelcalculator.online/gravel-bag-calculator/",
-      "description": "Gravel bag calculator: find how many 40, 50 or 60 lb bags of gravel you need, pallet counts and whether bulk is cheaper. Get bags per yard and bags per ton reference tables.",
-      "dateModified": "2026-11-08",
+      "description": "Gravel bag calculator: find 40, 50 or 60 lb bags, pallet counts and bulk-vs-bag cost. Includes bags per cubic yard and per ton.",
+      "dateModified": "2026-11-09",
       "isPartOf": {
         "@type": "WebSite",
         "name": "Pro Gravel Calculator",
@@ -155,6 +155,7 @@
             <div class="max-w-7xl mx-auto px-6 py-4">
                 <h1 class="text-3xl font-bold text-slate-900">Gravel Bag Calculator</h1>
                 <p class="text-slate-500">Find how many 40, 50 or 60 lb bags of gravel you need, pallet counts and whether bulk is cheaper.</p>
+                <p class="text-xs text-slate-400 mt-1">Last updated: November 9, 2026</p>
             </div>
         </header>
 
@@ -177,12 +178,12 @@
                         <div>
                             <label for="bag-rect-length-ft" class="block text-sm font-medium text-slate-700 mb-1">Length (ft)</label>
                             <input type="number" id="bag-rect-length-ft" name="rect_l_ft" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            <p class="text-xs text-slate-400"> <em class="text-slate-500">inches: <input type="number" id="bag-rect-length-in" name="rect_l_in" step="1" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em></p>
+                            <p class="text-xs text-slate-400"> <em class="text-slate-500">inches: <input type="number" id="bag-rect-length-in" name="rect_l_in" step="1" min="0" value="0" aria-label="Length additional inches" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em></p>
                         </div>
                         <div>
                             <label for="bag-rect-width-ft" class="block text-sm font-medium text-slate-700 mb-1">Width (ft)</label>
                             <input type="number" id="bag-rect-width-ft" name="rect_w_ft" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            <p class="text-xs text-slate-400"> <em class="text-slate-500">inches: <input type="number" id="bag-rect-width-in" name="rect_w_in" step="1" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em></p>
+                            <p class="text-xs text-slate-400"> <em class="text-slate-500">inches: <input type="number" id="bag-rect-width-in" name="rect_w_in" step="1" min="0" value="0" aria-label="Width additional inches" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></em></p>
                         </div>
                     </div>
 
@@ -224,7 +225,7 @@
 
                 <!-- Bag size -->
                 <div>
-                    <label for="bag-size-select" class="block text-sm font-medium text-slate-700 mb-1">Bag Size</label>
+                    <span class="block text-sm font-medium text-slate-700 mb-1">Bag Size</span>
                     <div class="grid grid-cols-3 gap-2" role="group" aria-label="Bag size selector">
                         <button type="button" class="bag-size-btn px-2 py-1.5 text-xs font-semibold rounded-lg border-2 border-slate-200 bg-white text-slate-700 hover:border-blue-300 transition-all" data-size="40">40 lb</button>
                         <button type="button" class="bag-size-btn px-2 py-1.5 text-xs font-semibold rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-700 transition-all active" data-size="50">50 lb</button>
@@ -289,8 +290,10 @@
                 </div>
             </form>
 
+            <p id="bag-calc-status" class="mt-4 text-sm text-slate-500" role="status" aria-live="polite"></p>
+
             <!-- Quick results -->
-            <div id="bag-results" class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 hidden">
+            <div id="bag-results" class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 hidden" aria-live="polite">
                 <div>
                     <h3 class="text-font text-sm font-bold text-slate-600 uppercase tracking-wider mb-3">Bags Needed</h3>
                     <p class="text-3xl font-bold text-blue-600" id="bag-quantity">–</p>
@@ -323,7 +326,7 @@
                 <!-- Bags per cubic yard -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Bags per Cubic Yard by Material</h2>
-                    <p class="text-slate-500 mb-4">Rounded to whole bags at 50 lb per bag. Imperial depths (inches).</p>
+                    <p class="text-slate-500 mb-4">Bag counts are rounded up. One cubic yard is 27 ft³, so weight per cubic yard = 27 × density.</p>
                     <div>
                         <table class="w-full rounded-lg border border-slate-200">
                             <thead>
@@ -339,30 +342,30 @@
                                 <tr class="border-b">
                                     <td class="p-3">Pea Gravel</td>
                                     <td class="p-3">105</td>
-                                    <td class="p-3">~34</td>
-                                    <td class="p-3">~42</td>
-                                    <td class="p-3">~29</td>
+                                    <td class="p-3">~57</td>
+                                    <td class="p-3">~71</td>
+                                    <td class="p-3">~48</td>
                                 </tr>
                                 <tr class="bg-white border-b">
                                     <td class="p-3">#57 Stone</td>
                                     <td class="p-3">100</td>
-                                    <td class="p-3">~32</td>
-                                    <td class="p-3">~40</td>
-                                    <td class="p-3">~27</td>
+                                    <td class="p-3">54</td>
+                                    <td class="p-3">68</td>
+                                    <td class="p-3">45</td>
                                 </tr>
                                 <tr class="border-b">
                                     <td class="p-3">River Rock</td>
                                     <td class="p-3">108</td>
-                                    <td class="p-3">~31</td>
-                                    <td class="p-3">~38</td>
-                                    <td class="p-3">~26</td>
+                                    <td class="p-3">~59</td>
+                                    <td class="p-3">~73</td>
+                                    <td class="p-3">~49</td>
                                 </tr>
                                 <tr class="bg-white border-b">
                                     <td class="p-3">Masonry Sand</td>
                                     <td class="p-3">110</td>
-                                    <td class="p-3">~30</td>
-                                    <td class="p-3">~37</td>
-                                    <td class="p-3">~25</td>
+                                    <td class="p-3">60</td>
+                                    <td class="p-3">75</td>
+                                    <td class="p-3">50</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -371,47 +374,32 @@
 
                 <!-- Bags per cubic ton -->
                 <div>
-                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Bags per Short Ton by Material</h2>
-                    <p class="text-slate-500 mb-4">Rounded to whole bags at 50 lb per bag. Imperial depths (inches).</p>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Bags per Short Ton</h2>
+                    <p class="text-slate-500 mb-4">A short ton is 2,000 lb, so bags per ton depends only on bag size, not on the material.</p>
                     <div>
                         <table class="w-full rounded-lg border border-slate-200">
                             <thead>
                                 <tr class="bg-slate-50">
-                                    <th class="p-3 text-left text-sm font-medium text-slate-600">Material</th>
-                                    <th class="p-3 text-left text-sm font-medium text-slate-600">lb/ft³</th>
-                                    <th class="p-3 text-left text-sm font-medium text-slate-600">Bags (50 lb)</th>
-                                    <th class="p-3 text-left text-sm font-medium text-slate-600">Bags (40 lb)</th>
-                                    <th class="p-3 text-left text-sm font-medium text-slate-600">Bags (60 lb)</th>
+                                    <th class="p-3 text-left text-sm font-medium text-slate-600">Bag size</th>
+                                    <th class="p-3 text-left text-sm font-medium text-slate-600">Weight per bag</th>
+                                    <th class="p-3 text-left text-sm font-medium text-slate-600">Bags per short ton</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="border-b">
-                                    <td class="p-3">Pea Gravel</td>
-                                    <td class="p-3">105</td>
+                                    <td class="p-3">50 lb</td>
+                                    <td class="p-3">50 lb</td>
                                     <td class="p-3">40</td>
-                                    <td class="p-3">50</td>
-                                    <td class="p-3">34</td>
                                 </tr>
                                 <tr class="bg-white border-b">
-                                    <td class="p-3">#57 Stone</td>
-                                    <td class="p-3">100</td>
-                                    <td class="p-3">40</td>
+                                    <td class="p-3">40 lb</td>
+                                    <td class="p-3">40 lb</td>
                                     <td class="p-3">50</td>
-                                    <td class="p-3">33</td>
                                 </tr>
                                 <tr class="border-b">
-                                    <td class="p-3">River Rock</td>
-                                    <td class="p-3">108</td>
-                                    <td class="p-3">38</td>
-                                    <td class="p-3">47</td>
-                                    <td class="p-3">32</td>
-                                </tr>
-                                <tr class="bg-white border-b">
-                                    <td class="p-3">Masonry Sand</td>
-                                    <td class="p-3">110</td>
-                                    <td class="p-3">36</td>
-                                    <td class="p-3">45</td>
-                                    <td class="p-3">30</td>
+                                    <td class="p-3">60 lb</td>
+                                    <td class="p-3">60 lb</td>
+                                    <td class="p-3">34 (33.33 rounded up)</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -428,7 +416,7 @@
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">How many bags of gravel do I need?</h2>
                     <p class="text-slate-500 mb-4">Enter your project dimensions above to get an instant bag count. The calculator includes waste and compaction allowances and rounds up to ensure you have enough material.</p>
                     <ul class="list-disc list-inside space-y-3 text-slate-600">
-                        <li><strong>Rectangular area:</strong> Length × Width × Depth ÷ 27 = cubic yards (imperial). Multiply by material density (lb/ft³) divide by bag weight = number of bags.</li>
+                        <li><strong>Rectangular area:</strong> Length (ft) × Width (ft) × Depth (ft) ÷ 27 = cubic yards. Then weight = cubic feet × density (lb/ft³), and bags = weight ÷ bag size, rounded up.</li>
                         <li><strong>Circular area:</strong> π × (diameter/2)² × depth ÷ 27 = cubic yards.</li>
                         <li><strong>L‑shaped area:</strong> Split into two rectangles, calculate each, then add.</li>
                         <li>Waste allowance (default 10%) adds extra material for settling and spillage.</li>
@@ -445,28 +433,28 @@
                         <div>
                             <p class="font-medium text-slate-700">50 lb bags:</p>
                             <ul class="list-disc list-inside">
-                                <li>Pea Gravel: ~34 bags/yd³</li>
-                                <li>#57 Stone: ~32 bags/yd³</li>
-                                <li>River Rock: ~31 bags/yd³</li>
-                                <li>Masonry Sand: ~30 bags/yd³</li>
+                                <li>Pea Gravel: ~57 bags/yd³</li>
+                                <li>#57 Stone: 54 bags/yd³</li>
+                                <li>River Rock: ~59 bags/yd³</li>
+                                <li>Masonry Sand: 60 bags/yd³</li>
                             </ul>
                         </div>
                         <div>
                             <p class="font-medium text-slate-700">40 lb bags:</p>
                             <ul class="list-disc list-inside">
-                                <li>Pea Gravel: ~42 bags/yd³</li>
-                                <li>#57 Stone: ~40 bags/yd³</li>
-                                <li>River Rock: ~38 bags/yd³</li>
-                                <li>Masonry Sand: ~37 bags/yd³</li>
+                                <li>Pea Gravel: ~71 bags/yd³</li>
+                                <li>#57 Stone: 68 bags/yd³</li>
+                                <li>River Rock: ~73 bags/yd³</li>
+                                <li>Masonry Sand: 75 bags/yd³</li>
                             </ul>
                         </div>
                         <div>
                             <p class="font-medium text-slate-700">60 lb bags:</p>
                             <ul class="list-disc list-inside">
-                                <li>Pea Gravel: ~29 bags/yd³</li>
-                                <li>#57 Stone: ~27 bags/yd³</li>
-                                <li>River Rock: ~26 bags/yd³</li>
-                                <li>Masonry Sand: ~25 bags/yd³</li>
+                                <li>Pea Gravel: ~48 bags/yd³</li>
+                                <li>#57 Stone: 45 bags/yd³</li>
+                                <li>River Rock: ~49 bags/yd³</li>
+                                <li>Masonry Sand: 50 bags/yd³</li>
                             </ul>
                         </div>
                     </div>
@@ -474,37 +462,13 @@
 
                 <!-- 3. Bags per ton -->
                 <div class="mb-10">
-                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Bags per Short Ton by Material</h2>
-                    <p class="text-slate-500 mb-4">Reference table: how many 50 lb / 40 lb / 60 lb bags equal one short ton (2,000 lb) of each material (imperial, rounded).</p>
-                    <div class="grid grid-cols-2 gap-4 text-slate-600">
-                        <div>
-                            <p class="font-medium text-slate-700">50 lb bags:</p>
-                            <ul class="list-disc list-inside">
-                                <li>Pea Gravel: 40 bags/ton</li>
-                                <li>#57 Stone: 40 bags/ton</li>
-                                <li>River Rock: 38 bags/ton</li>
-                                <li>Masonry Sand: 36 bags/ton</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="font-medium text-slate-700">40 lb bags:</p>
-                            <ul class="list-disc list-inside">
-                                <li>Pea Gravel: 50 bags/ton</li>
-                                <li>#57 Stone: 50 bags/ton</li>
-                                <li>River Rock: 47 bags/ton</li>
-                                <li>Masonry Sand: 45 bags/ton</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="font-medium text-slate-700">60 lb bags:</p>
-                            <ul class="list-disc list-inside">
-                                <li>Pea Gravel: 34 bags/ton</li>
-                                <li>#57 Stone: 33 bags/ton</li>
-                                <li>River Rock: 32 bags/ton</li>
-                                <li>Masonry Sand: 30 bags/ton</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Bags per Short Ton</h2>
+                    <p class="text-slate-500 mb-4">One short ton is 2,000 lb, so the material density does not change these counts.</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-600">
+                        <li>50 lb bags: 2,000 ÷ 50 = 40 bags per short ton</li>
+                        <li>40 lb bags: 2,000 ÷ 40 = 50 bags per short ton</li>
+                        <li>60 lb bags: 2,000 ÷ 60 = 33.33, rounded up to 34 bags per short ton</li>
+                    </ul>
                 </div>
 
                 <!-- 4. How many bags on a pallet -->
@@ -529,8 +493,8 @@
                     <div>
                         <p class="font-medium text-slate-700">Buy bags when:</p>
                         <ul class="list-disc list-inside text-slate-600">
-                            <li>Project is under 0.5 cubic yards (≈ 1 cubic yard ≈ 27 ft³)</li>
-                            <li>You need material quickly (bags available at most garden centers)</li>
+                            <li>Project is small, roughly under 0.5 cubic yards (13.5 ft³)</li>
+                            <li>You need material quickly (bags are available at most garden centers)</li>
                             <li>You have limited delivery access (no room for a truck)</li>
                             <li>You need precise quantities for small jobs (walkways, small patios)</li>
                         </ul>
@@ -538,18 +502,18 @@
                     <div>
                         <p class="font-medium text-slate-700">Buy bulk when:</p>
                         <ul class="list-disc list-inside text-slate-600">
-                            <li>Project is over 0.5 cubic yards</li>
-                            <li>You need material for driveways, French drains, or large patios</li>
-                            <li>Bulk delivery is cheaper (typically saves 60–85% vs bagged)</li>
-                            <li>You have adequate delivery space (truck can drop near project)</li>
+                            <li>Project is larger than about 0.5 cubic yards</li>
+                            <li>You need material for driveways, French drains or large patios</li>
+                            <li>The delivered bulk quote is lower per ton than bagged material</li>
+                            <li>You have adequate delivery space (truck can drop near the project)</li>
                         </ul>
                     </div>
                     <div class="mt-4">
-                        <p class="font-medium text-slate-700">Cost comparison example (50 lb bags vs bulk):</p>
+                        <p class="font-medium text-slate-700">Bag-quantity examples (50 lb bags):</p>
                         <ul class="list-disc list-inside text-slate-600">
-                            <li>0.5 yd³ #57 stone: ~16 bags ≈ $80 (at $5/bag) vs bulk ≈ $30–$40</li>
-                            <li>1.0 yd³ #57 stone: ~32 bags ≈ $160 vs bulk ≈ $50–$70</li>
-                            <li> savings grow with project size: 65%+ savings at 2+ yd³</li>
+                            <li>0.5 yd³ #57 stone at 100 lb/ft³: 1,350 lb = 27 bags</li>
+                            <li>1.0 yd³ #57 stone: 2,700 lb = 54 bags</li>
+                            <li>At an example $5 per bag, those are $135 and $270 before tax; compare that with the delivered bulk quote.</li>
                         </ul>
                     </div>
                 </div>
@@ -559,13 +523,13 @@
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">FAQ</h2>
                     <dl class="grid grid-cols-2 gap-4 md:grid-cols-3 text-slate-600">
                         <dt class="font-medium text-slate-700">How many bags equal a yard?</dt>
-                        <dd>It depends on material density and bag weight. For #57 stone with 50 lb bags: ~32 bags per cubic yard.</dd>
+                        <dd>It depends on material density and bag weight. For #57 stone at 100 lb/ft³ with 50 lb bags: 2,700 lb ÷ 50 = 54 bags per cubic yard.</dd>
 
                         <dt class="font-medium text-slate-700">How many bags on a pallet?</dt>
                         <dd>Standard: 40 bags (50 lb each). Some suppliers use 50 kg (≈110 lb) bags — confirm before ordering.</dd>
 
                         <dt class="font-medium text-slate-700">When is bulk cheaper than bags?</dt>
-                        <dd>Typically at 0.5 yd³ and above. Savings can be 60–85% depending on material and region.</dd>
+                        <dd>Bulk is usually cheaper per ton once the project is above roughly 0.5 yd³, but delivery fees and minimum order sizes vary. Compare the delivered totals.</dd>
 
                         <dt class="font-medium text-slate-700">Can I mix bag sizes on one pallet?</dt>
                         <dd>Most pallets are configured for one bag size. Mixed sizes may require special handling; check with your supplier.</dd>
@@ -614,5 +578,8 @@
             </div>
         </footer>
     </main>
+
+    <script src="/calculator-engine.js" defer></script>
+    <script src="/subpage-calculator.js" defer></script>
 </body>
 </html>

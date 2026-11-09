@@ -109,14 +109,15 @@ const subpageFiles = fs.readdirSync(ROOT, { withFileTypes: true })
     .filter((entry) => entry.isDirectory() && exists(entry.name + '/index.html'))
     .map((entry) => entry.name + '/index.html')
     .sort();
-const indexableFiles = htmlFiles.concat(subpageFiles).filter((file) => !isNoindex(read(file)));
+const allHtmlFiles = htmlFiles.concat(subpageFiles);
+const indexableFiles = allHtmlFiles.filter((file) => !isNoindex(read(file)));
 
 // ---------------------------------------------------------------------------
 // Markup structure
 // ---------------------------------------------------------------------------
 
 test('every HTML page has a lang, charset, viewport, title, description and one H1', () => {
-    htmlFiles.forEach((file) => {
+    allHtmlFiles.forEach((file) => {
         const html = read(file);
         const structural = stripScriptsAndStyles(html);
 
@@ -139,10 +140,17 @@ test('every HTML page has a lang, charset, viewport, title, description and one 
 });
 
 test('canonical tags are self-referencing and noindex pages stay out of the index', () => {
-    htmlFiles.forEach((file) => {
+    allHtmlFiles.forEach((file) => {
         const html = read(file);
         const canonical = canonicalIn(html);
-        const expected = file === 'index.html' ? SITE + '/' : SITE + '/' + file;
+        let expected;
+        if (file === 'index.html') {
+            expected = SITE + '/';
+        } else if (file.endsWith('/index.html')) {
+            expected = SITE + '/' + file.replace(/index\.html$/, '');
+        } else {
+            expected = SITE + '/' + file;
+        }
 
         if (isNoindex(html)) {
             // Utility pages are noindex; a canonical is optional, but if one is
@@ -159,7 +167,7 @@ test('canonical tags are self-referencing and noindex pages stay out of the inde
 });
 
 test('no duplicate element IDs within a page', () => {
-    htmlFiles.forEach((file) => {
+    allHtmlFiles.forEach((file) => {
         const ids = idsIn(stripScriptsAndStyles(read(file)));
         const seen = new Set();
         const duplicates = [];
@@ -172,7 +180,7 @@ test('no duplicate element IDs within a page', () => {
 });
 
 test('every form control has a label or an accessible name', () => {
-    htmlFiles.forEach((file) => {
+    allHtmlFiles.forEach((file) => {
         const html = stripScriptsAndStyles(read(file));
         const controls = html.match(/<(input|select|textarea)\b[^>]*>/gi) || [];
 
@@ -193,7 +201,7 @@ test('every form control has a label or an accessible name', () => {
 });
 
 test('JSON-LD blocks parse as valid JSON', () => {
-    htmlFiles.forEach((file) => {
+    allHtmlFiles.forEach((file) => {
         const html = read(file);
         const blocks = html.match(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi) || [];
         blocks.forEach((block, index) => {
@@ -212,7 +220,7 @@ test('JSON-LD blocks parse as valid JSON', () => {
 // ---------------------------------------------------------------------------
 
 test('every internal link and anchor resolves', () => {
-    htmlFiles.forEach((file) => {
+    allHtmlFiles.forEach((file) => {
         const html = stripScriptsAndStyles(read(file));
         const hrefs = [];
         const pattern = /\shref=["']([^"']+)["']/gi;
@@ -238,7 +246,7 @@ test('every internal link and anchor resolves', () => {
 });
 
 test('local scripts, stylesheets and images exist', () => {
-    htmlFiles.forEach((file) => {
+    allHtmlFiles.forEach((file) => {
         const html = stripScriptsAndStyles(read(file));
         const tags = html.match(/<(script|link|img)\b[^>]*>/gi) || [];
 
@@ -263,7 +271,7 @@ test('local scripts, stylesheets and images exist', () => {
 });
 
 test('Open Graph and Twitter images point at the existing local image', () => {
-    htmlFiles.forEach((file) => {
+    allHtmlFiles.forEach((file) => {
         const html = read(file);
         const metaPattern = /<meta\b[^>]*(property|name)=["'](og:image|twitter:image)["'][^>]*content=["']([^"']+)["'][^>]*>/gi;
         const reversePattern = /<meta\b[^>]*content=["']([^"']+)["'][^>]*(property|name)=["'](og:image|twitter:image)["'][^>]*>/gi;
@@ -443,6 +451,24 @@ test('calculator UI hooks required by the Phase 2 features exist', () => {
     assert.ok(warningsTag, 'assumption-warnings element missing');
     assert.ok(/role=["']region["']/i.test(warningsTag[0]), 'warning region needs role="region"');
     assert.ok(/aria-label=/i.test(warningsTag[0]), 'warning region needs an aria-label');
+});
+
+test('every calculator subpage has calculator-engine.js, subpage-calculator.js, a form, and a results container', () => {
+    assert.strictEqual(subpageFiles.length, 7, 'expected 7 calculator subpages');
+    subpageFiles.forEach((file) => {
+        const html = read(file);
+        const engineAt = html.indexOf('/calculator-engine.js');
+        const subpageAt = html.indexOf('/subpage-calculator.js');
+
+        assert.ok(engineAt >= 0, file + ': missing /calculator-engine.js');
+        assert.ok(subpageAt >= 0, file + ': missing /subpage-calculator.js');
+        assert.ok(engineAt < subpageAt, file + ': /calculator-engine.js must load before /subpage-calculator.js');
+        assert.ok(/<script\b[^>]*src=["']\/calculator-engine\.js["'][^>]*defer/i.test(html), file + ': /calculator-engine.js should defer');
+        assert.ok(/<script\b[^>]*src=["']\/subpage-calculator\.js["'][^>]*defer/i.test(html), file + ': /subpage-calculator.js should defer');
+
+        assert.ok(/<form\b[^>]*id=["'][^"']*calc-form["']/i.test(html), file + ': missing form with id ending in calc-form');
+        assert.ok(/\sid=["'][^"']*-results["']/i.test(html), file + ': missing results container with id ending in -results');
+    });
 });
 
 // ---------------------------------------------------------------------------

@@ -115,7 +115,7 @@
       "name": "Gravel Cost Calculator - Material Prices, Bags & Bulk",
       "url": "https://www.progravelcalculator.online/gravel-cost-calculator/",
       "description": "Estimate gravel costs for your project. Compare bag prices vs bulk delivery. See material prices per yard/ton and total cost by material.",
-      "dateModified": "2026-11-08",
+      "dateModified": "2026-11-09",
       "isPartOf": {
         "@type": "WebSite",
         "name": "Pro Gravel Calculator",
@@ -156,81 +156,160 @@
             <div class="max-w-7xl mx-auto px-6 py-4">
                 <h1 class="text-3xl font-bold text-slate-900">Gravel Cost Calculator</h1>
                 <p class="text-slate-500">Estimate material prices, compare bag vs bulk, and calculate total costs.</p>
+                <p class="text-xs text-slate-400 mt-1">Last updated: November 9, 2026</p>
             </div>
         </header>
 
         <!-- Calculator form -->
         <section class="max-w-7xl mx-auto bg-white p-6 md:p-8">
             <form id="cost-calc-form" class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <!-- Project Shape -->
+                <div>
+                    <label for="cost-shape" class="block text-sm font-medium text-slate-700 mb-1">Area Shape</label>
+                    <select id="cost-shape" name="shape" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="rectangle">Rectangle (standard)</option>
+                        <option value="circle">Circle</option>
+                        <option value="lshape">L-Shape</option>
+                    </select>
+                </div>
+
+                <!-- Depth -->
+                <div>
+                    <label for="cost-depth" class="block text-sm font-medium text-slate-700 mb-1">Depth (inches)</label>
+                    <input type="number" id="cost-depth" name="depth" min="1" max="24" value="3" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <p class="text-xs text-slate-400">Typical: 2–3″ for paths/patios, 4–6″ for driveways.</p>
+                </div>
+
+                <div class="col-span-1 md:col-span-2">
+                    <!-- Rectangle dimensions -->
+                    <div id="cost-rect-dimensions" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="cost-rect-length-ft" class="block text-sm font-medium text-slate-700 mb-1">Length (ft)</label>
+                            <input type="number" id="cost-rect-length-ft" name="rect_l_ft" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <p class="text-xs text-slate-400 mt-1"><em class="text-slate-500">inches: <input type="number" id="cost-rect-length-in" name="rect_l_in" step="1" min="0" value="0" aria-label="Length additional inches" class="inline w-20 rounded border border-slate-300 px-2 py-0.5 text-xs"></em></p>
+                        </div>
+                        <div>
+                            <label for="cost-rect-width-ft" class="block text-sm font-medium text-slate-700 mb-1">Width (ft)</label>
+                            <input type="number" id="cost-rect-width-ft" name="rect_w_ft" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <p class="text-xs text-slate-400 mt-1"><em class="text-slate-500">inches: <input type="number" id="cost-rect-width-in" name="rect_w_in" step="1" min="0" value="0" aria-label="Width additional inches" class="inline w-20 rounded border border-slate-300 px-2 py-0.5 text-xs"></em></p>
+                        </div>
+                    </div>
+
+                    <!-- Circle dimensions -->
+                    <div id="cost-circle-dimensions" class="hidden">
+                        <label for="cost-circle-diameter-ft" class="block text-sm font-medium text-slate-700 mb-1">Diameter (ft)</label>
+                        <input type="number" id="cost-circle-diameter-ft" name="circle_d_ft" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+
+                    <!-- L-shape dimensions -->
+                    <div id="cost-lshape-dimensions" class="grid grid-cols-1 md:grid-cols-2 gap-4 hidden">
+                        <div>
+                            <label for="cost-lshape-a-length-ft" class="block text-sm font-medium text-slate-700 mb-1">Section A Length (ft)</label>
+                            <input type="number" id="cost-lshape-a-length-ft" name="lshape_aLFt" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="cost-lshape-a-width-ft" class="block text-sm font-medium text-slate-700 mb-1">Section A Width (ft)</label>
+                            <input type="number" id="cost-lshape-a-width-ft" name="lshape_aWFt" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="cost-lshape-b-length-ft" class="block text-sm font-medium text-slate-700 mb-1">Section B Length (ft)</label>
+                            <input type="number" id="cost-lshape-b-length-ft" name="lshape_bLFt" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="cost-lshape-b-width-ft" class="block text-sm font-medium text-slate-700 mb-1">Section B Width (ft)</label>
+                            <input type="number" id="cost-lshape-b-width-ft" name="lshape_bWFt" step="0.01" min="0" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Material selection -->
                 <div>
                     <label for="cost-material" class="block text-sm font-medium text-slate-700 mb-1">Material</label>
                     <select id="cost-material" name="material" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        <option value="pea_gravel">Pea Gravel</option>
-                        <option value="#57">#57 Stone</option>
-                        <option value="crusher_run">Crusher Run</option>
+                        <option value="pea_gravel">Pea Gravel (105 lb/ft³)</option>
+                        <option value="#57">#57 Stone (100 lb/ft³)</option>
+                        <option value="crusher_run">Crusher Run (105 lb/ft³)</option>
                         <option value="custom">Custom material</option>
                     </select>
-                    <p class="text-xs text-slate-400 mt-2">Select preset or enter custom density and price.</p>
+                    <input type="number" id="cost-custom-density" name="custom_density" step="1" min="0" value="" placeholder="Custom density (lb/ft³)" class="mt-2 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm hidden" aria-label="Custom density (lb/ft³)">
                 </div>
 
-                <!-- Material price per yard -->
+                <!-- Currency -->
                 <div>
-                    <label for="cost-price-per-yard" class="block text-sm font-medium text-slate-700 mb-1">Price per Cubic Yard (USD)</label>
-                    <input type="number" id="cost-price-per-yard" name="price_per_yd" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <p class="text-xs text-slate-400">Enter '0' if using bulk pricing only.</p>
+                    <label for="cost-currency" class="block text-sm font-medium text-slate-700 mb-1">Currency</label>
+                    <select id="cost-currency" name="currency" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="USD">USD ($)</option>
+                        <option value="CAD">CAD ($)</option>
+                        <option value="GBP">GBP (£)</option>
+                        <option value="EUR">EUR (€)</option>
+                    </select>
                 </div>
 
-                <!-- Material price per ton -->
-                <div>
-                    <label for="cost-price-per-ton" class="block text-sm font-medium text-slate-700 mb-1">Price per Short Ton (USD)</label>
-                    <input type="number" id="cost-price-per-ton" name="price_per_tn" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <p class="text-xs text-slate-400">Enter '0' if using yard pricing only.</p>
+                <!-- Allowances -->
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label for="cost-waste-percent" class="block text-sm font-medium text-slate-700 mb-1">Waste Allowance (%)</label>
+                        <input type="number" id="cost-waste-percent" name="waste_pct" step="1" min="0" max="25" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="cost-compaction-percent" class="block text-sm font-medium text-slate-700 mb-1">Compaction (%)</label>
+                        <input type="number" id="cost-compaction-percent" name="compaction_pct" step="1" min="0" max="20" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <!-- Bulk pricing inputs -->
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label for="cost-price-per-ton" class="block text-sm font-medium text-slate-700 mb-1">Bulk / Short Ton</label>
+                        <input type="number" id="cost-price-per-ton" name="price_per_tn" step="0.01" min="0" value="40" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="cost-price-per-yard" class="block text-sm font-medium text-slate-700 mb-1">Bulk / Cubic Yard</label>
+                        <input type="number" id="cost-price-per-yard" name="price_per_yd" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <!-- Delivery & Tax -->
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label for="cost-delivery" class="block text-sm font-medium text-slate-700 mb-1">Bulk Delivery Fee</label>
+                        <input type="number" id="cost-delivery" name="delivery" step="0.01" min="0" value="50" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="cost-tax" class="block text-sm font-medium text-slate-700 mb-1">Tax Rate (%)</label>
+                        <input type="number" id="cost-tax" name="tax" step="0.1" min="0" max="100" value="7" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
                 </div>
 
                 <!-- Bag prices -->
-                <div>
-                    <label for="cost-bag-price-50" class="block text-sm font-medium text-slate-700 mb-1">50 lb Bag Price (USD)</label>
-                    <input type="number" id="cost-bag-price-50" name="bag_50_price" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <p class="text-xs text-slate-400">Price per individual 50 lb bag.</p>
-                </div>
-
-                <div>
-                    <label for="cost-bag-price-40" class="block text-sm font-medium text-slate-700 mb-1">40 lb Bag Price (USD)</label>
-                    <input type="number" id="cost-bag-price-40" name="bag_40_price" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <p class="text-xs text-slate-400">Price per individual 40 lb bag.</p>
-                </div>
-
-                <div>
-                    <label for="cost-bag-price-60" class="block text-sm font-medium text-slate-700 mb-1">60 lb Bag Price (USD)</label>
-                    <input type="number" id="cost-bag-price-60" name="bag_60_price" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <p class="text-xs text-slate-400">Price per individual 60 lb bag.</p>
-                </div>
-
-                <!-- Bulk price -->
-                <div>
-                    <label for="cost-bulk-price-per-ton" class="block text-sm font-medium text-slate-700 mb-1">Bulk Price per Short Ton (USD)</label>
-                    <input type="number" id="cost-bulk-price-per-ton" name="bulk_price_per_tn" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <p class="text-xs text-slate-400">Price per ton for bulk delivery.</p>
-                </div>
-
-                <!-- Waste allowance -->
-                <div>
-                    <label for="cost-waste-percent" class="block text-sm font-medium text-slate-700 mb-1">Waste/Compaction Allowance (%)</label>
-                    <input type="number" id="cost-waste-percent" name="waste_pct" step="1" min="0" max="25" value="10" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <p class="text-xs text-slate-400">Add percentage for material loss during handling and spreading.</p>
+                <div class="grid grid-cols-3 gap-2">
+                    <div>
+                        <label for="cost-bag-price-50" class="block text-sm font-medium text-slate-700 mb-1">50 lb Bag</label>
+                        <input type="number" id="cost-bag-price-50" name="bag_50_price" step="0.01" min="0" value="5.50" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="cost-bag-price-40" class="block text-sm font-medium text-slate-700 mb-1">40 lb Bag</label>
+                        <input type="number" id="cost-bag-price-40" name="bag_40_price" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="cost-bag-price-60" class="block text-sm font-medium text-slate-700 mb-1">60 lb Bag</label>
+                        <input type="number" id="cost-bag-price-60" name="bag_60_price" step="0.01" min="0" value="0" class="mt-1 block w-full rounded border border-slate-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
                 </div>
 
                 <!-- Calculate button -->
-                <div class="col-span-2 md:col-span-1 mt-4">
+                <div class="col-span-1 md:col-span-2 mt-4">
                     <button type="submit" id="cost-calc-btn" class="w-full bg-blue-600 text-white font-medium py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition">
-                        Calculate
+                        Calculate Cost
                     </button>
                 </div>
             </form>
 
+            <p id="cost-calc-status" class="mt-4 text-sm text-slate-500" role="status" aria-live="polite"></p>
+            <p id="cost-quantity" class="mt-2 text-sm font-medium text-slate-700 hidden"></p>
+
             <!-- Results -->
-            <div id="cost-results" class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 hidden">
+            <div id="cost-results" class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 hidden" aria-live="polite">
                 <div>
                     <h3 class="text-font text-sm font-bold text-slate-600 uppercase tracking-wider mb-3">Total Bag Cost</h3>
                     <p class="text-3xl font-bold text-green-600" id="cost-bag-total">–</p>
@@ -422,5 +501,8 @@
             </div>
         </footer>
     </main>
+
+    <script src="/calculator-engine.js" defer></script>
+    <script src="/subpage-calculator.js" defer></script>
 </body>
 </html>
