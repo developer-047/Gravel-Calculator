@@ -1,16 +1,23 @@
 /*
  * Consent-gated analytics and event tracking.
  *
- * - Google Analytics never loads until the visitor accepts analytics.
- * - No measurement ID means no tag, no banner and no tracking.
+ * - Google Tag Manager or Google Analytics never loads until the visitor
+ *   accepts analytics.
+ * - No valid GTM container ID or GA4 measurement ID means no tag, no banner
+ *   and no tracking.
  * - Events are pushed only after consent; nothing is queued beforehand.
+ * - When a GTM container is configured it takes precedence and GA4 should be
+ *   configured inside that container.
  */
 (function () {
     'use strict';
 
     var config = window.PGC_ANALYTICS || {};
     var measurementId = String(config.measurementId || '').trim();
+    var containerId = String(config.containerId || '').trim();
     var hasMeasurementId = /^G-[A-Z0-9]{6,}$/i.test(measurementId);
+    var hasContainerId = /^GTM-[A-Z0-9]{4,}$/i.test(containerId);
+    var hasAnalytics = hasMeasurementId || hasContainerId;
     var consentVersion = Number(config.consentVersion) || 1;
     var consentKey = 'pgc_consent';
     var maxConsentAge = 365 * 24 * 60 * 60 * 1000; // 12 months
@@ -44,9 +51,9 @@
         }
     }
 
-    function loadGoogleAnalytics() {
-        if (!hasMeasurementId || window.__pgcGaLoaded) return;
-        window.__pgcGaLoaded = true;
+    function loadAnalytics() {
+        if (!hasAnalytics || window.__pgcAnalyticsLoaded) return;
+        window.__pgcAnalyticsLoaded = true;
 
         window.dataLayer = window.dataLayer || [];
         window.gtag = window.gtag || function () {
@@ -62,24 +69,29 @@
         });
         window.gtag('consent', 'update', { analytics_storage: 'granted' });
         window.gtag('js', new Date());
-        window.gtag('config', measurementId, {
-            anonymize_ip: true,
-            send_page_view: true
-        });
+
+        var tagId = containerId;
+        if (!hasContainerId) {
+            tagId = measurementId;
+            window.gtag('config', measurementId, {
+                anonymize_ip: true,
+                send_page_view: true
+            });
+        }
 
         var script = document.createElement('script');
         script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(tagId);
         script.onerror = function () {
-            if (config.debug) console.warn('[PGC analytics] Google Analytics failed to load.');
+            if (config.debug) console.warn('[PGC analytics] Google tag failed to load.');
         };
         document.head.appendChild(script);
     }
 
     function applyConsent(value) {
         if (value === 'granted') {
-            if (!window.__pgcGaLoaded) {
-                loadGoogleAnalytics();
+            if (!window.__pgcAnalyticsLoaded) {
+                loadAnalytics();
             } else if (window.gtag) {
                 window.gtag('consent', 'update', { analytics_storage: 'granted' });
             }
@@ -100,8 +112,17 @@
             payload[key] = params[key];
         });
 
-        if (readConsent() === 'granted' && hasMeasurementId && typeof window.gtag === 'function') {
-            window.gtag('event', name, payload);
+        if (readConsent() === 'granted' && hasAnalytics) {
+            if (hasContainerId) {
+                var gtmEvent = { event: name };
+                Object.keys(payload).forEach(function (key) {
+                    gtmEvent[key] = payload[key];
+                });
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push(gtmEvent);
+            } else if (typeof window.gtag === 'function') {
+                window.gtag('event', name, payload);
+            }
         } else if (config.debug) {
             console.info('[PGC analytics]', name, payload);
         }
@@ -147,7 +168,7 @@
     function showConsentBanner(manual) {
         createBanner();
 
-        if (!hasMeasurementId) {
+        if (!hasAnalytics) {
             banner.innerHTML =
                 '<div class="consent-inner">' +
                     '<div class="consent-copy">' +
@@ -259,9 +280,9 @@
         bindEvents();
 
         var consent = readConsent();
-        if (hasMeasurementId && consent === 'granted') {
+        if (hasAnalytics && consent === 'granted') {
             applyConsent('granted');
-        } else if (hasMeasurementId && consent === null) {
+        } else if (hasAnalytics && consent === null) {
             showConsentBanner(false);
         }
     }
@@ -270,7 +291,7 @@
     window.PGC.track = track;
     window.PGC.openConsent = openConsent;
     window.PGC.getConsent = readConsent;
-    window.PGC.analyticsConfigured = hasMeasurementId;
+    window.PGC.analyticsConfigured = hasAnalytics;
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);

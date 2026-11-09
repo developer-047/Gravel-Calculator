@@ -31,6 +31,7 @@
     <meta name="twitter:image:alt" content="Pro Gravel Calculator – free gravel estimator" />
     <link rel="stylesheet" href="/tailwind.css">
     <link rel="stylesheet" href="/style.css" />
+    <script src="/contact-config.js" defer></script>
     <script src="/analytics-config.js" defer></script>
     <script src="/analytics.js" defer></script>
 
@@ -110,7 +111,7 @@
           </div>
 
           <div class="p-6 md:p-10">
-            <div class="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900" role="note">
+            <div id="delivery-note" class="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900" role="note">
               <strong>Message delivery is not connected yet.</strong> The form checks your details, but submitting it does not send a message. Please use the calculator and guides for now; delivery will be enabled in a later update.
             </div>
             <form id="quote-form" class="space-y-6" novalidate data-endpoint="">
@@ -313,6 +314,22 @@
         if (!form) return;
 
         const status = document.getElementById("form-status");
+        const submitButton = form.querySelector('button[type="submit"]');
+        const deliveryNote = document.getElementById("delivery-note");
+        const autoFillBadge = document.getElementById("auto-fill-badge");
+
+        // Delivery is provider-agnostic: any endpoint that accepts a JSON POST
+        // works. Set it in contact-config.js, or override it on this form with
+        // data-endpoint to point a single page at a different inbox.
+        const contactConfig = window.PGC_CONTACT || {};
+        const endpoint = String(form.dataset.endpoint || contactConfig.endpoint || "").trim();
+        const accessKey = String(contactConfig.accessKey || "").trim();
+        const submitTimeoutMs = Number(contactConfig.timeoutMs) > 0 ? Number(contactConfig.timeoutMs) : 15000;
+
+        // Once an endpoint is configured the "not connected" notice is wrong.
+        if (endpoint && deliveryNote) {
+          deliveryNote.hidden = true;
+        }
         const fields = {
           name: document.getElementById("full-name"),
           email: document.getElementById("email"),
@@ -365,16 +382,82 @@
             return;
           }
 
-          // Form delivery is intentionally disabled until an endpoint is configured.
-          // Set data-endpoint on the form and replace this branch with a fetch() POST.
-          if (!form.dataset.endpoint) {
+          if (!endpoint) {
             status.classList.add("form-status-info");
             status.textContent = "Online delivery is being connected. Your details have not been sent. Please check back shortly, or use the calculator and guides in the meantime.";
             return;
           }
 
-          status.classList.add("form-status-info");
+          // A filled honeypot usually means a bot. Show the normal outcome and
+          // send nothing, so the bot gets no signal about the trap.
+          if (fields.honeypot && fields.honeypot.value.trim()) {
+            form.reset();
+            if (autoFillBadge) autoFillBadge.hidden = true;
+            status.className = "form-status form-status-success";
+            status.textContent = "Thanks — your message has been sent. We reply to the email address you provided.";
+            return;
+          }
+
+          const payload = {
+            name: fields.name.value.trim(),
+            email: fields.email.value.trim(),
+            phone: document.getElementById("phone").value.trim(),
+            project_type: document.getElementById("project-type").value,
+            message: fields.message.value.trim(),
+            page: window.location.href,
+            submitted_at: new Date().toISOString()
+          };
+          if (accessKey) payload.access_key = accessKey;
+          if (contactConfig.subject) payload.subject = contactConfig.subject;
+
+          const setSending = (sending) => {
+            if (!submitButton) return;
+            submitButton.disabled = sending;
+            submitButton.style.opacity = sending ? "0.7" : "";
+            submitButton.style.cursor = sending ? "progress" : "";
+            submitButton.textContent = sending ? "Sending…" : "Send message";
+          };
+
+          const controller = new AbortController();
+          const timer = window.setTimeout(() => controller.abort(), submitTimeoutMs);
+
+          setSending(true);
+          status.className = "form-status form-status-info";
           status.textContent = "Sending your message…";
+
+          fetch(endpoint, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+            },
+            body: JSON.stringify(payload),
+            signal: controller.signal
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Form endpoint returned " + response.status);
+              }
+              form.reset();
+              if (autoFillBadge) autoFillBadge.hidden = true;
+              status.className = "form-status form-status-success";
+              status.textContent = "Thanks — your message has been sent. We reply to the email address you provided.";
+              if (window.PGC && typeof window.PGC.track === "function") {
+                window.PGC.track("contact_submit", { project_type: payload.project_type || "unspecified" });
+              }
+            })
+            .catch((error) => {
+              status.className = "form-status form-status-error";
+              status.textContent = controller.signal.aborted
+                ? "That took too long to send. Check your connection and try again."
+                : "Your message could not be sent. Please try again in a moment.";
+              if (contactConfig.debug) console.error("[PGC contact]", error);
+            })
+            .finally(() => {
+              window.clearTimeout(timer);
+              setSending(false);
+            });
         });
 
         // Data parser: prefill project details from calculator query parameters.
