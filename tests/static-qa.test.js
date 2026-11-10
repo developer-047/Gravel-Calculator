@@ -20,6 +20,7 @@ const Engine = require('../calculator-engine.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const SITE = 'https://www.progravelcalculator.online';
+const WIDGET = SITE + '/gravel-calculator-widget.html';
 
 let passed = 0;
 let failed = 0;
@@ -468,6 +469,81 @@ test('every calculator subpage has calculator-engine.js, subpage-calculator.js, 
 
         assert.ok(/<form\b[^>]*id=["'][^"']*calc-form["']/i.test(html), file + ': missing form with id ending in calc-form');
         assert.ok(/\sid=["'][^"']*-results["']/i.test(html), file + ': missing results container with id ending in -results');
+    });
+});
+
+// ---------------------------------------------------------------------------
+// Phase 4 link assets (embeddable widget and reference data)
+// ---------------------------------------------------------------------------
+
+test('the embeddable widget is noindex, engine-driven and framable by third parties', () => {
+    const widget = read('gravel-calculator-widget.html');
+
+    assert.ok(isNoindex(widget), 'gravel-calculator-widget.html must be noindex: it is an embed surface, not a landing page');
+    assert.strictEqual(canonicalIn(widget), WIDGET, 'widget canonical should be ' + WIDGET);
+    assert.ok(widget.indexOf('/calculator-engine.js') >= 0, 'widget must load the shared engine');
+    assert.ok(widget.indexOf('/widget.js') >= 0, 'widget must load its controller');
+
+    const vercel = JSON.parse(read('vercel.json'));
+    const widgetRule = (vercel.headers || []).find((rule) => rule.source === '/gravel-calculator-widget.html');
+    assert.ok(widgetRule, 'vercel.json needs a header rule for /gravel-calculator-widget.html');
+
+    const csp = widgetRule.headers.find((header) => header.key.toLowerCase() === 'content-security-policy');
+    assert.ok(csp, 'the widget route needs a Content-Security-Policy header');
+    assert.ok(/frame-ancestors\s+\*/.test(csp.value), 'the widget needs frame-ancestors * so other sites can frame it');
+
+    const catchAll = (vercel.headers || []).find((rule) => rule.source === '/(.*)');
+    assert.ok(catchAll, 'vercel.json lost its site-wide header rule');
+    assert.ok(
+        catchAll.headers.some((header) => header.key === 'X-Frame-Options' && header.value === 'SAMEORIGIN'),
+        'every other route must keep X-Frame-Options: SAMEORIGIN'
+    );
+});
+
+test('embed instructions and calculator pages point at the widget, not at the instructions page', () => {
+    const embed = read('embed.html');
+    assert.ok(embed.indexOf(WIDGET) >= 0, 'embed.html must show the widget URL');
+    assert.ok(embed.indexOf('by Pro Gravel Calculator') >= 0, 'embed.html must show the attribution line');
+    assert.ok(embed.indexOf('/gravel-calculator-widget.html') >= 0, 'embed.html must preview the widget');
+
+    subpageFiles.forEach((file) => {
+        const html = read(file);
+        assert.strictEqual(html.indexOf('<iframe'), -1, file + ': calculator pages must not frame another page of this site');
+        assert.ok(html.indexOf(WIDGET) >= 0, file + ': embed block is missing the widget URL');
+        assert.ok(html.indexOf('/embed.html') >= 0, file + ': embed block is missing the install notes link');
+    });
+});
+
+test('gravel density chart conversions match the calculator engine', () => {
+    const html = read('gravel-density-chart.html');
+    const rows = html.match(/<tr class="border-b">[\s\S]*?<\/tr>/g) || [];
+    assert.ok(rows.length >= 10, 'expected the full density table, found ' + rows.length + ' rows');
+
+    rows.forEach((row) => {
+        const cells = [];
+        const pattern = /<td class="p-3">([^<]*)<\/td>/g;
+        let match;
+        while ((match = pattern.exec(row)) !== null) cells.push(match[1].trim());
+
+        const material = cells[0];
+        const lb = Number(cells[1].replace(/,/g, ''));
+        const kg = Number(cells[2].replace(/,/g, ''));
+        const tonsPerYd3 = Number(cells[3]);
+        const tonnesPerM3 = Number(cells[4]);
+
+        assert.ok(lb > 0 && kg > 0, material + ': density cells must be numbers');
+        assert.ok(Math.abs(kg - lb * 16.018463) <= 1, material + ': kg/m3 is not lb/ft3 x 16.018 (' + kg + ' for ' + lb + ')');
+        assert.ok(Math.abs(tonsPerYd3 - (lb * 27) / 2000) <= 0.011, material + ': short tons per yd3 drifted (' + tonsPerYd3 + ')');
+        assert.ok(Math.abs(tonnesPerM3 - kg / 1000) <= 0.005, material + ': tonnes per m3 must be kg/m3 / 1000 (' + tonnesPerM3 + ')');
+    });
+
+    assert.strictEqual(html.indexOf('[Supplier'), -1, 'placeholder supplier citations must not ship in the density chart');
+});
+
+test('homepage links every Phase 4 reference asset and the embed page', () => {
+    const home = read('index.html');
+    ['/gravel-density-chart.html', '/gravel-price-index-2026.html', '/french-drain-stone-guide.html', '/embed.html'].forEach((href) => {
+        assert.ok(home.indexOf('href="' + href + '"') >= 0, 'homepage is missing a link to ' + href);
     });
 });
 

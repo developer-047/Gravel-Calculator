@@ -1,7 +1,98 @@
 # Project Memory — Pro Gravel Calculator
 
-Last refresh: 2026-11-09 (local working session)
+Last refresh: 2026-11-10 (Phase 4 start, local working session)
 Active site root: `C:\Users\Abdullah\Documents\GitHub\Gravel-Calculator`
+
+## Session 2026-11-10 — Phase 4 start: authority assets
+
+Phase 4 = authority/link building. Code work covered Task 4-1 (linkable assets) and the
+verifiable half of Task 4-6; outreach tasks 4-2 to 4-5 are owner work and are staged in
+`seo-research/PHASE-4-AUTHORITY.md` (excluded from production).
+
+### What was broken before this pass
+- `vercel.json` sent `X-Frame-Options: SAMEORIGIN` on every route, so the "embeddable"
+  calculator could not be framed by any third party (confirmed live with `curl -I`).
+- All 7 calculator pages rendered a live 500 px iframe of `/embed.html` — the instructions page
+  inside itself — instead of shipping embed code. 6 of the 7 also had a nested duplicate
+  `<footer>` and two stray `</section>` tags.
+- `/embed.html` was a stub with a broken snippet (it pointed at itself) and no schema.
+- The three Phase 4 reference assets had **no JSON-LD**, no `tailwind.css` (so every utility
+  class was inert and the tables rendered unstyled), and no inbound links except a footer line
+  on the French drain guide.
+- `gravel-density-chart.html`: the `Tonnes per Cubic Meter` column was computed as
+  short tons/yd³ × 0.907 (wrong by ~30%, e.g. 1.29 instead of 1.68 for 105 lb/ft³), one kg/m³
+  value was 1,928 instead of 1,922, one tons/yd³ value was truncated, and the `Source` column
+  was placeholder text (`[Supplier A] (2026)` … `[Supplier N] (2026)`).
+- `french-drain-stone-guide.html`: the 6″ and 8″ pipe rows (10.42 / 18.85 ft³) did not match the
+  cylinder formula (9.82 / 17.45 ft³), the worked example used a 0.5 ft radius for a 6″ pipe and
+  concluded 39.27 ft³, the bag counts were wrong, the first table had `<thead>` never closed and
+  rows outside `<tbody>`, and the FAQ used `<dl>`/`<dt>` closed with `</li>` inside a `</ul>`.
+
+### What was built / fixed
+- **New `gravel-calculator-widget.html`** (noindex, self canonical, no nav, no analytics, no
+  cookies) plus **`widget.js`**. Both use `calculator-engine.js`, so widget numbers cannot drift.
+  Browser-verified: default `0.93 yd³ / 1.31 tons / 53 × 50 lb`, metric toggle converts the
+  project (10 ft → 3.05 m, 3 in → 7.62 cm) and returns `0.71 m³ / 1.19 t / 48 × 25 kg`,
+  L-shape and material switches work, no console errors, 3 network requests only.
+  Height at 360 px: 411 px (rect/circle), 478 px (L-shape) — fits the 520 px iframe.
+- **`vercel.json`**: added `Content-Security-Policy: frame-ancestors *` for
+  `/gravel-calculator-widget.html` only; the site-wide `X-Frame-Options: SAMEORIGIN` stays.
+  `.htaccess` mirrors it (`Header unset X-Frame-Options` + CSP inside `<Files>`). CSP Level 2+
+  makes `frame-ancestors` supersede `X-Frame-Options`, so no other page becomes framable.
+- **`embed.html`** rebuilt: live widget preview, copy-paste snippet, attribution rules,
+  what the widget calculates, privacy note, related reference links, `WebPage` +
+  `BreadcrumbList` schema. Loads `tailwind.css` now. URL unchanged (still in the sitemap).
+- **All 7 calculator pages**: the self-referential iframe block replaced with an
+  "Embed this calculator" section (h2, snippet, install-notes link, 2 page-relevant reference
+  links). Duplicate `<footer>` and stray `</section></section>` removed — every page now has
+  one footer and balanced sections, zero iframes.
+- **`gravel-density-chart.html`**: `Source` → `Basis` with "Typical published range" (no invented
+  suppliers), `tonnes/m³` recomputed as kg/m³ ÷ 1000, `#12` kg/m³ fixed to 1,922, `#411` and
+  river rock tons/yd³ corrected to 1.49 / 1.46, note corrected (1 tonne = 1,000 kg = 2,205 lb),
+  table wrapped in `overflow-x-auto`, `Article` + `BreadcrumbList` schema, `tailwind.css` loaded.
+- **`french-drain-stone-guide.html`**: both pipe tables rebuilt from `π r² L` (4″ 4.36 ft³ /
+  0.16 yd³ / 9 bags, 6″ 9.82 ft³ / 0.36 yd³ / 20 bags, 8″ 17.45 ft³ / 0.65 yd³ / 35 bags at
+  100 lb/ft³), worked example corrected to a 0.25 ft radius, FAQ rebuilt as semantic
+  h3/p blocks inside a grid, `Article` + `BreadcrumbList` schema, `tailwind.css` loaded.
+- **`gravel-price-index-2026.html`**: `Article` + `BreadcrumbList` schema, `tailwind.css` loaded,
+  table wrapped in `overflow-x-auto`. **Prices and the supplier-quote claim were not touched** —
+  see needs-owner-input below.
+- **Homepage**: new `#reference-data` section (density chart, price index, French drain guide +
+  embed link) and four new footer links, so the assets are no longer near-orphans. Calculator
+  default output unchanged (`0.93` at `#result-volume`).
+- **`llms.txt`**: now lists all 8 calculators, the 5 guides/reference pages, the embed page and
+  the company pages. Previously it listed 7 of 20 live pages.
+- **`sitemap.xml`**: `lastmod` refreshed to 2026-11-10 for the 7 calculators, `embed.html` and the
+  French drain guide.
+- **`SEO Prompt - 2.md`**: Phase 4 Task 4-1 snippet updated to the real widget URL so a future
+  session does not reintroduce `/embed/`.
+
+### Tests
+- `tests/static-qa.test.js` +4 tests (35 engine + 24 static = 59 PASS, 0 FAIL): widget is
+  noindex/engine-driven/framable and the site-wide XFO survives; embed page + all 7 calculators
+  point at the widget and contain no iframe; density-chart conversions match the engine
+  constants and no `[Supplier` placeholder ships; homepage links every reference asset.
+- `python tests/site-audit.py` → PASS, no errors, 21 HTML pages.
+- `npm run build:css` re-run; `tailwind.css` changed (widget.html/widget.js are inside the
+  Tailwind content globs).
+- Browser checks: widget defaults + metric + L-shape + material, `embed.html` (iframe renders the
+  widget, 0.93 yd³), French drain calculator page (0 iframes, 1 footer, no overflow at 375 px and
+  1280 px), density chart and price index (no page overflow at 375 px after the table wrap),
+  homepage (`#reference-data`, 4 asset links in footer, no console errors).
+
+### Needs owner input (do not invent)
+1. **Price index provenance** — the page claims "2026 supplier quotes (average of 5 regional
+   suppliers)" with no source list. Need real quote URLs + access dates, or approval to relabel
+   the table as a planning range. Numbers left as published.
+2. **Density chart citations** — placeholders were removed; real supplier sheets are needed
+   before the column can cite sources again.
+3. **`sameAs` / brand profiles** — no Twitter/X, LinkedIn, Facebook, Instagram, YouTube or Google
+   Business Profile exists anywhere in the repo. `Organization` schema is otherwise correct.
+4. **Outreach tracker, send dates, 15–25 links** — owner mailbox and prospects.
+5. **Deploy + live header verification** — the `frame-ancestors` behaviour and the widget's 200
+   status can only be confirmed on the live host after an approved deploy.
+6. **Widget framing policy** — `frame-ancestors *` is open by design; switch to an origin
+   allowlist if that was not the intent.
 
 ## Session 2026-11-10 — technical SEO pass
 - Fixed 7 calculator-page embeds from the missing `/embed/` path to `/embed.html`.
@@ -12,7 +103,9 @@ Active site root: `C:\Users\Abdullah\Documents\GitHub\Gravel-Calculator`
 - `tests/site-audit.py` now checks iframe/image/script targets and absolute OG/Twitter metadata; `npm test` 35 engine + 20 static pass, site audit passes.
 
 ## Current phase
-Phase 3 — content cluster, homepage polish and analytics wiring.
+Phase 4 — authority and link building. Task 4-1 (linkable assets, incl. the embeddable widget) is
+complete in code; Tasks 4-2 to 4-5 are owner outreach work tracked in
+`seo-research/PHASE-4-AUTHORITY.md`; Task 4-6 is blocked on real brand profiles (`sameAs`).
 Calculator math unchanged.
 
 ## Today's result (2026-11-09)
@@ -63,6 +156,18 @@ Calculator math unchanged.
 1. Reread `index.html`, `analytics.js`, `analytics-config.js`, `privacy.html`, `sitemap.xml` and `tests/static-qa.test.js` before another round.
 2. Re-run `npm run build:css && npm test` after any CSS, Tailwind utility, analytics, sitemap or homepage change.
 3. Visual check before any deploy decision.
+
+## Phase 4 checklist
+- [x] 4-1a Embeddable widget live in code (`gravel-calculator-widget.html` + `widget.js`, framable,
+      noindex) and distributed on all 7 calculator pages + `embed.html` + `llms.txt`
+- [x] 4-1b Reference assets citation-ready: schema, internal links, correct tables, styled
+- [x] 4-1c Asset discoverability: homepage `#reference-data` block + footer links
+- [ ] 4-1d Deploy and verify the live `frame-ancestors` header and a real third-party embed
+- [ ] 4-2 Foundation directory submissions (owner)
+- [ ] 4-3 100 qualified targets + 20 emails/week (owner)
+- [ ] 4-4 Digital PR pitches (owner)
+- [ ] 4-5 Community answers logged (owner)
+- [ ] 4-6 Brand profiles + `sameAs` in Organization schema (needs owner input)
 
 ## Phase 3 checklist
 ### Calculator pages — done

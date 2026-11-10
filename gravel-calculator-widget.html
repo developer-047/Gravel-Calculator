@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravel Calculator Widget</title>
+    <meta name="description" content="Embeddable gravel calculator widget: pick a shape, dimensions, depth and material to get volume, weight and bag counts in imperial or metric units.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://www.progravelcalculator.online/gravel-calculator-widget.html">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Gravel Calculator Widget">
+    <meta property="og:description" content="Embeddable gravel calculator widget: pick a shape, dimensions, depth and material to get volume, weight and bag counts in imperial or metric units.">
+    <meta property="og:url" content="https://www.progravelcalculator.online/gravel-calculator-widget.html">
+    <meta property="og:image" content="https://www.progravelcalculator.online/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pro Gravel Calculator – free gravel estimator">
+    <meta property="og:site_name" content="Pro Gravel Calculator">
+    <meta property="og:locale" content="en_US">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gravel Calculator Widget">
+    <meta name="twitter:description" content="Embeddable gravel calculator widget: pick a shape, dimensions, depth and material to get volume, weight and bag counts in imperial or metric units.">
+    <meta name="twitter:image" content="https://www.progravelcalculator.online/og-image.png">
+    <meta name="twitter:image:alt" content="Pro Gravel Calculator – free gravel estimator">
+    <style>
+        :root {
+            --gcw-ink: #1f2421;
+            --gcw-muted: #4b5550;
+            --gcw-border: #d8ded6;
+            --gcw-panel: #f6f7f3;
+            --gcw-primary: #2f5d3a;
+            --gcw-accent: #a96a3a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #ffffff;
+            color: var(--gcw-ink);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.45;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .gcw {
+            padding: 14px;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .gcw h1 {
+            font-size: 19px;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .gcw-sub {
+            margin: 2px 0 12px;
+            color: var(--gcw-muted);
+            font-size: 12px;
+        }
+
+        .gcw-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .gcw-row[hidden] {
+            display: none;
+        }
+
+        .gcw-field {
+            min-width: 0;
+        }
+
+        .gcw-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gcw-muted);
+            margin-bottom: 3px;
+        }
+
+        .gcw-field input,
+        .gcw-field select {
+            width: 100%;
+            padding: 8px 9px;
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--gcw-ink);
+            background: #ffffff;
+            border: 1px solid var(--gcw-border);
+            border-radius: 7px;
+            min-height: 38px;
+        }
+
+        .gcw-field input:focus,
+        .gcw-field select:focus {
+            outline: 2px solid var(--gcw-primary);
+            outline-offset: 1px;
+            border-color: var(--gcw-primary);
+        }
+
+        .gcw-results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            background: var(--gcw-panel);
+            border: 1px solid var(--gcw-border);
+            border-radius: 9px;
+            padding: 10px 12px;
+            margin: 12px 0 8px;
+        }
+
+        .gcw-stat span {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--gcw-muted);
+        }
+
+        .gcw-stat strong {
+            display: block;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--gcw-primary);
+            overflow-wrap: break-word;
+        }
+
+        .gcw-note {
+            margin: 0 0 8px;
+            font-size: 11px;
+            color: var(--gcw-muted);
+        }
+
+        .gcw-attr {
+            margin: 0;
+            padding-top: 8px;
+            border-top: 1px solid var(--gcw-border);
+            font-size: 11px;
+            color: var(--gcw-muted);
+        }
+
+        .gcw a {
+            color: var(--gcw-accent);
+            text-decoration: underline;
+        }
+
+        .gcw a:focus-visible {
+            outline: 2px solid var(--gcw-primary);
+            outline-offset: 2px;
+        }
+
+        /* The two-column rows stay side by side on phones so the whole widget
+           fits the fixed iframe height; only the type scales down. */
+        @media (max-width: 430px) {
+            .gcw {
+                padding: 12px;
+            }
+
+            .gcw-row {
+                gap: 8px;
+                margin-bottom: 8px;
+            }
+
+            .gcw-results {
+                gap: 6px;
+                padding: 9px 10px;
+            }
+
+            .gcw-stat span {
+                font-size: 10px;
+            }
+
+            .gcw-stat strong {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="gcw">
+        <h1>Gravel Calculator</h1>
+        <p class="gcw-sub">Volume, weight and bags from your own dimensions.</p>
+
+        <form id="gcw-form" novalidate>
+            <div class="gcw-row">
+                <div class="gcw-field">
+                    <label for="gcw-shape">Shape</label>
+                    <select id="gcw-shape">
+                        <option value="rectangle" selected>Rectangle</option>
+                        <option value="circle">Circle</option>
+                        <option value="lshape">L-shape</option>
+                    </select>
+                </div>
+                <div class="gcw-field">
+                    <label for="gcw-units">Units</label>
+                    <select id="gcw-units">
+                        <option value="imperial" selected>Feet / inches</option>
+                        <option value="metric">Metres / centimetres</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="gcw-row" id="gcw-panel-rectangle">
+                <div class="gcw-field">
+                    <label for="gcw-length">Length (<span data-unit-large>ft</span>)</label>
+                    <input type="number" id="gcw-length" min="0" step="0.1" value="10" inputmode="decimal">
+                </div>
+                <div class="gcw-field">
+                    <label for="gcw-width">Width (<span data-unit-large>ft</span>)</label>
+                    <input type="number" id="gcw-width" min="0" step="0.1" value="10" inputmode="decimal">
+                </div>
+            </div>
+
+            <div class="gcw-row" id="gcw-panel-circle" hidden>
+                <div class="gcw-field">
+                    <label for="gcw-diameter">Diameter (<span data-unit-large>ft</span>)</label>
+                    <input type="number" id="gcw-diameter" min="0" step="0.1" value="10" inputmode="decimal">
+                </div>
+            </div>
+
+            <div class="gcw-row" id="gcw-panel-lshape" hidden>
+                <div class="gcw-field">
+                    <label for="gcw-a-length">Section A length (<span data-unit-large>ft</span>)</label>
+                    <input type="number" id="gcw-a-length" min="0" step="0.1" value="10" inputmode="decimal">
+                </div>
+                <div class="gcw-field">
+                    <label for="gcw-a-width">Section A width (<span data-unit-large>ft</span>)</label>
+                    <input type="number" id="gcw-a-width" min="0" step="0.1" value="6" inputmode="decimal">
+                </div>
+            </div>
+
+            <div class="gcw-row" id="gcw-panel-lshape-b" hidden>
+                <div class="gcw-field">
+                    <label for="gcw-b-length">Section B length (<span data-unit-large>ft</span>)</label>
+                    <input type="number" id="gcw-b-length" min="0" step="0.1" value="6" inputmode="decimal">
+                </div>
+                <div class="gcw-field">
+                    <label for="gcw-b-width">Section B width (<span data-unit-large>ft</span>)</label>
+                    <input type="number" id="gcw-b-width" min="0" step="0.1" value="4" inputmode="decimal">
+                </div>
+            </div>
+
+            <div class="gcw-row">
+                <div class="gcw-field">
+                    <label for="gcw-depth">Depth (<span data-unit-small>in</span>)</label>
+                    <input type="number" id="gcw-depth" min="0" step="0.5" value="3" inputmode="decimal">
+                </div>
+                <div class="gcw-field">
+                    <label for="gcw-material">Material</label>
+                    <select id="gcw-material">
+                        <option value="pea_gravel" selected>Pea gravel</option>
+                        <option value="crushed_stone">Crushed stone</option>
+                        <option value="river_rock">River rock</option>
+                        <option value="sand">Sand</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+        <div class="gcw-results" role="status" aria-live="polite">
+            <div class="gcw-stat">
+                <span>Volume</span>
+                <strong id="gcw-result-volume">—</strong>
+            </div>
+            <div class="gcw-stat">
+                <span>Weight</span>
+                <strong id="gcw-result-weight">—</strong>
+            </div>
+            <div class="gcw-stat">
+                <span>Bags</span>
+                <strong id="gcw-result-bags">—</strong>
+            </div>
+        </div>
+
+        <p class="gcw-note">Typical loose bulk density, no waste allowance. <a href="https://www.progravelcalculator.online/" target="_top" rel="noopener">Full calculator</a> adds waste, compaction, cost and a printable order sheet.</p>
+
+        <p class="gcw-attr"><a href="https://www.progravelcalculator.online/" target="_top" rel="noopener">Gravel Calculator</a> by Pro Gravel Calculator</p>
+    </main>
+
+    <script src="/calculator-engine.js" defer></script>
+    <script src="/widget.js" defer></script>
+</body>
+</html>

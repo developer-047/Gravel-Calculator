@@ -2,14 +2,28 @@
 
 > Pro Gravel Calculator provides free, accurate calculation tools and reference guides for landscaping, driveways, walkways, and construction projects. It calculates aggregate volume in cubic yards or cubic metres, weight in US short tons or metric tonnes, and estimated bags in 50 lb or 25 kg sizes across rectangular, circular, and L-shaped project areas.
 
-## Calculators & Tools
+## Calculators
 
 - [Gravel Calculator](https://www.progravelcalculator.online/): Interactive gravel calculator estimating volume in cubic yards or cubic metres, weight in short tons, metric tonnes or kilograms, and bag counts in 50 lb or 25 kg sizes for crushed stone, pea gravel, river rock, and sand across rectangular, circular, and L-shaped project areas. Includes independent waste and compaction allowances, metric and imperial unit toggles, and print/PDF order estimates.
+- [French Drain Gravel Calculator](https://www.progravelcalculator.online/french-drain-gravel-calculator/): Trench stone, pipe volume deduction and filter fabric for French drains, using #57 stone and a user-set slope.
+- [Gravel Bag Calculator](https://www.progravelcalculator.online/gravel-bag-calculator/): Bags needed in 40, 50 or 60 lb sizes, pallet counts and a bulk-versus-bag cost comparison.
+- [Pea Gravel Calculator](https://www.progravelcalculator.online/pea-gravel-calculator/): Pea gravel volume, weight and bags for paths, patios, borders and playground depths.
+- [Gravel Calculator in Tons](https://www.progravelcalculator.online/gravel-calculator-tons/): Cubic yards to short tons and metric tonnes for each material, with coverage per ton at common depths.
+- [Crushed Stone Calculator](https://www.progravelcalculator.online/crushed-stone-calculator/): #57, #411, #304 and crusher run presets with density and depth guidance by size code.
+- [Driveway Gravel Calculator](https://www.progravelcalculator.online/driveway-gravel-calculator/): Separate base and surface layers with independent depth, material and compaction for driveways.
+- [Gravel Cost Calculator](https://www.progravelcalculator.online/gravel-cost-calculator/): Material cost by ton, cubic yard or bag, plus delivery, tax and a bulk-versus-bag comparison.
 
 ## Guides & Reference Data
 
-- [Best Gravel Types Guide](https://www.progravelcalculator.online/best-gravel-types.html): Comprehensive guide to aggregate types including pea gravel, crushed stone (#57, #411), river rock, and decomposed granite. Features density tables, coverage rates, and project selection guidance.
-- [Gravel Driveway Cost Guide](https://www.progravelcalculator.online/driveway-cost-guide.html): Detailed cost guide for gravel driveway projects covering DIY materials, delivery fees, site preparation, grading, and professional contractor installation costs.
+- [Gravel Density Chart](https://www.progravelcalculator.online/gravel-density-chart.html): Loose bulk density for common aggregates in lb/ft³, kg/m³, short tons per cubic yard and tonnes per cubic metre, with typical ranges.
+- [Gravel Price Index 2026](https://www.progravelcalculator.online/gravel-price-index-2026.html): Planning price ranges in US dollars per short ton, cubic yard and 40/50/60 lb bag, with delivery and minimum-order notes.
+- [French Drain Stone Guide](https://www.progravelcalculator.online/french-drain-stone-guide.html): How to subtract pipe volume from trench volume, with a worked 6-inch example and a gravel-savings table by pipe diameter.
+- [Best Gravel Types Guide](https://www.progravelcalculator.online/best-gravel-types.html): Aggregate types including pea gravel, crushed stone (#57, #411), river rock, and decomposed granite, with density tables, coverage rates, and project selection guidance.
+- [Gravel Driveway Cost Guide](https://www.progravelcalculator.online/driveway-cost-guide.html): Cost guide for gravel driveway projects covering DIY materials, delivery fees, site preparation, grading, and contractor installation.
+
+## Tools for Site Owners
+
+- [Embeddable Gravel Calculator](https://www.progravelcalculator.online/embed.html): Installation instructions and iframe code for embedding the calculator on another website, with the attribution requirement.
 
 ## Methodology & Company Information
 

@@ -390,11 +390,11 @@ Before any outreach, have assets worth linking to:
 3. Embeddable calculator widget (iframe with attribution link)
 4. French drain stone guide with pipe deduction (unique angle)
 
-Embeddable widget code:
+Embeddable widget code (shipped 2026-11-10 — widget lives at `/gravel-calculator-widget.html`, install page at `/embed.html`, framing allowed by `Content-Security-Policy: frame-ancestors *` on that path only):
 ```html
-<iframe src="https://www.progravelcalculator.online/embed/" 
-  width="100%" height="500" frameborder="0" 
-  title="Free Gravel Calculator"></iframe>
+<iframe src="https://www.progravelcalculator.online/gravel-calculator-widget.html"
+  width="100%" height="520" style="border:0;max-width:100%"
+  title="Gravel calculator widget" loading="lazy"></iframe>
 <p><a href="https://www.progravelcalculator.online/">Gravel Calculator</a> 
   by Pro Gravel Calculator</p>
 ```
