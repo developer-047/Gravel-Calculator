@@ -3,6 +3,14 @@
 Last refresh: 2026-11-09 (local working session)
 Active site root: `C:\Users\Abdullah\Documents\GitHub\Gravel-Calculator`
 
+## Session 2026-11-10 — technical SEO pass
+- Fixed 7 calculator-page embeds from the missing `/embed/` path to `/embed.html`.
+- Homepage mobile order now Shape → Dimensions → Material → Preview → Results/Print/Save/Share → rest.
+- Print/Save/Share and the conversion note were falling into the default `order: 0` bucket because they sit outside `#results-card`; they now have explicit orders.
+- Privacy advertising copy updated to current Google wording; 404.html gained a self canonical.
+- Stone logo mark applied to the 8 content pages that still used the building icon.
+- `tests/site-audit.py` now checks iframe/image/script targets and absolute OG/Twitter metadata; `npm test` 35 engine + 20 static pass, site audit passes.
+
 ## Current phase
 Phase 3 — content cluster, homepage polish and analytics wiring.
 Calculator math unchanged.

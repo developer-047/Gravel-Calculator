@@ -937,12 +937,25 @@ a[href="/about.html"].block.bg-white:hover {
     color: var(--pg-primary) !important;
 }
 
-/* Active compaction / unit pill stays cohesive with the new system */
-.compaction-preset[aria-pressed="true"],
-#btn-imperial[aria-pressed="true"] {
+/* Active compaction preset stays soft; the unit toggle uses a filled state. */
+.compaction-preset[aria-pressed="true"] {
     background-color: var(--pg-primary-50);
     border-color: var(--pg-primary);
     color: var(--pg-primary-700);
+}
+
+#btn-imperial[aria-pressed="true"],
+#btn-metric[aria-pressed="true"] {
+    background-color: var(--pg-primary) !important;
+    border-color: var(--pg-primary);
+    color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(31, 64, 41, 0.28);
+}
+
+/* Site logo mark used outside the homepage body scope. */
+.site-logo-mark {
+    color: var(--pg-primary);
+    flex: none;
 }
 
 /* Header accent */
@@ -1025,6 +1038,210 @@ header.bg-white {
 }
 
 /* ========================================
+   HOMEPAGE POLISH
+   ======================================== */
+
+.home-page .brand-mark {
+    color: var(--pg-primary);
+    flex: none;
+}
+
+.home-page .nav-link {
+    color: var(--pg-primary-700);
+    text-underline-offset: 4px;
+}
+
+.home-page .nav-link:hover,
+.home-page .nav-link:focus-visible {
+    color: var(--pg-primary);
+    text-decoration: underline;
+}
+
+.home-page .accent-eyebrow {
+    color: var(--pg-primary);
+    letter-spacing: 0.14em;
+}
+
+.home-page .accent-link {
+    color: var(--pg-primary-700);
+}
+
+/* Replace the old blue utility accents with the evergreen palette. */
+.home-page .text-blue-600 {
+    color: var(--pg-primary) !important;
+}
+
+.home-page .text-blue-700,
+.home-page .text-blue-800,
+.home-page .text-blue-900 {
+    color: var(--pg-primary-700) !important;
+}
+
+.home-page .bg-blue-50,
+.home-page .bg-blue-100 {
+    background-color: var(--pg-primary-50) !important;
+}
+
+.home-page .border-blue-200,
+.home-page .border-blue-300 {
+    border-color: var(--pg-primary-100) !important;
+}
+
+.home-page .border-blue-400,
+.home-page .border-blue-500,
+.home-page .border-blue-600 {
+    border-color: var(--pg-primary) !important;
+}
+
+.home-page .hover\:border-blue-300:hover,
+.home-page .hover\:border-blue-400:hover,
+.home-page .hover\:border-blue-500:hover {
+    border-color: var(--pg-primary) !important;
+}
+
+.home-page .hover\:text-blue-600:hover,
+.home-page .hover\:text-blue-700:hover {
+    color: var(--pg-primary) !important;
+}
+
+.home-page .focus\:ring-blue-500:focus {
+    --tw-ring-color: var(--pg-primary);
+}
+
+.home-page .bg-blue-700 {
+    background-color: var(--pg-primary) !important;
+}
+
+.home-page .hover\:bg-blue-800:hover {
+    background-color: var(--pg-primary-700) !important;
+}
+
+.home-page .shape-btn:hover {
+    border-color: var(--pg-primary);
+}
+
+.home-page .shape-btn:hover svg {
+    stroke: var(--pg-primary);
+}
+
+.home-page .shape-btn:hover span {
+    color: var(--pg-primary);
+}
+
+/* Filled, high-contrast unit toggle. */
+.unit-toggle {
+    background: var(--pg-primary-50);
+    border: 1px solid var(--pg-primary-100);
+}
+
+.unit-btn {
+    border-radius: 0.375rem;
+    color: var(--pg-primary-700);
+}
+
+.unit-btn[aria-pressed="true"] {
+    background-color: var(--pg-primary);
+    color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(31, 64, 41, 0.28);
+}
+
+.unit-btn[aria-pressed="false"]:hover {
+    background-color: var(--pg-primary-100);
+}
+
+.preview-card {
+    border: 1px solid var(--pg-primary-100);
+}
+
+/* Compact live results bar for small screens. */
+.mobile-result-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    background: rgba(255, 255, 255, 0.97);
+    border-top: 1px solid var(--pg-primary-100);
+    box-shadow: 0 -6px 22px rgba(31, 64, 41, 0.14);
+    padding: 0.45rem 0.75rem calc(0.45rem + env(safe-area-inset-bottom, 0px));
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.mobile-result-bar-inner {
+    max-width: 32rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mobile-result-stat {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+}
+
+.mobile-result-label {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6b7670;
+}
+
+.mobile-result-value {
+    display: inline;
+    font-size: 1.05rem;
+    line-height: 1.1;
+    color: var(--pg-primary-700);
+}
+
+.mobile-result-unit {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.625rem;
+    color: #6b7670;
+}
+
+.mobile-result-link {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 0.75rem;
+    border-radius: 0.5rem;
+    background: var(--pg-primary);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.mobile-result-link:hover {
+    background: var(--pg-primary-700);
+}
+
+@media (min-width: 1024px) {
+    .mobile-result-bar {
+        display: none;
+    }
+}
+
+@media (max-width: 1023px) {
+    body.home-page {
+        padding-bottom: 5.25rem;
+    }
+
+    body.home-page.has-consent-banner {
+        padding-bottom: 15rem;
+    }
+}
+
+/* ========================================
    PRINT
    ======================================== */
 
@@ -1032,8 +1249,15 @@ header.bg-white {
     .consent-banner,
     .skip-link,
     #share-toast,
-    .no-print {
+    .no-print,
+    .print\:hidden {
         display: none !important;
+    }
+
+    /* The order sheet is hidden on screen with an inline style, so the print
+       override needs !important to bring it back for printing. */
+    #invoice-wrapper {
+        display: block !important;
     }
 
     body {

@@ -17,8 +17,9 @@
  * belongs in this file. Never put a private API secret in client-side code.
  */
 window.PGC_CONTACT = {
-    endpoint: "",
-    // Public form key for providers that require one, such as Web3Forms.
+    endpoint: "https://api.web3forms.com/submit",
+    // TODO: add the public Web3Forms access key before enabling delivery.
+    // The form keeps showing the "delivery not connected" notice until this is set.
     accessKey: "",
     // Providers that support a subject line use this one.
     subject: "New enquiry from Pro Gravel Calculator",

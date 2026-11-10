@@ -62,8 +62,11 @@
     <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
       <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
         <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
-          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          <svg class="site-logo-mark w-8 h-8" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+            <circle cx="9.5" cy="22.5" r="4.8" fill="currentColor" />
+            <circle cx="17.5" cy="19" r="6.2" fill="currentColor" opacity=".82" />
+            <circle cx="24.5" cy="23" r="4.1" fill="currentColor" opacity=".68" />
+            <path d="M3 27.5h26" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
           <div>
             <span class="text-xl md:text-2xl font-bold text-slate-900 leading-none block">Pro Gravel Calculator</span>
@@ -91,7 +94,7 @@
 
       <article class="max-w-3xl mx-auto bg-white p-7 md:p-12 rounded-2xl shadow-sm border border-slate-200 prose prose-slate prose-lg">
         <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Privacy Policy</h1>
-        <p class="text-sm text-slate-600"><time datetime="2026-11-09">Last updated: November 9, 2026</time></p>
+        <p class="text-sm text-slate-600"><time datetime="2026-11-10">Last updated: November 10, 2026</time></p>
 
         <p>
           This policy explains what Pro Gravel Calculator collects, why, and the choices you have. It covers the calculator, the guides and the contact page at <strong>progravelcalculator.online</strong>.
@@ -100,7 +103,7 @@
         <h2 id="summary">The short version</h2>
         <ul>
           <li>Calculator inputs stay in your browser. We do not receive your measurements, material choice or results.</li>
-          <li>We do not run third-party advertising today. If that changes, this policy will be updated before ads go live.</li>
+          <li>We do not currently serve third-party ads. If Google advertising is enabled, Google and its partners may use advertising cookies as described below; this policy and the consent controls will be updated first.</li>
           <li>Analytics is optional and loads only after you press <strong>Accept analytics</strong>.</li>
           <li>If you send a quote request or correction, we use your details only to respond.</li>
         </ul>
@@ -112,7 +115,10 @@
 
         <h2 id="information-you-provide">Information you choose to provide</h2>
         <p>
-          The contact page includes a quote-request form. When form delivery is enabled, the information you enter — such as your name, email address, phone number and project details — is used solely to review and respond to your request. We do not sell it or add you to a marketing list.
+          The contact page includes a quote-request form. It collects your name, email address and message, plus an optional phone number and project type. The form is processed by Web3Forms, which transmits the submission so we can review and respond. We do not sell it or add you to a marketing list.
+        </p>
+        <p>
+          While the Web3Forms access key is not configured, the form validates your details but does not send anything.
         </p>
         <p>
           Please do not send sensitive personal information, payment details or site plans you are not authorised to share. Quote requests are not a secure channel for financial data.
@@ -127,6 +133,9 @@
         </p>
         <p>
           Once enabled, Google Analytics may collect page views, approximate location (derived from IP address), device and browser information, referral source, and interactions such as calculator completion, print, share and outbound quote clicks. We do not send names, email addresses, phone numbers or the dimensions you enter to analytics. Google states that Google Analytics 4 does not log or store individual IP addresses; see <a href="https://support.google.com/analytics/answer/12017362" rel="noopener">Google's Analytics data collection explanation</a>.
+        </p>
+        <p>
+          The reports we see are aggregated or pseudonymised. They are not anonymous in the strict sense, because Google may still process identifiers such as cookie IDs and truncated IP addresses.
         </p>
 
         <h2 id="cookies">Cookies and local storage</h2>
@@ -153,12 +162,13 @@
 
         <h2 id="advertising">Advertising</h2>
         <p>
-          We do not currently display third-party ads, and no advertising script is installed. If we add Google AdSense or another advertising partner, we will update this policy, add the required consent controls, and give you a way to manage personalised advertising before any ads are served. The presence of an <code>ads.txt</code> file does not mean ads are live.
+          We do not currently display third-party ads, and no advertising script is installed. If Google advertising is enabled, Google and its advertising partners use cookies or similar technologies for ad delivery, measurement and fraud prevention, and for personalised ads where consent allows. You can review or change ad personalisation at <a href="https://www.google.com/settings/ads" rel="noopener">Google Ads Settings</a>. You can also opt out of a third-party vendor's use of cookies for personalised advertising at <a href="https://www.aboutads.info/choices/" rel="noopener">aboutads.info</a>. Read more about <a href="https://policies.google.com/technologies/ads" rel="noopener">how Google uses cookies in advertising</a>. The presence of an <code>ads.txt</code> file does not mean ads are live.
         </p>
 
         <h2 id="third-parties">Service providers</h2>
         <ul>
           <li><strong>Vercel</strong> hosts the site and processes standard server logs such as IP address, request time and user agent for security and reliability.</li>
+          <li><strong>Web3Forms</strong> processes contact-form submissions and forwards them to the site owner's inbox. Its handling is governed by the <a href="https://web3forms.com/privacy" rel="noopener">Web3Forms privacy policy</a>.</li>
           <li><strong>Google Analytics</strong> processes analytics data only after consent, under Google's terms and privacy policy.</li>
           <li><strong>cdnjs (Cloudflare)</strong> delivers the optional PDF library when you press <strong>Save PDF</strong>. That request is made only when you use the feature.</li>
         </ul>
@@ -166,12 +176,17 @@
           These providers may process data in the United States or other countries. Where required, transfers rely on appropriate safeguards such as standard contractual clauses.
         </p>
 
+        <h2 id="sharing">How we share information</h2>
+        <p>
+          We do not sell personal information. We share it only with service providers that help run the site: Web3Forms for contact-form delivery, Google for consented analytics and any future advertising, and Vercel for hosting and security logs. We may also disclose information if required by law or to protect the site and its users.
+        </p>
+
         <h2 id="legal-bases">Legal bases</h2>
         <p>
           For visitors in the European Economic Area or United Kingdom, we rely on: consent for analytics and any future advertising cookies; legitimate interests for site security, debugging and responding to messages; and, where applicable, performance of a request you have made. You may withdraw consent at any time.
         </p>
 
-        <h2 id="rights">Your rights</h2>
+        <h2 id="rights">Your privacy rights</h2>
         <p>
           Depending on where you live, you may have the right to access, correct, delete or port your personal data, object to or restrict processing, or withdraw consent. California residents may have rights to know, delete, correct and opt out of the sale or sharing of personal information. We do not sell personal information.
         </p>
@@ -181,7 +196,7 @@
 
         <h2 id="retention">Retention and security</h2>
         <p>
-          Quote-request messages are kept only as long as needed to respond and to keep a record of the enquiry, then deleted or anonymised. The site is served over HTTPS. Because the calculator is static and browser-based, there is no database of calculator inputs to breach. No method of transmission over the internet is completely secure.
+          Quote-request messages are kept only as long as needed to respond and to keep a record of the enquiry, then deleted or anonymised. Web3Forms processes each submission to deliver it and may keep limited transmission logs under its own retention policy. The site is served over HTTPS. Because the calculator is static and browser-based, there is no database of calculator inputs to breach. No method of transmission over the internet is completely secure.
         </p>
 
         <h2 id="children">Children</h2>
@@ -194,9 +209,9 @@
           We will update the date at the top when this policy changes. Material changes — such as enabling advertising or a new analytics provider — will be announced on this page and, where required, through a new consent request.
         </p>
 
-        <h2 id="contact">Contact</h2>
+        <h2 id="privacy-contact">Privacy contact</h2>
         <p>
-          Questions about this policy or a data request can be sent through the <a href="/contact.html">contact page</a>. Please include enough detail for us to identify the page or message concerned. We do not publish a postal address.
+          For any privacy question or data request, use the <a href="/contact.html">contact page</a> and include “Privacy request” in your message. Please include enough detail for us to identify the page or message concerned. We will respond as soon as reasonably practicable and within any period required by applicable law. We do not publish a postal address.
         </p>
       </article>
     </main>

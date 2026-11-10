@@ -12,7 +12,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#2563eb">
+    <meta name="theme-color" content="#2f5d3a">
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Gravel Calculator – Cubic Yards, Tons &amp; Bags">
@@ -141,170 +141,21 @@
     </script>
 </head>
 
-<body class="bg-slate-50 min-h-screen">
+<body class="home-page bg-slate-50 min-h-screen">
     <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- PRINT/PDF ONLY CONTAINER (Hidden by default, visible in print) -->
-    <div id="invoice-wrapper" class="hidden print:block bg-white p-8 max-w-4xl mx-auto">
-
-        <!-- Print Header -->
-        <div class="flex justify-between items-center border-b-2 border-slate-800 pb-4 mb-6">
-            <div>
-                <p class="text-3xl font-bold text-slate-900">Pro Gravel Calculator</p>
-                <p class="text-sm font-semibold text-blue-700 uppercase tracking-wide">Material Order Sheet &amp; Planning Specification</p>
-            </div>
-            <div class="text-right">
-                <p class="text-xs uppercase font-bold text-slate-500">Date Generated</p>
-                <p class="text-base font-bold text-slate-900" id="print-date">--</p>
-                <p class="text-[11px] text-slate-500 mt-0.5">Ref: <span id="print-ref" class="font-mono font-medium text-slate-700">PGC-2026</span></p>
-            </div>
-        </div>
-
-        <!-- Print Content (Summary Table) -->
-        <div class="bg-slate-50 border border-slate-200 rounded-lg p-6 mb-6">
-            <h2 class="text-xl font-bold text-slate-800 border-b border-slate-200 pb-2 mb-4">Project &amp; Material Specifications</h2>
-
-            <div class="grid grid-cols-2 gap-8">
-                <!-- Left: Inputs -->
-                <div>
-                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Project Specifications</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Material:</span>
-                            <span class="font-medium text-slate-900" id="print-material">--</span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Loose Bulk Density:</span>
-                            <span class="font-medium text-slate-900" id="print-density">--</span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Shape:</span>
-                            <span class="font-medium text-slate-900" id="print-shape">--</span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Calculated Area:</span>
-                            <span class="font-medium text-slate-900" id="print-area">--</span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Dimensions:</span>
-                            <span class="font-medium text-slate-900" id="print-dims">--</span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Specified Depth:</span>
-                            <span class="font-medium text-slate-900" id="print-depth">--</span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Waste allowance:</span>
-                            <span class="font-medium text-slate-900" id="print-waste">0%</span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Compaction allowance:</span>
-                            <span class="font-medium text-slate-900" id="print-compaction">0%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Results -->
-                <div>
-                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Estimated Requirements</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Volume:</span>
-                            <span class="font-bold text-blue-700 text-right">
-                                <span><span id="print-volume">0.93</span> <span id="print-volume-unit">cubic yards (yd³)</span></span>
-                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-volume-alt">0.71 cubic metres (m³)</span>
-                                <span class="block text-[11px] font-normal text-slate-400 mt-0.5" id="print-base-volume-row">Base: <span id="print-base-volume">0.93</span> yd³ (before allowances)</span>
-                            </span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Estimated weight:</span>
-                            <span class="font-bold text-blue-700 text-right">
-                                <span><span id="print-weight">1.31</span> <span id="print-weight-unit">short tons (2,000 lb)</span></span>
-                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-weight-alt">1.19 metric tonnes · 1,191 kg</span>
-                                <span class="block text-[11px] font-normal text-slate-400 mt-0.5" id="print-base-weight-row">Base: <span id="print-base-weight">1.31</span> tons</span>
-                            </span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Bags:</span>
-                            <span class="font-bold text-blue-700 text-right">
-                                <span><span id="print-bags">53</span> <span id="print-bags-unit">× 50 lb</span></span>
-                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-bags-alt">48 × 25 kg bags</span>
-                            </span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Pallets:</span>
-                            <span class="font-bold text-blue-700 text-right">
-                                <span id="print-pallets">2 pallets</span>
-                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-pallets-breakdown">40 bags/pallet · 1 full + 13 loose</span>
-                            </span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-200 py-1">
-                            <span class="text-slate-600">Coverage rate:</span>
-                            <span class="font-medium text-slate-700 text-right text-xs" id="print-coverage-rate">56.7 bags/yd³ · 40.0 bags/ton</span>
-                        </div>
-
-                        <div id="print-cost-block" class="hidden border-t border-slate-300 mt-3 pt-3">
-                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Estimated Cost</h4>
-                            <div class="space-y-1 text-sm">
-                                <div class="flex justify-between border-b border-slate-200 py-1">
-                                    <span class="text-slate-600">Material:</span>
-                                    <span class="font-medium text-slate-900" id="print-cost-material">--</span>
-                                </div>
-                                <div class="flex justify-between border-b border-slate-200 py-1">
-                                    <span class="text-slate-600">Delivery:</span>
-                                    <span class="font-medium text-slate-900" id="print-cost-delivery">--</span>
-                                </div>
-                                <div class="flex justify-between border-b border-slate-200 py-1">
-                                    <span class="text-slate-600" id="print-cost-tax-label">Tax:</span>
-                                    <span class="font-medium text-slate-900" id="print-cost-tax">--</span>
-                                </div>
-                                <div class="flex justify-between py-1">
-                                    <span class="font-semibold text-slate-900">Total:</span>
-                                    <span class="font-bold text-blue-700" id="print-cost-total">--</span>
-                                </div>
-                                <div class="flex justify-between py-1" id="print-cost-per-area-row">
-                                    <span class="text-slate-600" id="print-cost-per-area-label">Cost per ft²:</span>
-                                    <span class="font-medium text-slate-900" id="print-cost-per-area">--</span>
-                                </div>
-                            </div>
-                            <p class="text-xs text-slate-500 mt-2" id="print-cost-note"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Supplier & Site Notes -->
-        <div class="bg-blue-50/60 border border-blue-200 rounded-lg p-4 mb-6 text-xs text-blue-900 space-y-1.5" id="print-notes-section">
-            <p class="font-bold uppercase tracking-wider text-[11px] text-blue-800">Supplier &amp; Ordering Notes</p>
-            <p id="print-allowance-note">No allowances are included; allow about 10% extra for compaction and waste.</p>
-            <p id="print-density-note">Weight is calculated using standard loose bulk density. Wet aggregates, quarry variations and heavy machine compaction may increase required tonnage.</p>
-            <p id="print-depth-note">Standard residential paths typically require 2–3 inches (50–75 mm); vehicle driveways typically require 4–6 inches (100–150 mm) compacted over a solid sub-base.</p>
-        </div>
-
-        <!-- Disclaimer & Re-open Link -->
-        <div class="border-t border-slate-200 pt-4 text-center">
-            <p class="text-xs text-slate-500 leading-relaxed max-w-2xl mx-auto">
-                <strong>Disclaimer:</strong> This material order sheet is a planning estimate. Actual requirements
-                vary with quarry gradation, moisture content, compaction effort and subgrade conditions. Confirm order quantities with your aggregate supplier prior to dispatch.
-            </p>
-            <div class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100">
-                <span>View or adjust this exact calculation online: </span>
-                <a id="print-project-url" href="https://www.progravelcalculator.online/" target="_blank" class="font-mono text-blue-700 font-medium underline break-all">https://www.progravelcalculator.online/</a>
-            </div>
-        </div>
-    </div>
 
     <!-- MAIN UI (Hidden in print) -->
     <div class="print:hidden">
         <!-- Header -->
-        <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-            <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <header class="site-header bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6">
                 <!-- Logo left -->
                 <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
-                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    <svg class="brand-mark w-10 h-10" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+                        <circle cx="9.5" cy="22.5" r="4.8" fill="currentColor" />
+                        <circle cx="17.5" cy="19" r="6.2" fill="currentColor" opacity=".82" />
+                        <circle cx="24.5" cy="23" r="4.1" fill="currentColor" opacity=".68" />
+                        <path d="M3 27.5h26" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                     </svg>
                     <div>
                         <span class="text-xl md:text-2xl font-bold text-slate-900 leading-none block">Pro Gravel Calculator</span>
@@ -313,14 +164,12 @@
                 </a>
 
                 <!-- Main Menu right (single line) -->
-                <nav class="flex flex-wrap justify-center md:justify-end gap-6 md:gap-10 text-base font-medium" aria-label="Main navigation">
-                    <a href="/" class="text-blue-700 font-semibold" aria-current="page">Calculator</a>
-                    <a href="/best-gravel-types.html"
-                        class="text-slate-700 hover:text-blue-600 transition-colors">Gravel Types</a>
-                    <a href="/driveway-cost-guide.html"
-                        class="text-slate-700 hover:text-blue-600 transition-colors">Driveway Cost</a>
-                    <a href="/about.html" class="text-slate-700 hover:text-blue-600 transition-colors">About</a>
-                    <a href="/contact.html" class="text-slate-700 hover:text-blue-600 transition-colors">Contact</a>
+                <nav class="flex flex-wrap justify-center md:justify-end gap-x-5 gap-y-2 md:gap-x-8 text-base font-medium" aria-label="Main navigation">
+                    <a href="/" class="nav-link nav-link-active font-semibold" aria-current="page">Calculator</a>
+                    <a href="/best-gravel-types.html" class="nav-link text-slate-700 transition-colors">Gravel Types</a>
+                    <a href="/driveway-cost-guide.html" class="nav-link text-slate-700 transition-colors">Driveway Cost</a>
+                    <a href="/about.html" class="nav-link text-slate-700 transition-colors">About</a>
+                    <a href="/contact.html" class="nav-link text-slate-700 transition-colors">Contact</a>
                 </nav>
             </div>
         </header>
@@ -328,13 +177,14 @@
         <!-- Main Content -->
         <main id="main-content" class="container mx-auto px-4 py-8">
             <!-- Page H1 + subheading -->
-            <div class="mb-6">
-                <h1 class="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">Gravel Calculator</h1>
-                <p class="text-slate-600 text-sm mt-1">Estimate cubic yards or cubic metres, short tons or tonnes, and 50 lb or 25 kg bags for any shape area.</p>
-                <p class="text-xs text-slate-600 mt-2">
+            <div class="page-intro max-w-3xl mb-7">
+                <p class="accent-eyebrow text-xs font-bold uppercase tracking-wider mb-2">Free gravel estimator</p>
+                <h1 class="text-3xl md:text-4xl font-bold text-slate-900 leading-tight">Gravel Calculator</h1>
+                <p class="text-slate-700 text-base md:text-lg mt-2">Estimate gravel volume, weight and bags in imperial or metric units.</p>
+                <p class="text-xs text-slate-600 mt-3">
                     By Pro Gravel Calculator ·
                     <time datetime="2026-11-07">Reviewed November 2026</time> ·
-                    <a href="/about.html#methodology" class="text-blue-700 underline underline-offset-2">Method &amp; sources</a>
+                    <a href="/about.html#methodology" class="accent-link underline underline-offset-2">Method &amp; sources</a>
                 </p>
             </div>
             <!-- Flex-col on mobile for reordering, Grid on lg+ for desktop layout -->
@@ -392,14 +242,11 @@
                             <h2 class="text-lg font-semibold text-slate-900">Dimensions</h2>
 
                             <!-- Unit Toggle -->
-                            <div class="bg-slate-100 p-1 rounded-lg inline-flex relative" role="group" aria-label="Measurement units">
-                                <div id="unit-pill" aria-hidden="true"
-                                    class="absolute left-1 top-1 bottom-1 w-[calc(50%-4px)] bg-white rounded-md shadow-sm transition-all duration-300 ease-out">
-                                </div>
+                            <div class="unit-toggle p-1 rounded-lg inline-flex relative" role="group" aria-label="Measurement units">
                                 <button type="button" id="btn-imperial" aria-pressed="true"
-                                    class="relative z-10 px-3 py-1.5 text-xs font-bold text-blue-700 transition-colors w-20 text-center">Imperial</button>
+                                    class="unit-btn relative z-10 px-3 py-1.5 text-xs font-bold transition-colors w-20 text-center">Imperial</button>
                                 <button type="button" id="btn-metric" aria-pressed="false"
-                                    class="relative z-10 px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors w-20 text-center">Metric</button>
+                                    class="unit-btn relative z-10 px-3 py-1.5 text-xs font-bold transition-colors w-20 text-center">Metric</button>
                             </div>
                         </div>
 
@@ -648,8 +495,8 @@
                         </div>
                     </div>
 
-                    <!-- Material Selector Card (Order 4 - Mobile, after Preview) -->
-                    <div class="bg-white rounded-xl shadow-lg p-6 order-4">
+                    <!-- Material Selector Card (Order 3 - Mobile, after Dimensions) -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 order-3">
                         <h2 class="text-lg font-semibold text-slate-900 mb-4">Material Type</h2>
                         <label for="material-select" class="block text-sm font-medium text-slate-700 mb-2">Choose a material</label>
                         <select id="material-select"
@@ -661,8 +508,8 @@
                         </select>
                     </div>
 
-                    <!-- Optional Cost Estimator Card (Order 4 - Mobile, after Material) -->
-                    <div class="bg-white rounded-xl shadow-lg p-6 order-4">
+                    <!-- Optional Cost Estimator Card (Order 6 - Mobile, after Results) -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 order-6">
                         <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
                             <h2 class="text-lg font-semibold text-slate-900">Cost Estimate</h2>
                             <span class="text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200 rounded-md px-2 py-0.5">Optional</span>
@@ -817,8 +664,8 @@
                 <div class="lg:col-span-1 contents lg:block">
                     <div class="lg:solid lg:top-24 space-y-6 contents lg:block">
 
-                        <!-- SVG Visualizer / Preview (Order 3 - Mobile, after Dimensions) -->
-                        <div class="bg-white rounded-xl shadow-lg p-6 order-3">
+                        <!-- SVG Visualizer / Preview (Order 4 - Mobile, after Material) -->
+                        <div class="preview-card bg-white rounded-xl shadow-lg p-6 order-4">
                             <h2 class="text-lg font-semibold text-slate-900 mb-4">Preview</h2>
                             <div class="flex justify-center items-center bg-slate-50 rounded-lg p-4"
                                 style="min-height: 280px;">
@@ -826,20 +673,20 @@
                                     class="transition-all duration-300">
                                     <!-- Rectangle SVG (default) -->
                                     <g id="svg-rectangle" class="svg-shape active">
-                                        <rect x="40" y="60" width="160" height="120" fill="#DBEAFE" stroke="#2563EB"
+                                        <rect x="40" y="60" width="160" height="120" fill="#dde8df" stroke="#2f5d3a"
                                             stroke-width="3" rx="4" />
                                         <text x="120" y="130" text-anchor="middle" class="svg-label">Rectangle</text>
                                     </g>
                                     <!-- Circle SVG -->
                                     <g id="svg-circle" class="svg-shape">
-                                        <circle cx="120" cy="120" r="80" fill="#DBEAFE" stroke="#2563EB"
+                                        <circle cx="120" cy="120" r="80" fill="#dde8df" stroke="#2f5d3a"
                                             stroke-width="3" />
                                         <text x="120" y="125" text-anchor="middle" class="svg-label">Circle</text>
                                     </g>
                                     <!-- L-Shape SVG -->
                                     <g id="svg-lshape" class="svg-shape">
                                         <path d="M 40 40 L 140 40 L 140 100 L 200 100 L 200 200 L 40 200 Z"
-                                            fill="#DBEAFE" stroke="#2563EB" stroke-width="3" />
+                                            fill="#dde8df" stroke="#2f5d3a" stroke-width="3" />
                                         <text x="120" y="130" text-anchor="middle" class="svg-label">L-Shape</text>
                                     </g>
                                 </svg>
@@ -847,7 +694,7 @@
                         </div>
 
                         <!-- Results Card (Order 5 - Mobile, after Material Type) -->
-                        <div class="bg-white rounded-xl shadow-lg p-6 order-5">
+                        <div id="results-card" class="results-card bg-white rounded-xl shadow-lg p-6 order-5">
                             <div class="flex flex-wrap justify-between items-center gap-2 mb-4">
                                 <h2 class="text-lg font-semibold text-slate-900">Results</h2>
                                 <span class="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-2 py-0.5" id="fallback-label">Example: 10 ft × 10 ft × 3 in</span>
@@ -1102,8 +949,8 @@
                             </div>
                         </div>
 
-                        <!-- Export Actions (PDF / Print) - Desktop only -->
-                        <div class="hidden lg:grid mt-4 grid-cols-2 gap-4">
+                        <!-- Export Actions (PDF / Print) -->
+                        <div class="grid mt-4 grid-cols-2 gap-4 order-5">
                             <button id="btn-print" type="button" onclick="window.print()" disabled
                                 class="flex items-center justify-center gap-2 px-4 py-3 border-2 border-slate-200 rounded-lg text-slate-600 font-bold hover:border-blue-500 hover:text-blue-600 hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -1121,8 +968,8 @@
                                 <span>Save PDF</span>
                             </button>
                         </div>
-                        <!-- Share Button - Desktop only -->
-                        <div class="hidden lg:block mt-4">
+                        <!-- Share Button -->
+                        <div class="block mt-4 order-5">
                             <button id="btn-share" onclick="shareTool()"
                                 class="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-slate-200 rounded-lg text-slate-600 font-bold hover:border-blue-500 hover:text-blue-600 hover:bg-white transition-all">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -1132,8 +979,8 @@
                                 <span>Share This Tool</span>
                             </button>
                         </div>
-                        <!-- Conversion Note - Desktop -->
-                        <div class="hidden lg:block mt-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
+                        <!-- Conversion Note -->
+                        <div class="block mt-4 bg-blue-50 border border-blue-200 rounded-xl p-4 order-6">
                             <div class="flex gap-3">
                                 <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
@@ -1153,60 +1000,8 @@
                         </div>
                     </div>
 
-                    <!-- Export Actions (PDF / Print) - Mobile only, appears after Results -->
-                    <div class="lg:hidden order-5 bg-white rounded-xl shadow-lg p-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <button id="btn-print-mobile" type="button" onclick="window.print()" disabled
-                                class="flex items-center justify-center gap-2 px-4 py-3 border-2 border-slate-200 rounded-lg text-slate-600 font-bold hover:border-blue-500 hover:text-blue-600 hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                                </svg>
-                                <span>Print</span>
-                            </button>
-                            <button id="btn-pdf-mobile" type="button" onclick="generatePDF(this)" disabled
-                                class="flex items-center justify-center gap-2 px-4 py-3 border-2 border-slate-200 rounded-lg text-slate-600 font-bold hover:border-blue-500 hover:text-blue-600 hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a2 2 0 011.414.586l5.586 5.586A2 2 0 0121 10v9a2 2 0 01-2 2z" />
-                                </svg>
-                                <span>Save PDF</span>
-                            </button>
-                        </div>
-                        <!-- Share Button - Mobile -->
-                        <div class="mt-4">
-                            <button id="btn-share-mobile" type="button" onclick="shareTool()"
-                                class="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-slate-200 rounded-lg text-slate-600 font-bold hover:border-blue-500 hover:text-blue-600 hover:bg-white transition-all">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                                </svg>
-                                <span>Share This Tool</span>
-                            </button>
-                        </div>
-                        <!-- Conversion Note - Mobile -->
-                        <div class="mt-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
-                            <div class="flex gap-3">
-                                <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <div>
-                                    <p class="text-xs font-bold text-blue-700 uppercase tracking-wider mb-1">Note</p>
-                                    <p class="text-sm text-blue-900 leading-relaxed">Most U.S. suppliers quote by the
-                                        short ton, while plans are measured in cubic yards. The conversion depends on
-                                        density: one cubic yard of crushed stone is about 1.35 short tons, while pea
-                                        gravel is about 1.42. In metric terms, one cubic metre of crushed stone weighs
-                                        about 1.60 metric tonnes, and pea gravel about 1.68. This calculator applies
-                                        the density for the material you select and shows both unit systems.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Info Card (Order 9 - Mobile, last) -->
-                    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 order-4">
+                    <!-- Info Card (Order 6 - Mobile, after Results) -->
+                    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 order-6">
                         <div class="flex gap-3">
                             <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
@@ -1658,16 +1453,23 @@
                         stone.</p>
                 </div>
                 <div>
-                    <h2 class="font-bold text-slate-900 mb-3">Calculators &amp; guides</h2>
-                    <ul class="space-y-2 text-sm">
+                    <h2 class="font-bold text-slate-900 mb-3">Calculators</h2>
+                    <ul class="grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
                         <li><a href="/" class="text-slate-600 hover:text-blue-700">Gravel calculator</a></li>
-                        <li><a href="/best-gravel-types.html" class="text-slate-600 hover:text-blue-700">Gravel types</a></li>
-                        <li><a href="/driveway-cost-guide.html" class="text-slate-600 hover:text-blue-700">Driveway cost guide</a></li>
+                        <li><a href="/french-drain-gravel-calculator/" class="text-slate-600 hover:text-blue-700">French drain</a></li>
+                        <li><a href="/gravel-bag-calculator/" class="text-slate-600 hover:text-blue-700">Gravel bags</a></li>
+                        <li><a href="/pea-gravel-calculator/" class="text-slate-600 hover:text-blue-700">Pea gravel</a></li>
+                        <li><a href="/gravel-calculator-tons/" class="text-slate-600 hover:text-blue-700">Gravel in tons</a></li>
+                        <li><a href="/crushed-stone-calculator/" class="text-slate-600 hover:text-blue-700">Crushed stone</a></li>
+                        <li><a href="/driveway-gravel-calculator/" class="text-slate-600 hover:text-blue-700">Driveway gravel</a></li>
+                        <li><a href="/gravel-cost-calculator/" class="text-slate-600 hover:text-blue-700">Gravel cost</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h2 class="font-bold text-slate-900 mb-3">Company</h2>
+                    <h2 class="font-bold text-slate-900 mb-3">Guides &amp; company</h2>
                     <ul class="space-y-2 text-sm">
+                        <li><a href="/best-gravel-types.html" class="text-slate-600 hover:text-blue-700">Gravel types</a></li>
+                        <li><a href="/driveway-cost-guide.html" class="text-slate-600 hover:text-blue-700">Driveway cost guide</a></li>
                         <li><a href="/about.html" class="text-slate-600 hover:text-blue-700">About &amp; method</a></li>
                         <li><a href="/contact.html" class="text-slate-600 hover:text-blue-700">Contact</a></li>
                     </ul>
@@ -1686,7 +1488,181 @@
             </div>
         </div>
     </footer>
+
+        <!-- Compact live results bar (mobile only) -->
+        <div id="mobile-result-bar" class="mobile-result-bar lg:hidden" aria-label="Current gravel estimate">
+            <div class="mobile-result-bar-inner">
+                <div class="mobile-result-stat">
+                    <span class="mobile-result-label">Volume</span>
+                    <strong class="mobile-result-value" id="mobile-result-volume">0.93</strong>
+                    <span class="mobile-result-unit" id="mobile-result-volume-unit">yd³</span>
+                </div>
+                <div class="mobile-result-stat">
+                    <span class="mobile-result-label">Weight</span>
+                    <strong class="mobile-result-value" id="mobile-result-weight">1.31</strong>
+                    <span class="mobile-result-unit" id="mobile-result-weight-unit">short tons</span>
+                </div>
+                <div class="mobile-result-stat">
+                    <span class="mobile-result-label">Bags</span>
+                    <strong class="mobile-result-value" id="mobile-result-bags">53</strong>
+                    <span class="mobile-result-unit" id="mobile-result-bags-unit">50 lb</span>
+                </div>
+                <a href="#results-card" class="mobile-result-link">Details</a>
+            </div>
+        </div>
     </div> <!-- End print:hidden wrapper -->
+
+    <!-- PRINT/PDF ONLY CONTAINER (Hidden by default, visible in print) -->
+    <div id="invoice-wrapper" class="hidden print:block bg-white p-8 max-w-4xl mx-auto" style="display: none" aria-hidden="true">
+
+        <!-- Print Header -->
+        <div class="flex justify-between items-center border-b-2 border-slate-800 pb-4 mb-6">
+            <div>
+                <p class="text-3xl font-bold text-slate-900">Pro Gravel Calculator</p>
+                <p class="text-sm font-semibold text-blue-700 uppercase tracking-wide">Material Order Sheet &amp; Planning Specification</p>
+            </div>
+            <div class="text-right">
+                <p class="text-xs uppercase font-bold text-slate-500">Date Generated</p>
+                <p class="text-base font-bold text-slate-900" id="print-date">--</p>
+                <p class="text-[11px] text-slate-500 mt-0.5">Ref: <span id="print-ref" class="font-mono font-medium text-slate-700">PGC-2026</span></p>
+            </div>
+        </div>
+
+        <!-- Print Content (Summary Table) -->
+        <div class="bg-slate-50 border border-slate-200 rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-bold text-slate-800 border-b border-slate-200 pb-2 mb-4">Project &amp; Material Specifications</h2>
+
+            <div class="grid grid-cols-2 gap-8">
+                <!-- Left: Inputs -->
+                <div>
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Project Specifications</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Material:</span>
+                            <span class="font-medium text-slate-900" id="print-material">--</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Loose Bulk Density:</span>
+                            <span class="font-medium text-slate-900" id="print-density">--</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Shape:</span>
+                            <span class="font-medium text-slate-900" id="print-shape">--</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Calculated Area:</span>
+                            <span class="font-medium text-slate-900" id="print-area">--</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Dimensions:</span>
+                            <span class="font-medium text-slate-900" id="print-dims">--</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Specified Depth:</span>
+                            <span class="font-medium text-slate-900" id="print-depth">--</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Waste allowance:</span>
+                            <span class="font-medium text-slate-900" id="print-waste">0%</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Compaction allowance:</span>
+                            <span class="font-medium text-slate-900" id="print-compaction">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Results -->
+                <div>
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Estimated Requirements</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Volume:</span>
+                            <span class="font-bold text-blue-700 text-right">
+                                <span><span id="print-volume">0.93</span> <span id="print-volume-unit">cubic yards (yd³)</span></span>
+                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-volume-alt">0.71 cubic metres (m³)</span>
+                                <span class="block text-[11px] font-normal text-slate-400 mt-0.5" id="print-base-volume-row">Base: <span id="print-base-volume">0.93</span> yd³ (before allowances)</span>
+                            </span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Estimated weight:</span>
+                            <span class="font-bold text-blue-700 text-right">
+                                <span><span id="print-weight">1.31</span> <span id="print-weight-unit">short tons (2,000 lb)</span></span>
+                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-weight-alt">1.19 metric tonnes · 1,191 kg</span>
+                                <span class="block text-[11px] font-normal text-slate-400 mt-0.5" id="print-base-weight-row">Base: <span id="print-base-weight">1.31</span> tons</span>
+                            </span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Bags:</span>
+                            <span class="font-bold text-blue-700 text-right">
+                                <span><span id="print-bags">53</span> <span id="print-bags-unit">× 50 lb</span></span>
+                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-bags-alt">48 × 25 kg bags</span>
+                            </span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Pallets:</span>
+                            <span class="font-bold text-blue-700 text-right">
+                                <span id="print-pallets">2 pallets</span>
+                                <span class="block text-xs font-normal text-slate-500 mt-0.5" id="print-pallets-breakdown">40 bags/pallet · 1 full + 13 loose</span>
+                            </span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 py-1">
+                            <span class="text-slate-600">Coverage rate:</span>
+                            <span class="font-medium text-slate-700 text-right text-xs" id="print-coverage-rate">56.7 bags/yd³ · 40.0 bags/ton</span>
+                        </div>
+
+                        <div id="print-cost-block" class="hidden border-t border-slate-300 mt-3 pt-3">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Estimated Cost</h4>
+                            <div class="space-y-1 text-sm">
+                                <div class="flex justify-between border-b border-slate-200 py-1">
+                                    <span class="text-slate-600">Material:</span>
+                                    <span class="font-medium text-slate-900" id="print-cost-material">--</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-200 py-1">
+                                    <span class="text-slate-600">Delivery:</span>
+                                    <span class="font-medium text-slate-900" id="print-cost-delivery">--</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-200 py-1">
+                                    <span class="text-slate-600" id="print-cost-tax-label">Tax:</span>
+                                    <span class="font-medium text-slate-900" id="print-cost-tax">--</span>
+                                </div>
+                                <div class="flex justify-between py-1">
+                                    <span class="font-semibold text-slate-900">Total:</span>
+                                    <span class="font-bold text-blue-700" id="print-cost-total">--</span>
+                                </div>
+                                <div class="flex justify-between py-1" id="print-cost-per-area-row">
+                                    <span class="text-slate-600" id="print-cost-per-area-label">Cost per ft²:</span>
+                                    <span class="font-medium text-slate-900" id="print-cost-per-area">--</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-2" id="print-cost-note"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Supplier & Site Notes -->
+        <div class="bg-blue-50/60 border border-blue-200 rounded-lg p-4 mb-6 text-xs text-blue-900 space-y-1.5" id="print-notes-section">
+            <p class="font-bold uppercase tracking-wider text-[11px] text-blue-800">Supplier &amp; Ordering Notes</p>
+            <p id="print-allowance-note">No allowances are included; allow about 10% extra for compaction and waste.</p>
+            <p id="print-density-note">Weight is calculated using standard loose bulk density. Wet aggregates, quarry variations and heavy machine compaction may increase required tonnage.</p>
+            <p id="print-depth-note">Standard residential paths typically require 2–3 inches (50–75 mm); vehicle driveways typically require 4–6 inches (100–150 mm) compacted over a solid sub-base.</p>
+        </div>
+
+        <!-- Disclaimer & Re-open Link -->
+        <div class="border-t border-slate-200 pt-4 text-center">
+            <p class="text-xs text-slate-500 leading-relaxed max-w-2xl mx-auto">
+                <strong>Disclaimer:</strong> This material order sheet is a planning estimate. Actual requirements
+                vary with quarry gradation, moisture content, compaction effort and subgrade conditions. Confirm order quantities with your aggregate supplier prior to dispatch.
+            </p>
+            <div class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100">
+                <span>View or adjust this exact calculation online: </span>
+                <a id="print-project-url" href="https://www.progravelcalculator.online/" target="_blank" class="font-mono text-blue-700 font-medium underline break-all">https://www.progravelcalculator.online/</a>
+            </div>
+        </div>
+    </div>
+
 
     <script src="/calculator-engine.js" defer></script>
     <script src="script.js" defer></script>
@@ -1722,6 +1698,63 @@
             // Navigate
             window.location.href = `/contact.html?${params.toString()}`;
         }
+    </script>
+    <script>
+        // Keep the compact mobile results bar in sync with the main results card.
+        (function () {
+            var pairs = [
+                ['result-volume', 'mobile-result-volume', 'result-volume-unit', 'mobile-result-volume-unit'],
+                ['result-weight', 'mobile-result-weight', 'result-weight-unit', 'mobile-result-weight-unit'],
+                ['result-bags', 'mobile-result-bags', 'result-bags-unit', 'mobile-result-bags-unit']
+            ];
+
+            function shortUnit(id) {
+                var el = document.getElementById(id);
+                if (!el) return '';
+                var text = (el.textContent || '').trim();
+                var match = text.match(/\(([^)]+)\)/);
+                // Use an abbreviated unit such as "(yd³)" only when the
+                // parenthetical is a unit, not a conversion like "(2,000 lb)".
+                var unit = match && !/\d/.test(match[1])
+                    ? match[1]
+                    : text.replace(/\s*\([^)]*\)/, '');
+                return unit
+                    .replace(/^short tons$/, 'tons')
+                    .replace(/^metric tonnes$/, 'tonnes');
+            }
+
+            function syncMobileResults() {
+                pairs.forEach(function (ids) {
+                    var source = document.getElementById(ids[0]);
+                    var target = document.getElementById(ids[1]);
+                    if (source && target) target.textContent = (source.textContent || '').trim();
+
+                    var sourceUnit = document.getElementById(ids[2]);
+                    var targetUnit = document.getElementById(ids[3]);
+                    if (sourceUnit && targetUnit) targetUnit.textContent = shortUnit(ids[2]);
+                });
+            }
+
+            function initMobileResults() {
+                if (!document.getElementById('mobile-result-bar')) return;
+                syncMobileResults();
+
+                if (!window.MutationObserver) return;
+                var observer = new MutationObserver(syncMobileResults);
+                pairs.forEach(function (ids) {
+                    [ids[0], ids[2]].forEach(function (id) {
+                        var el = document.getElementById(id);
+                        if (el) observer.observe(el, { childList: true, characterData: true, subtree: true });
+                    });
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initMobileResults);
+            } else {
+                initMobileResults();
+            }
+        })();
     </script>
 </body>
 

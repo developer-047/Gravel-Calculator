@@ -304,7 +304,7 @@ test('sitemap lists exactly the indexable pages with matching canonicals', () =>
         urls.push(match[1].trim());
     }
 
-    assert.strictEqual(urls.length, 14, 'sitemap should contain 14 URLs, found ' + urls.length);
+    assert.strictEqual(urls.length, indexableFiles.length, 'sitemap should contain ' + indexableFiles.length + ' URLs, found ' + urls.length);
 
     const mapped = urls.map((url) => {
         if (url === SITE + '/') return 'index.html';
