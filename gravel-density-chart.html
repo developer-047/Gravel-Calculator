@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gravel density chart with lb/ft³, kg/m³, tons/yd³ and tonnes/m³ conversions, typical ranges and source citations for each material.">
+    <meta name="description" content="Gravel density chart with lb/ft³, kg/m³, tons/yd³ and tonnes/m³ conversions, typical ranges, and the formulas behind each conversion.">
     <title>Gravel Density Chart - Pro Gravel Calculator</title>
     <link rel="canonical" href="https://www.progravelcalculator.online/gravel-density-chart.html">
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:title" content="Gravel Density Chart - Pro Gravel Calculator">
-    <meta property="og:description" content="Typical loose bulk densities for common gravel and aggregate materials, with the conversions the calculator uses. Includes lb/ft³, kg/m³, tons/yd³, tonnes/m³, typical range, and supplier data.">
+    <meta property="og:description" content="Typical loose bulk densities for common gravel and aggregate materials, with the conversions the calculator uses. Includes lb/ft³, kg/m³, tons/yd³, tonnes/m³, typical range, and basis.">
     <meta property="og:url" content="https://www.progravelcalculator.online/gravel-density-chart.html">
     <meta property="og:image" content="https://www.progravelcalculator.online/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -20,7 +20,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Gravel Density Chart - Pro Gravel Calculator">
-    <meta name="twitter:description" content="Comprehensive table of gravel materials with densities, conversions, and source citations.">
+    <meta name="twitter:description" content="Comprehensive table of gravel materials with densities, conversions, and typical planning ranges.">
     <meta name="twitter:image" content="https://www.progravelcalculator.online/og-image.png">
     <meta name="twitter:image:alt" content="Pro Gravel Calculator – free gravel estimator">
     <link rel="stylesheet" href="/tailwind.css">
@@ -79,16 +79,16 @@
 <body>
     <header class="bg-white shadow-md p-6">
         <h1 class="text-3xl font-bold text-slate-900">Gravel Density Chart</h1>
-        <p class="text-slate-500">Comprehensive table of gravel materials with densities, conversions, and source citations.</p>
-        <p class="text-xs text-slate-400 mt-1">Last updated: November 10, 2026</p>
+        <p class="text-slate-500">Comprehensive table of gravel materials with densities, conversions, and typical planning ranges.</p>
+        <p class="text-xs text-slate-400 mt-1">Last updated: November 11, 2026</p>
     </header>
 
     <section class="mt-6 px-6">
         <h2 class="text-2xl font-bold text-slate-800 mb-4">Density Table</h2>
-        <p class="text-slate-500 mb-4">This chart shows typical loose bulk densities for common gravel and aggregate materials. Values are based on supplier test data and published averages. Actual densities may vary based on moisture, gradation, and compaction.</p>
+        <p class="text-slate-500 mb-4">This chart shows typical loose bulk densities for common gravel and aggregate materials. Values are planning figures used by this site's calculator, not results from a supplier test programme. Actual densities vary with moisture, gradation, and compaction, so confirm the figure on your supplier's delivery ticket before ordering.</p>
 
         <div class="overflow-x-auto">
-        <table class="w-full rounded-lg border border-slate-200">
+        <table id="density-table" class="w-full rounded-lg border border-slate-200">
                 <thead>
                     <tr class="bg-slate-50">
                         <th class="p-3 text-left text-sm font-medium text-slate-600">Material</th>
@@ -108,7 +108,7 @@
                         <td class="p-3">1.42</td>
                         <td class="p-3">1.68</td>
                         <td class="p-3">95–115</td>
-                        <td class="p-3">Typical published range</td>
+                        <td class="p-3">Typical planning range</td>
                     </tr>
     <tr class="border-b">
                         <td class="p-3">Crushed Stone #57</td>
@@ -117,7 +117,7 @@
                         <td class="p-3">1.35</td>
                         <td class="p-3">1.60</td>
                         <td class="p-3">90–110</td>
-                        <td class="p-3">Typical published range</td>
+                        <td class="p-3">Typical planning range</td>
                     </tr>
     <tr class="border-b">
                         <td class="p-3">Crushed Stone #411</td>
@@ -126,7 +126,7 @@
                         <td class="p-3">1.49</td>
                         <td class="p-3">1.76</td>
                         <td class="p-3">100–120</td>
-                        <td class="p-3">Typical published range</td>
+                        <td class="p-3">Typical planning range</td>
                     </tr>
     <tr class="border-b">
                         <td class="p-3">Crushed Stone #304</td>
@@ -135,7 +135,7 @@
                         <td class="p-3">1.42</td>
                         <td class="p-3">1.68</td>
                         <td class="p-3">100–115</td>
-                        <td class="p-3">Typical published range</td>
+                        <td class="p-3">Typical planning range</td>
                     </tr>
     <tr class="border-b">
                         <td class="p-3">Crusher Run</td>
@@ -144,7 +144,7 @@
                         <td class="p-3">1.42</td>
                         <td class="p-3">1.68</td>
                         <td class="p-3">95–115</td>
-                        <td class="p-3">Typical published range</td>
+                        <td class="p-3">Typical planning range</td>
                     </tr>
     <tr class="border-b">
                         <td class="p-3">River Rock</td>
@@ -153,7 +153,7 @@
                         <td class="p-3">1.46</td>
                         <td class="p-3">1.73</td>
                         <td class="p-3">95–120</td>
-                        <td class="p-3">Typical published range</td>
+                        <td class="p-3">Typical planning range</td>
                     </tr>
     <tr class="border-b">
                         <td class="p-3">Masonry Sand</td>
@@ -162,7 +162,7 @@
                         <td class="p-3">1.49</td>
                         <td class="p-3">1.76</td>
                         <td class="p-3">100–120</td>
-                        <td class="p-3">Typical published range</td>
+                        <td class="p-3">Typical planning range</td>
                     </tr>
     <tr class="border-b">
                         <td class="p-3">Decomposed Granite</td>
@@ -171,34 +171,7 @@
                         <td class="p-3">1.35</td>
                         <td class="p-3">1.60</td>
                         <td class="p-3">90–110</td>
-                        <td class="p-3">Typical published range</td>
-                    </tr>
-    <tr class="border-b">
-                        <td class="p-3">#57 Stone</td>
-                        <td class="p-3">100</td>
-                        <td class="p-3">1,602</td>
-                        <td class="p-3">1.35</td>
-                        <td class="p-3">1.60</td>
-                        <td class="p-3">90–110</td>
-                        <td class="p-3">Typical published range</td>
-                    </tr>
-    <tr class="border-b">
-                        <td class="p-3">#411 Stone</td>
-                        <td class="p-3">110</td>
-                        <td class="p-3">1,762</td>
-                        <td class="p-3">1.49</td>
-                        <td class="p-3">1.76</td>
-                        <td class="p-3">100–120</td>
-                        <td class="p-3">Typical published range</td>
-                    </tr>
-    <tr class="border-b">
-                        <td class="p-3">#304 Stone</td>
-                        <td class="p-3">105</td>
-                        <td class="p-3">1,682</td>
-                        <td class="p-3">1.42</td>
-                        <td class="p-3">1.68</td>
-                        <td class="p-3">100–115</td>
-                        <td class="p-3">Typical published range</td>
+                        <td class="p-3">Typical planning range</td>
                     </tr>
     <tr class="border-b">
                         <td class="p-3">#8 Stone</td>
@@ -207,7 +180,7 @@
                         <td class="p-3">1.28</td>
                         <td class="p-3">1.52</td>
                         <td class="p-3">85–110</td>
-                        <td class="p-3">Typical published range</td>
+                        <td class="p-3">Typical planning range</td>
                     </tr>
     <tr class="border-b">
                         <td class="p-3">#10 Stone</td>
@@ -216,7 +189,7 @@
                         <td class="p-3">1.55</td>
                         <td class="p-3">1.84</td>
                         <td class="p-3">105–125</td>
-                        <td class="p-3">Typical published range</td>
+                        <td class="p-3">Typical planning range</td>
                     </tr>
     <tr class="border-b">
                         <td class="p-3">#12 Stone</td>
@@ -225,7 +198,7 @@
                         <td class="p-3">1.62</td>
                         <td class="p-3">1.92</td>
                         <td class="p-3">110–130</td>
-                        <td class="p-3">Typical published range</td>
+                        <td class="p-3">Typical planning range</td>
                     </tr>
                 </tbody>
             </table>
@@ -236,14 +209,26 @@
             <ul class="list-disc list-inside text-slate-600">
                 <li><strong>Tons per Cubic Yard:</strong> Based on a 2,000 lb short ton.</li>
                 <li><strong>Tonnes per Cubic Meter:</strong> metric tonnes; 1 tonne = 1,000 kg = 2,205 lb and 1 cubic yard = 0.7646 m³.</li>
-                <li><strong>Range:</strong> Typical density range observed across suppliers.</li>
-                <li><strong>Basis:</strong> typical published loose bulk density ranges used by this site's calculator. Confirm the figure on your supplier's delivery ticket before ordering, because gradation and moisture move it.</li>
+                <li><strong>Range:</strong> Typical planning range used for this material; it is not a measured minimum and maximum.</li>
+                <li><strong>Basis:</strong> typical loose bulk density values used by this site's calculator. Confirm the figure on your supplier's delivery ticket before ordering, because gradation and moisture move it.</li>
                 <li><strong>Loose vs. compacted:</strong> Loose bulk density is shown; compacted density can be 5–15% higher.</li>
                 <li><strong>Moisture:</strong> Wet material can weigh 5–10% more; dry material can be 5% lighter.</li>
                 <li><strong>Particle size:</strong> Finer materials pack tighter, increasing density.</li>
-                <li><strong>Supplier variation:</strong> Always verify with your supplier; values are averages.</li>
+                <li><strong>Supplier variation:</strong> Always verify with your supplier; values are typical planning figures, not a delivery guarantee.</li>
             </ul>
         </div>
+    </section>
+
+    <section class="mt-6 px-6">
+        <aside id="cite-this-chart" class="rounded-lg border border-slate-200 bg-slate-50 p-5" aria-labelledby="cite-this-chart-heading">
+            <h2 id="cite-this-chart-heading" class="text-lg font-semibold text-slate-800 mb-2">Cite this chart</h2>
+            <p class="text-sm text-slate-600 mb-3">Editors, writers and students are welcome to cite the table. Link to the table rather than a screenshot, so the numbers stay right if a figure is later corrected.</p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1">Suggested citation</p>
+            <p class="text-sm text-slate-700 bg-white border border-slate-200 rounded p-3 mb-3 break-words">Pro Gravel Calculator. “Gravel Density Chart.” Accessed [date]. https://www.progravelcalculator.online/gravel-density-chart.html#density-table</p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1">Deep links</p>
+            <p class="text-sm text-slate-700 mb-3"><a href="#density-table" class="text-blue-600 underline">#density-table</a> — the table on its own.</p>
+            <p class="text-xs text-slate-500">Method: typical loose bulk density in lb/ft³ used for planning; kg/m³ = lb/ft³ × 16.018463; short ton = 2,000 lb; tonne = 1,000 kg. Planning values, not a delivery guarantee.</p>
+        </aside>
     </section>
 
     <footer class="bg-white border-t border-slate-200 py-6 mt-12">

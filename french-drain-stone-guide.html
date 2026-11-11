@@ -93,7 +93,7 @@
         <p class="text-slate-500 mb-4">The volume of a pipe is calculated using the formula for a cylinder: <strong>Volume = π × (diameter/2)² × length</strong>. This volume must be subtracted from the total trench volume before calculating gravel needs.</p>
 
         <div class="overflow-x-auto mt-4">
-            <table class="w-full rounded-lg border border-slate-200">
+            <table id="pipe-volume-table" class="w-full rounded-lg border border-slate-200">
                 <caption class="text-left text-sm text-slate-600 p-3">Volume of pipe inside a 50 ft trench, and the gravel it displaces at 100 lb/ft³</caption>
                 <thead>
                     <tr class="bg-slate-50">
@@ -162,7 +162,7 @@
     <section class="mt-6 px-6">
         <h2 class="text-2xl font-bold text-slate-800 mb-4">Pipe Size vs. Gravel Savings</h2>
         <p class="text-slate-500 mb-4">The amount of gravel saved by including pipe deduction depends on pipe diameter and length. Here's a quick reference:</p>
-        <table class="w-full rounded-lg border border-slate-200">
+        <table id="gravel-savings-table" class="w-full rounded-lg border border-slate-200">
             <caption class="text-left text-sm text-slate-600 p-3">Gravel displaced by 50 ft of pipe at 100 lb/ft³</caption>
             <thead>
                 <tr class="bg-slate-50">
@@ -231,6 +231,18 @@
                 <p class="mt-1">We are not aware of a code that requires the arithmetic. It is an estimating step that keeps the order close to what the trench actually holds.</p>
             </div>
         </div>
+    </section>
+
+    <section class="mt-6 px-6">
+        <aside id="cite-this-guide" class="rounded-lg border border-slate-200 bg-slate-50 p-5" aria-labelledby="cite-this-guide-heading">
+            <h2 id="cite-this-guide-heading" class="text-lg font-semibold text-slate-800 mb-2">Cite this guide</h2>
+            <p class="text-sm text-slate-600 mb-3">The pipe-volume figures are arithmetic, not opinion, so they are safe to reproduce. Link to the table rather than a screenshot so readers get the current numbers.</p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1">Suggested citation</p>
+            <p class="text-sm text-slate-700 bg-white border border-slate-200 rounded p-3 mb-3 break-words">Pro Gravel Calculator. “French Drain Stone Guide.” Accessed [date]. https://www.progravelcalculator.online/french-drain-stone-guide.html#pipe-volume-table</p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1">Deep links</p>
+            <p class="text-sm text-slate-700 mb-3"><a href="#pipe-volume-table" class="text-blue-600 underline">#pipe-volume-table</a> (pipe volume and gravel displaced) and <a href="#gravel-savings-table" class="text-blue-600 underline">#gravel-savings-table</a> (bags saved).</p>
+            <p class="text-xs text-slate-500">Method: pipe volume = π × (diameter ÷ 2)² × length, with diameter converted to feet; 1 yd³ = 27 ft³; gravel displaces at 100 lb/ft³; 50 lb bags.</p>
+        </aside>
     </section>
 
     <footer class="bg-white border-t border-slate-200 py-6 mt-12">

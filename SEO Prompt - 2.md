@@ -199,7 +199,7 @@ Content sections:
 2. How deep should pea gravel be? (table by project)
 3. Pea gravel for playgrounds: safety depths (CPSC guidelines)
 4. Pea gravel vs crushed stone (comparison table)
-5. How many bags per cubic yard? (~36 at 50lb)
+5. How many bags per cubic yard? (~57 × 50 lb bags for pea gravel; ~54 for #57 stone)
 6. Cost guide (user-entered, no invented prices)
 7. FAQ
 8. Related calculators

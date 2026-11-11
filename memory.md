@@ -1,13 +1,16 @@
 # Project Memory — Pro Gravel Calculator
 
-Last refresh: 2026-11-10 (Phase 4 start, local working session)
+Last refresh: 2026-11-11 (Phase 4 verification pass: bag arithmetic corrected, density/price
+provenance claims fixed, outreach list's competitor contradiction resolved)
 Active site root: `C:\Users\Abdullah\Documents\GitHub\Gravel-Calculator`
 
 ## Session 2026-11-10 — Phase 4 start: authority assets
 
-Phase 4 = authority/link building. Code work covered Task 4-1 (linkable assets) and the
-verifiable half of Task 4-6; outreach tasks 4-2 to 4-5 are owner work and are staged in
-`seo-research/PHASE-4-AUTHORITY.md` (excluded from production).
+Phase 4 = authority/link building. Task 4-1 (linkable assets) is complete **and live on the host**.
+The whole phase is now prepared end to end: `seo-research/PHASE-4-AUTHORITY.md` is the index, with
+`OUTREACH-TARGETS.md` (100 targets), `DIRECTORY-SUBMISSIONS.md`, `DIGITAL-PR-ANGLES.md`,
+`COMMUNITY-PLAYBOOK.md` and `ENTITY-SIGNALS.md` alongside it (all excluded from production).
+Execution — emails, pitch sends, posts, profiles — is owner-gated; backlinks remain **0**.
 
 ### What was broken before this pass
 - `vercel.json` sent `X-Frame-Options: SAMEORIGIN` on every route, so the "embeddable"
@@ -68,7 +71,7 @@ verifiable half of Task 4-6; outreach tasks 4-2 to 4-5 are owner work and are st
   session does not reintroduce `/embed/`.
 
 ### Tests
-- `tests/static-qa.test.js` +4 tests (35 engine + 24 static = 59 PASS, 0 FAIL): widget is
+- `tests/static-qa.test.js` +4 tests (35 engine + 24 static = 59 PASS, 0 FAIL at that point): widget is
   noindex/engine-driven/framable and the site-wide XFO survives; embed page + all 7 calculators
   point at the widget and contain no iframe; density-chart conversions match the engine
   constants and no `[Supplier` placeholder ships; homepage links every reference asset.
@@ -80,19 +83,139 @@ verifiable half of Task 4-6; outreach tasks 4-2 to 4-5 are owner work and are st
   1280 px), density chart and price index (no page overflow at 375 px after the table wrap),
   homepage (`#reference-data`, 4 asset links in footer, no console errors).
 
+### Task 4-1 follow-up — citation surface (2026-11-10)
+- Reference tables are now deep-linkable and citable, which is the asset the 4-3 outreach actually
+  offers: `#density-table` on `gravel-density-chart.html`, `#pipe-volume-table` and
+  `#gravel-savings-table` on `french-drain-stone-guide.html`.
+- Each of those two pages gained a "Cite this" block with a suggested citation using an
+  `Accessed [date]` placeholder (no hard-coded date invented), the deep link, and a one-line method
+  note (density formula / cylinder formula and 100 lb/ft³).
+- **`gravel-price-index-2026.html` deliberately has no citation block** while its supplier
+  provenance is unresolved; `reference tables expose stable anchors and a citation block` asserts it
+  stays uncitable until that item is fixed.
+- New test added; `npm test` now **60 PASS, 0 FAIL** (35 engine + 25 static); `python
+  tests/site-audit.py` PASS on 21 pages. Browser-checked at 1280 px and 360 px: both anchors scroll
+  the table to the top of the viewport, blocks render styled, citation paragraph wraps
+  (125 px tall at 360 px), `scrollWidth` never exceeds the viewport, zero console errors.
+
+### Deploy + live verification (2026-11-10)
+Committed as `edb9943 phase4-1` (23 files) and deployed to Vercel; checked against the live host,
+not just locally:
+- `https://www.progravelcalculator.online/gravel-calculator-widget.html` → **200** with
+  `Content-Security-Policy: frame-ancestors *`. `X-Frame-Options: SAMEORIGIN` is still sent, but
+  CSP `frame-ancestors` supersedes it per spec, so the widget is framable and no other route changed.
+- Live widget renders the engine default in a real browser: `0.93 yd³ / 1.31 tons / 53 × 50 lb`,
+  `window.GravelEngine` present, `/widget.js` and `/calculator-engine.js` both 200, zero console
+  errors, `robots: noindex, follow`, self canonical.
+- `/sitemap.xml` live = **18 URLs**. `/french-drain-gravel-calculator/` ships the embed section with
+  **0 iframes**. `/` contains `#reference-data` and the embed link (note `/index.html` 308-redirects
+  to `/`, so grep the redirect target, not the `.html` URL).
+- Still unproven: an actual third-party page embedding the widget (needs an accepted placement from
+  4-3/4-4), and the `.htaccess` framing path on any host that is not Vercel.
+
+### Phase 4 Task 4-3 — outreach list, first tranche
+- `seo-research/OUTREACH-TARGETS.md` added: 12 targets fetched and confirmed by hand on
+  2026-11-10 (Kirk Allen Landscape Supply French drain calculation article, Drainage First
+  pipe-subtraction guide, Earth Stone Rock drainage blog, Lyngso Garden community-resources guide,
+  The Stone Store estimating hub, River Sand gravel page, Picayune Supply blog, NDS resources
+  article, Eastern Landscape driveway calculator, Fine Gardening gravel-path article, BobVila and
+  The Spruce French drain guides). Each row records type, why relevant, asset to offer, editorial
+  link likelihood and status `not contacted`.
+- 17 competitor sites found during discovery are logged as excluded (they own the same query -
+  OmniCalculator, InchCalculator, Calculator.net, Hello Gravel, GravelCalculate, SiteworkMath and
+  similar clones), so a future session does not re-pitch them.
+- Quotas to reach the 100-target requirement are written into the doc; 88 rows still to find.
+  Contact names/emails were deliberately not scraped or guessed.
+
+### Phase 4 Task 4-2 — foundation directories: verdict is "mostly closed"
+- `seo-research/DIRECTORY-SUBMISSIONS.md` added. Checked 2026-11-10 and found the site has no
+  business identity to submit: `privacy.html:214` says "We do not publish a postal address",
+  `about.html:255` says "Independent tool — not a quarry or contractor", there is no phone and no
+  published email. Google Business Profile, Bing Places ("all businesses must provide a valid
+  address for verification"), Apple Business Connect and Yelp are therefore **blocked**, not pending.
+- Only three openings are real: AlternativeTo (free, account + verified email, months-long moderator
+  backlog, link attribute disputed — two checkers report `nofollow`, so no ranking value assumed),
+  Product Hunt (free, personal account only, one-shot launch) and SaaSHub (free, low value). The two
+  calculator directories named in the plan (`toolcalculator.com`, `freecalc.com`) did not resolve on
+  2026-11-11, so neither was assessed or submitted.
+- Doc includes a paste-ready name/tagline/description block (facts taken from the live site only),
+  the exact AlternativeTo route (user icon → "Suggest new application"), the honest framing
+  ("alternative to Omni Calculator / Calculator.net"), and a do-not list (paid link packages, mass
+  directory submits, invented NAP).
+- Recommendation recorded: send AlternativeTo, defer Product Hunt until there is something to
+  announce, and move the rest of the 4-2 budget to 4-3. Expected ranking impact of all three: zero
+  to negligible.
+
+### Phase 4 completion pass — 2026-11-10 (tasks 4-3 to 4-6)
+- **4-3: 100 verified targets on 69 distinct domains** in `seo-research/OUTREACH-TARGETS.md`. Six
+  parallel research passes (landscaping blogs, aggregate suppliers, university extension,
+  home-improvement publishers, UK/EU references, resource hubs) returned 83 candidates; two more
+  search waves added ~25, so ~110 URLs were considered and 88 new rows survived (plus the 12 already
+  logged). Every logged row was fetched with the fetch tool and its body text read (`curl` returns 000
+  here).
+  Two more search waves were needed because calculator sites dominate the results — those were pushed
+  into the exclusion list, which now also covers the .gov/EPA/FHWA PDFs (no editorial contact, never
+  link out) and the calculator clones found in waves 2-3.
+- **69 domains is the real workload**, not 100: outreach counts emails, and the repeated domains are
+  reference sites with several useful pages (pavingexpert, The Spruce). The doc says so explicitly.
+- **4-4** `DIGITAL-PR-ANGLES.md`: five angles with sources. Pipe deduction (4/6/8 in = 0.16/0.36/0.65 yd³
+  per 50 ft) and the pea-gravel-vs-#57 density pair are pitchable; bags-vs-bulk (a yard ≈ 57 × 50 lb
+  bags) is hedged; **waste-factor data is not pitchable** (we have calculator inputs, no project data)
+  and **price-by-state is blocked** on provenance. No study or survey is claimed anywhere.
+- **4-5** `COMMUNITY-PLAYBOOK.md`: sourced the actual Reddit position — the 10% rule comes from a wiki
+  Reddit marks "no longer updated", the current spam policy sets no percentage, and subreddit rules
+  govern. Seven answers drafted against figures that exist on our pages; 0 posted.
+- **4-6** `ENTITY-SIGNALS.md`: `Organization` exists at `index.html:54` with **no `sameAs`** (grep for
+  `sameAs` returns nothing sitewide) — correct while no profiles exist. Contains the exact JSON to
+  paste plus the decision list (trading name, address/phone, which profiles, who replies).
+- `PHASE-4-AUTHORITY.md` rewritten from §3 down, ending in a Phase 4 exit report: what was achieved,
+  what was not (0 backlinks, 0 emails, 0 profiles), and why each gap is owner-side.
+- No site code changed in this pass, so the last test run stands: `npm test` **60 PASS** (35 engine +
+  25 static), site audit PASS on 21 pages.
+
+### Phase 4 verification pass — 2026-11-11
+- **Bag arithmetic corrected.** One cubic yard of pea gravel at 105 lb/ft³ is 2,835 lb = ~57 × 50 lb
+  bags, not 53. The 53 figure belongs to the default 0.93 yd³ output (2,625 lb). Fixed in
+  `DIGITAL-PR-ANGLES.md`, `PHASE-4-AUTHORITY.md`, `memory.md` and `SEO Prompt - 2.md`; the community
+  playbook already had 57. #57 stone is ~54 bags/yd³. Default calculator output is unchanged.
+- **Density chart provenance softened and duplicates merged.** `gravel-density-chart.html` no longer
+  says values come from "supplier test data" or advertises "source citations"; the Basis column is now
+  "Typical planning range" and the method note says these are planning values, not a supplier test
+  programme. The three duplicate `#57/#411/#304 Stone` rows were removed, leaving 11 materials. No
+  density numbers changed.
+- **Price index relabelled.** `gravel-price-index-2026.html` now reads "Gravel Price Index 2026:
+  Planning Ranges", states that the ranges are not a supplier survey or an average of named suppliers,
+  and no longer claims "supplier quotes and industry reports". The three duplicate rows (`#57 Stone`,
+  `#411 Stone`, `#304 Stone`) were removed, the #12 note corrected, and `dateModified`, the visible
+  date and the sitemap lastmod set to 2026-11-11. Numbers untouched; the page still has no "Cite this"
+  block.
+- **Outreach contradiction fixed.** Four `hellogravel.com` guide rows breached the doc's own rule 3
+  (direct competitor intent). They were replaced with four fetched-and-read non-competitor pages:
+  Sagamore Companies, two Gravelshop guides and This Old House. Still 100 rows; domains 68 → 69;
+  `PHASE-4-AUTHORITY.md` and this file updated.
+- **Verification:** `npm run build:css` re-run, `npm test` **60 PASS** (35 engine + 25 static),
+  `python tests/site-audit.py` PASS on 21 pages. Nothing committed or deployed.
+- **Phase 4 outcome side is still zero:** 0 emails, 0 backlinks, 0 brand profiles, 0 community posts.
+  Those remain owner-gated and are not claimed as complete.
+
 ### Needs owner input (do not invent)
-1. **Price index provenance** — the page claims "2026 supplier quotes (average of 5 regional
-   suppliers)" with no source list. Need real quote URLs + access dates, or approval to relabel
-   the table as a planning range. Numbers left as published.
+1. **Price index provenance** — the false "2026 supplier quotes / average of 5 regional suppliers"
+   claim was removed on 2026-11-11, so the page is now honestly labelled as planning ranges. The
+   numbers themselves still have no source list: supply real quote URLs + access dates if they are to
+   be cited, or confirm the planning-range framing. Numbers left as published.
 2. **Density chart citations** — placeholders were removed; real supplier sheets are needed
    before the column can cite sources again.
 3. **`sameAs` / brand profiles** — no Twitter/X, LinkedIn, Facebook, Instagram, YouTube or Google
    Business Profile exists anywhere in the repo. `Organization` schema is otherwise correct.
 4. **Outreach tracker, send dates, 15–25 links** — owner mailbox and prospects.
-5. **Deploy + live header verification** — the `frame-ancestors` behaviour and the widget's 200
-   status can only be confirmed on the live host after an approved deploy.
+5. **Third-party embed proof** — the widget is live and framable (verified on the host), but no real
+   publisher embeds it yet; that needs an accepted outreach placement. `.htaccess` framing behaviour
+   is also untested off Vercel.
 6. **Widget framing policy** — `frame-ancestors *` is open by design; switch to an origin
    allowlist if that was not the intent.
+7. **Business identity / NAP** — no registered trading name, postal address or phone exists in the
+   repo, and `privacy.html` states none is published. Supplying one (even home-based service-area)
+   would unlock Google Business Profile, Bing Places, Apple Business Connect and Yelp in one step.
 
 ## Session 2026-11-10 — technical SEO pass
 - Fixed 7 calculator-page embeds from the missing `/embed/` path to `/embed.html`.
@@ -103,12 +226,17 @@ verifiable half of Task 4-6; outreach tasks 4-2 to 4-5 are owner work and are st
 - `tests/site-audit.py` now checks iframe/image/script targets and absolute OG/Twitter metadata; `npm test` 35 engine + 20 static pass, site audit passes.
 
 ## Current phase
-Phase 4 — authority and link building. Task 4-1 (linkable assets, incl. the embeddable widget) is
-complete in code; Tasks 4-2 to 4-5 are owner outreach work tracked in
-`seo-research/PHASE-4-AUTHORITY.md`; Task 4-6 is blocked on real brand profiles (`sameAs`).
-Calculator math unchanged.
+Phase 4 — authority and link building. **Preparation is complete and was re-verified on 2026-11-11;
+execution is owner-gated.**
+Task 4-1 is complete and verified live (commit `edb9943`), plus a citation surface that is built and
+tested but not deployed. Task 4-2 is assessed (3 submissions possible, local directories blocked).
+Task 4-3 has **100 verified targets on 69 domains**. Tasks 4-4/4-5 are written as pitches and drafts
+(0 sent, 0 posted). Task 4-6 is blocked on real brand profiles (`sameAs` stays empty on purpose).
+The 2026-11-11 pass corrected the 53-vs-57 bag arithmetic, removed unsupported density/price provenance
+claims and resolved the `hellogravel.com` contradiction. Backlinks earned: **0**. Calculator math
+unchanged.
 
-## Today's result (2026-11-09)
+## Result logged 2026-11-09 (Phase 3 subpage cluster)
 - Subpage calculator cluster wired with `/calculator-engine.js` and `/subpage-calculator.js`:
   - Added shared scripts and all expected IDs/sections to French drain, Bag, Tons, Crushed stone, Driveway, and Cost pages.
   - Added all expected input and output fields:
@@ -135,7 +263,7 @@ Calculator math unchanged.
   - Browser-verified: first visit shows the consent banner and makes no request to Google; **Accept analytics** loads `gtag/js?id=G-5P009C37K2` (HTTP 200) and sends `page_view` plus `consent_update` to `google-analytics.com/g/collect`; **Decline analytics** stores `denied` and loads nothing.
   - GTM container `GTM-NS2K4P78` remains available but is disabled (`containerId: ""`) so the same page view is not counted twice. The GA4 stream ID `16301390077` is admin metadata and is not needed in site code.
   - `privacy.html` updated to describe direct Google Analytics 4 accurately (last updated 2026-11-09).
-- `sitemap.xml` expanded from 7 to 14 URLs. All 7 Phase 3 calculator pages are included with their directory canonicals.
+- `sitemap.xml` went 7 → 14 URLs at Phase 3 and stands at **18 URLs** after the Phase 4 assets. All 7 calculator pages are included with their directory canonicals.
 - Homepage has a new "Calculators for specific projects" section linking all 7 calculator pages, so the cluster is no longer orphaned.
 - Static QA now checks the full sitemap set (including directory pages) and enforces homepage links to the cluster.
 - `npm run build:css` rebuilt `tailwind.css`; `npm test` passes **35 engine + 19 static = 54 PASS, 0 FAIL**.
@@ -153,21 +281,37 @@ Calculator math unchanged.
 - No new component markup added in that pass; only existing ids/classes restyled.
 
 ## How to continue after today
-1. Reread `index.html`, `analytics.js`, `analytics-config.js`, `privacy.html`, `sitemap.xml` and `tests/static-qa.test.js` before another round.
-2. Re-run `npm run build:css && npm test` after any CSS, Tailwind utility, analytics, sitemap or homepage change.
-3. Visual check before any deploy decision.
+1. Reread `memory.md`, the two `seo-research/` docs and whatever file you are about to touch.
+2. Phase 4 assets: `gravel-calculator-widget.html`, `widget.js`, `embed.html`, `vercel.json`
+   (widget-only CSP rule), `.htaccess`, and the embed section in all 7 `<page>/index.html`.
+   Invariants: never re-add an iframe of `/embed.html` to a calculator page, never put the widget in
+   `sitemap.xml` (it is `noindex`), and keep the widget driven by `calculator-engine.js` so its
+   numbers cannot drift from the main calculator.
+3. Research assets: `gravel-density-chart.html`, `french-drain-stone-guide.html`,
+   `gravel-price-index-2026.html`. Tables must stay consistent with the engine constants; no invented
+   suppliers, citations, prices or reviews.
+4. Keep the citation surface intact: the three table anchors and the "Cite this" blocks are the
+   deep links outreach offers, so do not rename them without updating `seo-research/` and the tests.
+5. After any HTML/CSS/JS change: `npm run build:css && npm test` (expect 35 engine + 25 static) and
+   `python tests/site-audit.py` (expect 21 pages, no errors).
+6. Visual check before any deploy decision, and re-verify on the host after an approved deploy.
 
 ## Phase 4 checklist
 - [x] 4-1a Embeddable widget live in code (`gravel-calculator-widget.html` + `widget.js`, framable,
       noindex) and distributed on all 7 calculator pages + `embed.html` + `llms.txt`
 - [x] 4-1b Reference assets citation-ready: schema, internal links, correct tables, styled
 - [x] 4-1c Asset discoverability: homepage `#reference-data` block + footer links
-- [ ] 4-1d Deploy and verify the live `frame-ancestors` header and a real third-party embed
-- [ ] 4-2 Foundation directory submissions (owner)
-- [ ] 4-3 100 qualified targets + 20 emails/week (owner)
-- [ ] 4-4 Digital PR pitches (owner)
-- [ ] 4-5 Community answers logged (owner)
-- [ ] 4-6 Brand profiles + `sameAs` in Organization schema (needs owner input)
+- [x] 4-1e Tables citable: `#density-table`, `#pipe-volume-table`, `#gravel-savings-table` +
+      "Cite this" blocks (price index excluded until its provenance is sourced)
+- [x] 4-1d Deployed in `edb9943`; live widget 200 + `frame-ancestors *` + renders `0.93/1.31/53`
+      (an actual third-party embed still needs a publisher from 4-3/4-4)
+- [~] 4-2 Only AlternativeTo / Product Hunt / SaaSHub are eligible; local directories blocked on
+      missing business identity (see `seo-research/DIRECTORY-SUBMISSIONS.md`)
+- [x] 4-3 100 targets on 69 domains verified in `seo-research/OUTREACH-TARGETS.md`; emails still 0 (owner)
+- [x] 4-4 Angles written in `seo-research/DIGITAL-PR-ANGLES.md`: 2 pitchable, 1 hedged, 2 not pitchable/blocked
+- [x] 4-5 `seo-research/COMMUNITY-PLAYBOOK.md`: rules sourced + 7 drafted answers; 0 posted (owner)
+- [~] 4-6 `seo-research/ENTITY-SIGNALS.md`: JSON + decision list ready; blocked on trading name/
+      address/profiles (owner)
 
 ## Phase 3 checklist
 ### Calculator pages — done
@@ -212,7 +356,7 @@ Calculator math unchanged.
 
 ### Search Console
 - Verify `www.progravelcalculator.online` (DNS TXT or the HTML file Vercel serves), then submit
-  `https://www.progravelcalculator.online/sitemap.xml` (now 14 URLs).
+  `https://www.progravelcalculator.online/sitemap.xml` (now 18 URLs).
 
 ## Hard constraints
 - Default calculator output must stay `0.93 yd³ / 1.31 short tons / 53 bags` on the homepage default.
@@ -220,24 +364,46 @@ Calculator math unchanged.
 - Do not invent GA4 IDs, GSC data, prices, reviews, or contact details.
 - Do not paste raw Google tags into HTML; analytics must stay consent-gated through `analytics.js`.
 - Do not commit, push, or deploy without explicit owner approval.
+- The widget stays `noindex` and out of `sitemap.xml`; `frame-ancestors *` applies to the widget path only.
+- Reference tables must match `calculator-engine.js`; no invented sources, supplier names or prices.
 - Update `memory.md` after every completed task.
 
 ## Verified earlier
 - Phase 2 Tasks 2-1 through 2-10 treated as verified, including browser check of cost estimator, bag sizes/pallets, share URL, PDF order sheet.
-- `npm test` 55 PASS, 0 FAIL in this session.
+- `npm test` **60 PASS, 0 FAIL** (35 engine + 25 static); `python tests/site-audit.py` PASS on 21 pages.
 
 ## Pending
-- Phase 2 Task 2-11 cross-browser/responsive-width matrix still open in the plan if it gets picked up again.
-- Search Console: submit/confirm `sitemap.xml`, request indexing for the 7 cluster URLs (T32), then log coverage after 7 days.
+- Phase 4 execution, all owner-side: send AlternativeTo (4-2); work the 69-domain list (4-3); send the
+  pitchable angles (4-4); post under the owner's account (4-5); claim profiles then wire
+  `sameAs` (4-6). Nothing else can move without a mailbox and a business identity.
+- Phase 4 / 4-1e deploy: the citation-surface changes are uncommitted and not live.
+- Owner input: price-index provenance, density-chart citations, widget framing allowlist decision.
+- Search Console: confirm `sitemap.xml` (18 URLs), request indexing for the 7 cluster URLs, log
+  coverage after 7 days.
 - Contact-form delivery endpoint/email.
+- Phase 2 Task 2-11 cross-browser/responsive-width matrix still open in the plan if it gets picked up again.
 
 ## Local run notes
 - Local dev command used earlier: `npm run dev` (python static server on `127.0.0.1:4173`).
+- This session's preview server: `python -m http.server 4199 --bind 127.0.0.1` (port 4173 belonged to
+  another thread).
+- `curl` from this machine returns `000` against most third-party hosts, so verify outreach URLs with
+  the fetch tool. Against our own host use `curl --compressed`, and remember `/index.html` 308s to `/`.
 - Tailwind config: `tailwind.config.js` with content `['./*.html','./*.js']` and `@tailwindcss/typography` plugin.
 - Custom CSS layer: `style.css`; utility layer: `tailwind.css` (do not edit by hand).
 
 ## Publish gate
-- Phase 3 build is deployed at commit `d0b96ac`; only the `memory.md` status update is uncommitted.
+- Phase 4 build is committed as `edb9943 phase4-1` and deployed; the live widget, the 18-URL
+  sitemap and the calculator embed sections were verified on the host.
+- Uncommitted right now: `gravel-density-chart.html`, `gravel-price-index-2026.html`,
+  `french-drain-stone-guide.html`, `sitemap.xml`, `tailwind.css`, `tests/static-qa.test.js`,
+  `memory.md`, `SEO Prompt - 2.md`, `seo-research/PHASE-4-AUTHORITY.md` (modified), plus new
+  `seo-research/OUTREACH-TARGETS.md`, `DIRECTORY-SUBMISSIONS.md`, `DIGITAL-PR-ANGLES.md`,
+  `COMMUNITY-PLAYBOOK.md`, `ENTITY-SIGNALS.md`. The three page files, `sitemap.xml` and
+  `tailwind.css` are **production** changes and are not live yet; the `seo-research/` files and
+  `SEO Prompt - 2.md` are not production assets.
+  Temporary build scripts (`_tmp_rows*.py`, `_tmp_build.py`, `_tmp_phase.py`, `_tmp_rows.csv`) were
+  deleted after use — do not reintroduce them.
 - Public client IDs (`GTM-…`, `G-…`, Formspree/Web3Forms endpoints/access keys) are visible to every visitor and are safe to commit.
 - Private API secrets do **not** belong in client-side config; use a serverless function and environment variables instead.
 - Future commit/push/deploy actions still require explicit owner approval.

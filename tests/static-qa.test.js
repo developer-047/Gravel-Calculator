@@ -540,6 +540,31 @@ test('gravel density chart conversions match the calculator engine', () => {
     assert.strictEqual(html.indexOf('[Supplier'), -1, 'placeholder supplier citations must not ship in the density chart');
 });
 
+test('reference tables expose stable anchors and a citation block', () => {
+    const density = read('gravel-density-chart.html');
+    assert.ok(density.indexOf('id="density-table"') >= 0, 'density table needs #density-table so writers can deep-link it');
+    assert.ok(density.indexOf('gravel-density-chart.html#density-table') >= 0, 'density chart needs a suggested citation pointing at the deep link');
+    assert.ok(density.indexOf('Cite this chart') >= 0, 'density chart needs a citation block');
+
+    const guide = read('french-drain-stone-guide.html');
+    ['pipe-volume-table', 'gravel-savings-table'].forEach((id) => {
+        assert.ok(guide.indexOf('id="' + id + '"') >= 0, 'french drain guide is missing #' + id);
+    });
+    assert.ok(guide.indexOf('french-drain-stone-guide.html#pipe-volume-table') >= 0, 'guide needs a suggested citation pointing at the deep link');
+
+    // Every advertised deep link must resolve to a real id on the page it names.
+    [
+        ['gravel-density-chart.html', 'density-table'],
+        ['french-drain-stone-guide.html', 'pipe-volume-table'],
+        ['french-drain-stone-guide.html', 'gravel-savings-table']
+    ].forEach((entry) => {
+        assert.ok(idsIn(read(entry[0])).indexOf(entry[1]) >= 0, entry[0] + ' advertises #' + entry[1] + ' but has no such id');
+    });
+
+    // The price index must not invite citation while its supplier data is unverified.
+    assert.strictEqual(read('gravel-price-index-2026.html').indexOf('Cite this'), -1, 'price index must not invite citations until its provenance is resolved');
+});
+
 test('homepage links every Phase 4 reference asset and the embed page', () => {
     const home = read('index.html');
     ['/gravel-density-chart.html', '/gravel-price-index-2026.html', '/french-drain-stone-guide.html', '/embed.html'].forEach((href) => {
