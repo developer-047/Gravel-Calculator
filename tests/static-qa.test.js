@@ -573,6 +573,89 @@ test('homepage links every Phase 4 reference asset and the embed page', () => {
 });
 
 // ---------------------------------------------------------------------------
+// Phase 5 answer-first / GEO surfaces
+// ---------------------------------------------------------------------------
+
+const contentPages = ['index.html']
+    .concat(subpageFiles)
+    .concat([
+        'gravel-density-chart.html',
+        'gravel-price-index-2026.html',
+        'french-drain-stone-guide.html',
+        'best-gravel-types.html',
+        'driveway-cost-guide.html'
+    ]);
+
+test('every content page front-loads an answer-first passage with a specific figure', () => {
+    contentPages.forEach((file) => {
+        const html = read(file);
+        const match = html.match(/<p\b[^>]*class=["'][^"']*answer-first[^"']*["'][^>]*>([\s\S]*?)<\/p>/i);
+        assert.ok(match, file + ': missing an .answer-first passage');
+
+        const firstH2 = html.search(/<h2\b/i);
+        assert.ok(firstH2 === -1 || match.index < firstH2, file + ': answer-first passage must precede the first H2');
+
+        const text = match[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        assert.ok(/\d/.test(text), file + ': answer-first passage needs a concrete figure');
+
+        // The passage has to sit near the top so a truncated extraction still
+        // carries the answer, the formula and the numbers.
+        const before = html.slice(0, match.index)
+            .replace(/<(script|style)\b[\s\S]*?<\/\1>/gi, ' ')
+            .replace(/<[^>]+>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+        const wordsBefore = before ? before.split(' ').length : 0;
+        assert.ok(wordsBefore <= 150, file + ': answer-first passage starts at word ' + wordsBefore + ' (max 150)');
+    });
+});
+
+test('the driveway page answers the full "how much gravel for a driveway" fan-out', () => {
+    const html = read('driveway-gravel-calculator/index.html');
+    const headings = (html.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/gi) || [])
+        .map((tag) => tag.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().toLowerCase());
+
+    [
+        'cubic yards of gravel does a driveway need',
+        'cubic yards of driveway gravel to tons',
+        'driveway gravel delivery cost',
+        'depth guide',
+        'material selection'
+    ].forEach((needle) => {
+        assert.ok(headings.some((heading) => heading.indexOf(needle) >= 0), 'driveway page is missing a section for "' + needle + '"');
+    });
+
+    assert.ok(html.indexOf('÷ 27') >= 0, 'driveway page must show the cubic-yard formula');
+    assert.ok(html.indexOf('÷ 2,000') >= 0, 'driveway page must show the yards-to-tons formula');
+    assert.ok(/HomeAdvisor/.test(html), 'the delivery figure must stay attributed to HomeAdvisor');
+});
+
+test('every content-page data table is semantic HTML with a header and body', () => {
+    contentPages.forEach((file) => {
+        const html = read(file);
+        const tables = html.match(/<table\b[\s\S]*?<\/table>/gi) || [];
+
+        tables.forEach((table, index) => {
+            const label = file + ': table ' + (index + 1);
+            assert.ok(/<thead\b/i.test(table), label + ' has no <thead>');
+            assert.ok(/<tbody\b/i.test(table), label + ' has no <tbody>');
+            assert.ok(/<th\b/i.test(table), label + ' has no header cells');
+            assert.ok(!/role=["'](table|row|cell|columnheader)["']/i.test(table), label + ' fakes a table with ARIA roles');
+        });
+    });
+
+    // The two citation-grade reference tables carry a caption so an extracted
+    // table still says what it measures.
+    assert.ok(/<table\b[^>]*id="density-table"[^>]*>\s*<caption/i.test(read('gravel-density-chart.html')), 'density table needs a caption');
+    assert.ok(/<table\b[^>]*>\s*<caption/i.test(read('gravel-price-index-2026.html')), 'price index table needs a caption');
+});
+
+test('GEO summaries carry figures instead of vague reference copy', () => {
+    assert.strictEqual(read('gravel-density-chart.html').indexOf('Comprehensive table of gravel materials'), -1, 'density chart subtitle regressed to vague copy');
+    assert.strictEqual(read('french-drain-stone-guide.html').indexOf('unique angles'), -1, 'French drain guide subtitle regressed to vague copy');
+});
+
+// ---------------------------------------------------------------------------
 // Calculator regression matrix (static equivalents)
 // ---------------------------------------------------------------------------
 

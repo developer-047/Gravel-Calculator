@@ -260,6 +260,27 @@
         if (body) body.innerHTML = coverageRows(density, depths);
     }
 
+    // Answer-first caption for the coverage panel: name the material, the
+    // coverage at the shallowest depths, then the density behind the figures.
+    function coverageCaption(subject, density, depths) {
+        var shown = depths.slice(0, 3).map(function (depth) {
+            return fmtInt(24000 / (density * depth)) + ' ft² at ' + depth + '″';
+        });
+        var list = shown.length > 1
+            ? shown.slice(0, -1).join(', ') + ' and ' + shown[shown.length - 1]
+            : shown[0];
+        var rest = depths.slice(3).map(function (depth) { return depth + '″'; });
+        var remainder = '';
+        if (rest.length > 1) {
+            remainder = '; the table adds ' + rest.slice(0, -1).join(', ') + ' and ' + rest[rest.length - 1];
+        } else if (rest.length === 1) {
+            remainder = '; the table adds ' + rest[0];
+        }
+        var densityText = density % 1 === 0 ? fmt(density, 0) : fmt(density, 1);
+        return 'One short ton of ' + subject + ' covers about ' + list + remainder +
+            '. Calculated at ' + densityText + ' lb/ft³; 50 lb bags.';
+    }
+
     function calculatorInput(options) {
         return {
             shape: options.shape || 'rectangle',
@@ -707,8 +728,8 @@
             var materialRecord = ENGINE.getMaterial(material) || ENGINE.MATERIALS.pea_gravel;
             var caption = byId('tons-coverage-caption');
             if (caption) {
-                caption.textContent = 'How much area 1 short ton of ' + materialRecord.label.toLowerCase() +
-                    ' covers at different depths. Calculated at ' + density + ' lb/ft³; 50 lb bags.';
+                caption.textContent = coverageCaption(
+                    materialRecord.label.toLowerCase(), density, [1, 2, 3, 4, 6, 12]);
             }
             renderCoverageTable('tons-coverage-body', density, [1, 2, 3, 4, 6, 12]);
 
@@ -835,8 +856,8 @@
 
             var caption = byId('stone-coverage-caption');
             if (caption) {
-                caption.textContent = 'How much area 1 short ton of ' + code + ' covers at different depths. ' +
-                    'Calculated at ' + density + ' lb/ft³; 50 lb bags.';
+                var captionSubject = code === 'crusher' ? 'crusher run' : code + ' stone';
+                caption.textContent = coverageCaption(captionSubject, density, [2, 3, 4]);
             }
             renderCoverageTable('stone-coverage-body', density, [2, 3, 4]);
 
@@ -976,8 +997,7 @@
             var densityForTable = density || 105;
             var caption = byId('driveway-coverage-caption');
             if (caption) {
-                caption.textContent = 'How much area 1 short ton covers at different depths for this driveway material. ' +
-                    'Calculated at ' + densityForTable + ' lb/ft³; 50 lb bags.';
+                caption.textContent = coverageCaption('this driveway material', densityForTable, [2, 4]);
             }
             renderCoverageTable('driveway-coverage-body', densityForTable, [2, 4]);
 

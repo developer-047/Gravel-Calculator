@@ -156,6 +156,7 @@
             <div class="max-w-7xl mx-auto px-6 py-4">
                 <h1 class="text-3xl font-bold text-slate-900">Gravel Cost Calculator</h1>
                 <p class="text-slate-500">Estimate material prices, compare bag vs bulk, and calculate total costs.</p>
+                <p class="answer-first text-sm text-slate-700 mt-2 max-w-5xl">Gravel material typically costs <strong>$30–$50/yd³</strong> for pea gravel and <strong>$45–$65/yd³</strong> for #57 stone before delivery, based on this site's 2026 planning ranges. Total = material + delivery + tax; bulk usually saves 20–30% above 0.5 cubic yards.</p>
                 <p class="text-xs text-slate-400 mt-1">Last updated: November 9, 2026</p>
             </div>
         </header>
@@ -341,8 +342,7 @@
                 <!-- 1. Material price inputs -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Material Price Inputs</h2>
-                    <p class="text-slate-500 mb-4">Enter your material prices to calculate total costs.</p>
-                    <p class="text-slate-500 mb-4">Preset material prices (USD, approximate regional averages):</p>
+                    <p class="text-slate-500 mb-4">Typical 2026 material prices are $30–$50/yd³ for pea gravel, $45–$65/yd³ for #57 stone and $35–$55/yd³ for crusher run, before delivery. Enter your local prices or use the presets as a starting point.</p>
                     <div>
                         <p class="font-medium text-slate-700">Pea Gravel:</p>
                         <ul class="list-disc list-inside text-slate-600">
@@ -364,14 +364,12 @@
                             <li>Price per ton: ~$20–$30</li>
                         </ul>
                     </div>
-                    <p class="text-slate-500 mt-4">Enter your local prices or use the presets as a starting point.</p>
                 </div>
 
                 <!-- 2. Bag price comparison -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Bag Price Comparison</h2>
-                    <p class="text-slate-500 mb-4">Enter the price you pay per bag size to compare against bulk delivery.</p>
-                    <p class="text-slate-500 mb-4">Typical bag prices (USD, 2026):</p>
+                    <p class="text-slate-500 mb-4">Typical 2026 bag prices are $3–$8 for a 50 lb bag, $2.50–$7 for a 40 lb bag and $4–$9 for a 60 lb bag.</p>
                     <div class="grid grid-cols-2 gap-4 text-slate-600">
                         <div>
                             <p class="font-medium text-slate-700">50 lb bag:</p>
@@ -402,8 +400,7 @@
                 <!-- 3. Bulk price input -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Bulk Price Input</h2>
-                    <p class="text-slate-500 mb-4">Enter the price per short ton for bulk delivery from your supplier.</p>
-                    <p class="text-slate-500 mb-4">Typical bulk prices (USD, 2026):</p>
+                    <p class="text-slate-500 mb-4">Typical 2026 bulk prices are $15–$30 per short ton for pea gravel, $25–$35 for #57 stone and $20–$30 for crusher run.</p>
                     <ul class="list-disc list-inside text-slate-600">
                         <li>Pea Gravel bulk: $15–$30 per ton</li>
                         <li>#57 Stone bulk: $25–$35 per ton</li>
@@ -414,13 +411,13 @@
 
                 <!-- 4. Cost comparison verdict -->
                 <div class="mb-10">
-                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Cost Comparison Verdict</h2>
-                    <p class="text-slate-500 mb-4">The calculator compares total bag cost vs total bulk cost and shows a verdict badge.</p>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">How the verdict works</h2>
+                    <p class="text-slate-500 mb-4">The calculator compares total bag cost with total bulk cost and labels the cheaper option; bulk usually saves 20–30% above 0.5 cubic yards.</p>
                     <p class="text-slate-500 mb-4">Verdict badge colors:</p>
                     <div>
                         <p class="font-medium text-green-600">🟢 Bulk is Cheaper</p>
                         <p class="text-slate-500">Savings: X%</p>
-                        <p class="font-medium text-red-600">🟢 Bags are Cheaper (for small quantities)</p>
+                        <p class="font-medium text-red-600">🔴 Bags are Cheaper (for small quantities)</p>
                         <p class="text-slate-500">Savings: X%</p>
                     </div>
                 </div>
@@ -428,7 +425,7 @@
                 <!-- 5. Waste/compaction allowance -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Waste/Compaction Allowance</h2>
-                    <p class="text-slate-500 mb-4">Add 0–25% extra material to account for loss during handling, spreading, and compaction.</p>
+                    <p class="text-slate-500 mb-4">Add 10% for standard residential work, 15% for heavy rain or poor drainage, and 20–25% for large projects or difficult access.</p>
                     <p class="text-slate-500 mb-4">Typical recommendations:</p>
                     <ul class="list-disc list-inside text-slate-600">
                         <li>10% — standard residential use</li>
@@ -462,7 +459,7 @@
                 <!-- 7. Related calculators -->
                 <div class="mt-10 pt-8 border-t border-slate-200">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Related calculators</h2>
-                    <p class="text-slate-500 mb-4">Use these with your cost project.</p>
+                    <p class="text-slate-500 mb-4">Use the bag, driveway or French drain calculator for the next part of the cost project.</p>
                     <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
                         <a href="/french-drain-gravel-calculator/" class="group inline-block text-blue-600 underline group-hover underline-offset-2">
                             <div class="flex items-center gap-2">

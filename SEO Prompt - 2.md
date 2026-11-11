@@ -544,11 +544,13 @@ Replace vague with specific:
 | "Delivery costs vary" | "Delivery: $50-$150 flat or $5-$15 per mile" |
 
 ### Phase 5 Checklist
-- [ ] Every H2 starts with direct, specific answer
-- [ ] First 200 words contain key formula/data
-- [ ] All tables use semantic HTML table
-- [ ] Fan-out queries answered on single pages
-- [ ] Vague statements replaced with specific data
+Status 2026-11-11: implemented in `seo-research/PHASE-5-GEO.md`; uncommitted and not live.
+- [x] Answer-first passage under every H1 (13 content pages; calculator form headings stay as control labels)
+- [x] First 200 words contain key formula/data (answer-first passage is inside the first 150 words)
+- [x] All tables use semantic HTML table
+- [x] Fan-out queries answered on single pages (driveway page completed 2026-11-11)
+- [x] Vague statements replaced with specific data
+- [ ] Deploy + re-crawl (owner approval)
 
 ---
 

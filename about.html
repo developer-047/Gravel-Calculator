@@ -139,6 +139,9 @@
         </p>
 
         <h2 id="methodology">How the estimate is calculated</h2>
+        <p>
+          The estimate converts every dimension to feet, calculates volume, then multiplies by the material's loose bulk density; waste and compaction are applied last.
+        </p>
         <ol>
           <li><strong>Convert every dimension to feet.</strong> Feet and inches are added together as <code>feet + inches ÷ 12</code>. Metres and centimetres are converted to feet using the exact factor 0.3048 m per foot.</li>
           <li><strong>Calculate the area.</strong> Rectangle: length × width. Circle: π × radius². L-shape: Section A + Section B.</li>
@@ -151,7 +154,7 @@
 
         <h2 id="densities">Density values used</h2>
         <p>
-          Weight depends on the material and on how loose or compacted it is. The calculator uses these typical <em>loose bulk</em> densities:
+          The calculator uses 105 lb/ft³ for pea gravel, 100 lb/ft³ for crushed stone, 110 lb/ft³ for sand and 108 lb/ft³ for river rock as typical <em>loose bulk</em> densities. Weight depends on the material and on how loose or compacted it is:
         </p>
         <div class="not-prose overflow-x-auto my-6">
           <table class="w-full text-sm border-collapse bg-white rounded-lg overflow-hidden">

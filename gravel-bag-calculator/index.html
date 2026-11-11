@@ -155,6 +155,7 @@
             <div class="max-w-7xl mx-auto px-6 py-4">
                 <h1 class="text-3xl font-bold text-slate-900">Gravel Bag Calculator</h1>
                 <p class="text-slate-500">Find how many 40, 50 or 60 lb bags of gravel you need, pallet counts and whether bulk is cheaper.</p>
+                <p class="answer-first text-sm text-slate-700 mt-2 max-w-5xl">One cubic yard of #57 stone fills <strong>54 × 50 lb bags</strong>; pea gravel fills about 57, river rock about 59 and masonry sand about 60. Bags = weight (lb) ÷ bag size, rounded up, and a short ton is 40 × 50 lb bags.</p>
                 <p class="text-xs text-slate-400 mt-1">Last updated: November 9, 2026</p>
             </div>
         </header>
@@ -314,7 +315,7 @@
             <!-- Bulk-vs-Bag comparison explanation -->
             <div id="bag-bulk-vs-bag-section" class="mt-8 border-t border-slate-200 pt-8 hidden">
                 <h2 class="text-2xl font-bold text-slate-800 mb-6">Bulk vs Bag: Which is Cheaper?</h2>
-                <p class="text-slate-500 mb-4">Enter your local bulk and bag prices to see the cost difference.</p>
+                <p class="text-slate-500 mb-4">Bulk is usually cheaper above about 0.5 cubic yards, but enter your local bulk and bag prices to see the difference for your project.</p>
                 <p class="text-slate-500" id="bag-verdict">–</p>
                 <p class="text-slate-500" id="bag-savings-badge">–</p>
             </div>
@@ -326,7 +327,7 @@
                 <!-- Bags per cubic yard -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Bags per Cubic Yard by Material</h2>
-                    <p class="text-slate-500 mb-4">Bag counts are rounded up. One cubic yard is 27 ft³, so weight per cubic yard = 27 × density.</p>
+                    <p class="text-slate-500 mb-4">One cubic yard of pea gravel fills about 57 × 50 lb bags, #57 stone about 54, river rock about 59 and masonry sand about 60. That is 27 × density ÷ bag weight, rounded up.</p>
                     <div>
                         <table class="w-full rounded-lg border border-slate-200">
                             <thead>
@@ -375,7 +376,7 @@
                 <!-- Bags per cubic ton -->
                 <div>
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Bags per Short Ton</h2>
-                    <p class="text-slate-500 mb-4">A short ton is 2,000 lb, so bags per ton depends only on bag size, not on the material.</p>
+                    <p class="text-slate-500 mb-4">One short ton fills 40 × 50 lb bags, 50 × 40 lb bags or 34 × 60 lb bags, regardless of material.</p>
                     <div>
                         <table class="w-full rounded-lg border border-slate-200">
                             <thead>
@@ -414,7 +415,7 @@
                 <!-- 1. How many bags -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">How many bags of gravel do I need?</h2>
-                    <p class="text-slate-500 mb-4">Enter your project dimensions above to get an instant bag count. The calculator includes waste and compaction allowances and rounds up to ensure you have enough material.</p>
+                    <p class="text-slate-500 mb-4">For #57 stone at 100 lb/ft³, one cubic yard needs 54 × 50 lb bags, or about 27 bags for half a yard. Enter your project dimensions above for an instant count that includes waste and compaction and rounds up.</p>
                     <ul class="list-disc list-inside space-y-3 text-slate-600">
                         <li><strong>Rectangular area:</strong> Length (ft) × Width (ft) × Depth (ft) ÷ 27 = cubic yards. Then weight = cubic feet × density (lb/ft³), and bags = weight ÷ bag size, rounded up.</li>
                         <li><strong>Circular area:</strong> π × (diameter/2)² × depth ÷ 27 = cubic yards.</li>
@@ -427,8 +428,8 @@
 
                 <!-- 2. Bags per cubic yard -->
                 <div class="mb-10">
-                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Bags per Cubic Yard by Material</h2>
-                    <p class="text-slate-500 mb-4">Reference table: how many 50 lb / 40 lb / 60 lb bags equal one cubic yard of each material (imperial, rounded).</p>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">How many 50 lb bags are in a cubic yard?</h2>
+                    <p class="text-slate-500 mb-4">A cubic yard of #57 stone fills 54 × 50 lb bags; pea gravel needs about 57, river rock about 59 and masonry sand 60. The same yard fills about 68–75 × 40 lb bags or 45–50 × 60 lb bags.</p>
                     <div class="grid grid-cols-2 gap-4 text-slate-600">
                         <div>
                             <p class="font-medium text-slate-700">50 lb bags:</p>
@@ -462,8 +463,8 @@
 
                 <!-- 3. Bags per ton -->
                 <div class="mb-10">
-                    <h2 class="text-2xl font-bold text-slate-800 mb-6">Bags per Short Ton</h2>
-                    <p class="text-slate-500 mb-4">One short ton is 2,000 lb, so the material density does not change these counts.</p>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">How many bags are in a short ton?</h2>
+                    <p class="text-slate-500 mb-4">A short ton is 2,000 lb, so it fills 40 × 50 lb bags, 50 × 40 lb bags or 34 × 60 lb bags whatever the material.</p>
                     <ul class="list-disc list-inside space-y-2 text-slate-600">
                         <li>50 lb bags: 2,000 ÷ 50 = 40 bags per short ton</li>
                         <li>40 lb bags: 2,000 ÷ 40 = 50 bags per short ton</li>
@@ -489,7 +490,7 @@
                 <!-- 5. Bags vs bulk -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">When to Buy Bags vs Bulk</h2>
-                    <p class="text-slate-500 mb-4">Use this guide to decide based on your project size and budget.</p>
+                    <p class="text-slate-500 mb-4">Buy bags for projects under about 0.5 cubic yards (27 × 50 lb bags of #57 stone); buy bulk above that, where the delivered per-ton price is usually lower.</p>
                     <div>
                         <p class="font-medium text-slate-700">Buy bags when:</p>
                         <ul class="list-disc list-inside text-slate-600">
@@ -542,7 +543,7 @@
                 <!-- 7. Related calculators -->
                 <div class="mt-10 pt-8 border-t border-slate-200">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Related calculators</h2>
-                    <p class="text-slate-500 mb-4">These tools share your project context and can help you plan the full material order.</p>
+                    <p class="text-slate-500 mb-4">Use the tons, cost or French drain calculator for the next part of the material order.</p>
                     <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
                         <a href="/french-drain-gravel-calculator/" class="group inline-block text-blue-600 underline group-hover underline-offset-2">
                             <div class="flex items-center gap-2">

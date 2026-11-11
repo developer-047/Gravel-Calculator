@@ -1,8 +1,60 @@
 # Project Memory — Pro Gravel Calculator
 
-Last refresh: 2026-11-11 (Phase 4 verification pass: bag arithmetic corrected, density/price
-provenance claims fixed, outreach list's competitor contradiction resolved)
+Last refresh: 2026-11-11 (Phase 5 pass: answer-first passages on all 13 content pages, driveway
+fan-out sections, semantic-table audit, reference captions, GEO QA tests; 64 PASS)
 Active site root: `C:\Users\Abdullah\Documents\GitHub\Gravel-Calculator`
+
+## Session 2026-11-11 — Phase 5: GEO and AI visibility
+
+Phase 5 (tasks 5-1 to 5-5) is implemented on-site and passes the local gates; **nothing is committed
+or deployed**. The audit and report are in `seo-research/PHASE-5-GEO.md`.
+
+### What was wrong before this pass
+- **No page was answer-first.** The first 200 words were navigation, form labels and a one-line
+  subtitle. The formula and worked examples sat hundreds of words below the calculator, so a
+  top-of-page passage extracted for an AI answer contained no answer, formula or figure.
+- **The driveway page did not answer its own fan-out.** "How much gravel for a driveway" splits into
+  depth, cubic yards, yards-to-tons, material and delivery. The page covered depth, material and bag
+  counts, but not the cubic-yard formula, the conversion formula or delivery cost (delivery existed
+  only on `driveway-cost-guide.html`).
+- **Two reference summaries were vague** — the density chart described itself as a "comprehensive
+  table" and the French drain guide promised "unique angles". Those are exactly the sentences an AI
+  answer would quote.
+
+### What was built / fixed
+- **`.answer-first` passage under the H1 on all 13 indexable content pages** (homepage, 7
+  calculators, density chart, price index, French drain stone guide, gravel types, driveway cost),
+  each with the direct answer, the formula and at least one specific figure:
+  homepage/pea gravel `0.93 yd³ / 1.31 short tons / 53 × 50 lb bags` at 3″; crushed stone
+  `1.23 yd³ / 1.67 tons / 67 bags` at 4″; tons `1.35 short tons per yd³`, 4 yd³ = 5.40 tons; bags
+  `54 × 50 lb bags per yd³`; cost `$30–$50/yd³` pea gravel and `$45–$65/yd³` #57; French drain
+  `3.05 yd³ / 4.11 tons / 165 bags` (existing 50 ft worked example); driveway `3.70 yd³ / 5.17 tons`.
+- **Driveway page fan-out completed** with three answer-first sections: "How many cubic yards of
+  gravel does a driveway need?" (2.47 + 1.23 = 3.70 yd³), "How do you convert cubic yards of
+  driveway gravel to tons?" (2.47 × 27 × 105 ÷ 2,000 = 3.50 and 1.23 × 27 × 100 ÷ 2,000 = 1.67, for
+  5.17 total) and "How much does driveway gravel delivery cost?" (HomeAdvisor ≈ $5/mile, 10 miles
+  ≈ $50, minimum loads, quoted by load, linked to the cost guide). Depth and material sections stay.
+- **Fact density:** density chart subtitle now states the real span (95 lb/ft³ / 1,522 kg/m³ for #8
+  to 120 lb/ft³ / 1,922 kg/m³ for #12) and its Twitter description was rewritten; price index states
+  $20–$50/ton and $30–$80/yd³ for 11 materials; French drain guide states 0.16 yd³ ≈ 9 × 50 lb bags
+  for 4″ × 50 ft; gravel-types lead now says which stone for which use plus 1.35 short tons/yd³.
+- **Semantic tables:** every data table on the 13 pages uses `<table>`/`<thead>`/`<tbody>`/`<th>`
+  with no ARIA-role or CSS-grid substitutes. `#density-table` and the price index table gained
+  `<caption class="sr-only">` labels so an extracted table still says what it measures.
+- **No new sources or figures were introduced.** Every number comes from `calculator-engine.js`,
+  the page's own tables or its existing worked example; the price index and density chart stay
+  labelled as planning ranges.
+- **Phase 5 QA added to `tests/static-qa.test.js` (+4 tests):** answer-first passage present, before
+  the first H2 and inside the first 150 words on all 13 pages; driveway fan-out headings, both
+  formulas and the attributed delivery figure; semantic tables and reference captions; vague
+  reference copy must not return.
+
+### Tests
+- `npm run build:css` exit 0; `npm test` **64 PASS, 0 FAIL** (35 engine + 29 static);
+  `python tests/site-audit.py` PASS on 21 pages.
+- Not run or not measurable: browser/visual pass (no visual check was requested), deploy, and AI
+  citation counts. AI Overview / ChatGPT / Perplexity citations need the Phase 6 measurement window
+  and must not be claimed.
 
 ## Session 2026-11-10 — Phase 4 start: authority assets
 
@@ -226,15 +278,14 @@ not just locally:
 - `tests/site-audit.py` now checks iframe/image/script targets and absolute OG/Twitter metadata; `npm test` 35 engine + 20 static pass, site audit passes.
 
 ## Current phase
-Phase 4 — authority and link building. **Preparation is complete and was re-verified on 2026-11-11;
-execution is owner-gated.**
-Task 4-1 is complete and verified live (commit `edb9943`), plus a citation surface that is built and
-tested but not deployed. Task 4-2 is assessed (3 submissions possible, local directories blocked).
-Task 4-3 has **100 verified targets on 69 domains**. Tasks 4-4/4-5 are written as pitches and drafts
-(0 sent, 0 posted). Task 4-6 is blocked on real brand profiles (`sameAs` stays empty on purpose).
-The 2026-11-11 pass corrected the 53-vs-57 bag arithmetic, removed unsupported density/price provenance
-claims and resolved the `hellogravel.com` contradiction. Backlinks earned: **0**. Calculator math
-unchanged.
+Phase 5 — GEO and AI visibility. **Implemented and verified locally on 2026-11-11; deploy is
+unapproved, so none of it is live.**
+Tasks 5-1 to 5-5 are complete in code: answer-first passages on all 13 content pages, the driveway
+fan-out (cubic yards, yards-to-tons, delivery), semantic-table audit and reference captions, and
+vague reference copy replaced with figures. Four Phase 5 tests guard the work.
+Phase 4 remains complete as preparation but its execution side is still owner-gated: 0 emails,
+0 backlinks, 0 brand profiles, 0 community posts. Calculator math is unchanged and the homepage
+default is still `0.93 yd³ / 1.31 short tons / 53 bags`.
 
 ## Result logged 2026-11-09 (Phase 3 subpage cluster)
 - Subpage calculator cluster wired with `/calculator-engine.js` and `/subpage-calculator.js`:
@@ -292,9 +343,22 @@ unchanged.
    suppliers, citations, prices or reviews.
 4. Keep the citation surface intact: the three table anchors and the "Cite this" blocks are the
    deep links outreach offers, so do not rename them without updating `seo-research/` and the tests.
-5. After any HTML/CSS/JS change: `npm run build:css && npm test` (expect 35 engine + 25 static) and
+5. After any HTML/CSS/JS change: `npm run build:css && npm test` (expect 35 engine + 29 static) and
    `python tests/site-audit.py` (expect 21 pages, no errors).
+7. Keep the `.answer-first` passage on every content page: the passage must precede the first H2 and
+   carry an answer, a formula and a figure. `tests/static-qa.test.js` asserts all three, and the
+   driveway page must keep answering cubic yards, yards-to-tons, depth, material and delivery.
 6. Visual check before any deploy decision, and re-verify on the host after an approved deploy.
+
+## Phase 5 checklist
+- [x] 5-1 Passage extractability: `.answer-first` passage under the H1 of all 13 content pages
+- [x] 5-2 Front-load key facts: answer + formula + figure inside the first 150 words (asserted)
+- [x] 5-3 Semantic tables: all data tables `<table>/<thead>/<tbody>/<th>`; `#density-table` and the
+      price index carry `<caption>`
+- [x] 5-4 Fan-out: the driveway page answers cubic yards, yards→tons, depth, material and delivery cost
+- [x] 5-5 Fact density: vague reference/lead copy replaced with figures, no new sources
+- [ ] Deploy + re-crawl: uncommitted and not live (owner approval)
+- [ ] AI citation measurement: needs the Phase 6 GSC/analytics window; no AI citation is claimed
 
 ## Phase 4 checklist
 - [x] 4-1a Embeddable widget live in code (`gravel-calculator-widget.html` + `widget.js`, framable,
@@ -370,7 +434,7 @@ unchanged.
 
 ## Verified earlier
 - Phase 2 Tasks 2-1 through 2-10 treated as verified, including browser check of cost estimator, bag sizes/pallets, share URL, PDF order sheet.
-- `npm test` **60 PASS, 0 FAIL** (35 engine + 25 static); `python tests/site-audit.py` PASS on 21 pages.
+- `npm test` **64 PASS, 0 FAIL** (35 engine + 29 static); `python tests/site-audit.py` PASS on 21 pages.
 
 ## Pending
 - Phase 4 execution, all owner-side: send AlternativeTo (4-2); work the 69-domain list (4-3); send the
@@ -382,6 +446,9 @@ unchanged.
   coverage after 7 days.
 - Contact-form delivery endpoint/email.
 - Phase 2 Task 2-11 cross-browser/responsive-width matrix still open in the plan if it gets picked up again.
+- Phase 5 deploy: the 13 content pages, `tailwind.css`, `tests/static-qa.test.js`, `memory.md`,
+  `SEO Prompt - 2.md` and `seo-research/PHASE-5-GEO.md` are uncommitted and not live. A browser
+  pass was not run because no visual check was requested.
 
 ## Local run notes
 - Local dev command used earlier: `npm run dev` (python static server on `127.0.0.1:4173`).
@@ -406,4 +473,9 @@ unchanged.
   deleted after use — do not reintroduce them.
 - Public client IDs (`GTM-…`, `G-…`, Formspree/Web3Forms endpoints/access keys) are visible to every visitor and are safe to commit.
 - Private API secrets do **not** belong in client-side config; use a serverless function and environment variables instead.
+- Phase 5 (2026-11-11) is uncommitted and not live: the 13 content pages, `tests/static-qa.test.js`,
+  `tailwind.css`, `memory.md`, `SEO Prompt - 2.md` and new `seo-research/PHASE-5-GEO.md`.
+  `git status` also shows pre-existing uncommitted edits from earlier sessions (`about.html`,
+  `contact.html`, `subpage-calculator.js`); those were not part of this pass and were left untouched.
+  No commit, push or deploy was performed.
 - Future commit/push/deploy actions still require explicit owner approval.

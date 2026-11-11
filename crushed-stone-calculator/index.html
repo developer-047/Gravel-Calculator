@@ -155,6 +155,7 @@
             <div class="max-w-7xl mx-auto px-6 py-4">
                 <h1 class="text-3xl font-bold text-slate-900">Crushed Stone Calculator</h1>
                 <p class="text-slate-500">Calculate #57, #411, #304 and crusher run for driveways, bases and drainage.</p>
+                <p class="answer-first text-sm text-slate-700 mt-2 max-w-5xl">A 10 ft × 10 ft area at 4 inches deep needs <strong>1.23 cubic yards</strong> of #57 stone — about <strong>1.67 short tons</strong> or <strong>67 × 50 lb bags</strong> at 100 lb/ft³. Cubic yards = area (ft²) × depth (ft) ÷ 27.</p>
                 <p class="text-xs text-slate-400 mt-1">Last updated: November 9, 2026</p>
             </div>
         </header>
@@ -292,14 +293,15 @@
 
             <!-- Coverage table -->
             <div id="stone-coverage" class="mt-8 p-6 bg-slate-50 rounded-lg hidden">
-                <h2 class="text-2xl font-bold text-slate-800 mb-6">Coverage per Ton by Depth</h2>
-                <p id="stone-coverage-caption" class="text-slate-500 mb-4">How much area 1 short ton of #57 stone covers at different depths. Calculated at 100 lb/ft³; 50 lb bags.</p>
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">Your coverage estimate</h2>
+                <p id="stone-coverage-caption" class="text-slate-500 mb-4">One short ton of #57 stone covers about 120 ft² at 2″, 80 ft² at 3″ and 60 ft² at 4″. Calculated at 100 lb/ft³; 50 lb bags.</p>
                 <div>
                     <table class="w-full rounded-lg border border-slate-200">
                         <thead>
                             <tr class="bg-slate-50">
                                 <th class="p-3 text-left text-sm font-medium text-slate-600">Depth</th>
                                 <th class="p-3 text-left text-sm font-medium text-slate-600">ft² per ton</th>
+                                <th class="p-3 text-left text-sm font-medium text-slate-600">in² per ton</th>
                                 <th class="p-3 text-left text-sm font-medium text-slate-600">Bags per ton</th>
                             </tr>
                         </thead>
@@ -307,16 +309,19 @@
                             <tr class="border-b">
                                 <td class="p-3">2″</td>
                                 <td class="p-3">120</td>
+                                <td class="p-3">17,280</td>
                                 <td class="p-3">40</td>
                             </tr>
                             <tr class="bg-white border-b">
                                 <td class="p-3">3″</td>
                                 <td class="p-3">80</td>
+                                <td class="p-3">11,520</td>
                                 <td class="p-3">40</td>
                             </tr>
                             <tr class="border-b">
                                 <td class="p-3">4″</td>
                                 <td class="p-3">60</td>
+                                <td class="p-3">8,640</td>
                                 <td class="p-3">40</td>
                             </tr>
                         </tbody>
@@ -331,7 +336,7 @@
                 <!-- 1. Size chart -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Crushed Stone Size Chart</h2>
-                    <p class="text-slate-500 mb-4">Standard size codes and typical applications.</p>
+                    <p class="text-slate-500 mb-4">Crushed stone is graded by size code: #57 (¾–1″) is the common driveway surface and French drain stone, #411 and #304 are base blends, and #8 (3/8–½″) is a topdressing.</p>
                     <div>
                         <table class="w-full rounded-lg border border-slate-200">
                             <thead>
@@ -390,21 +395,21 @@
                 <!-- 2. Which size for which project? -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Which size for which project?</h2>
-                    <p class="text-slate-500 mb-4">Decision guide for common applications.</p>
+                    <p class="text-slate-500 mb-4">Use crusher run or #304 for the 4″ base, #57 or #411 for the 2″ surface, and #8 for topdressing between pavers or on walkways.</p>
                     <div>
-                        <p class="font-medium text-slate-700">Base/Subgrade:</strong> Crusher Run or #304 — compacts well, provides stable foundation.</p>
+                        <p class="font-medium text-slate-700"><strong>Base/Subgrade:</strong> Crusher Run or #304 — compacts well, provides stable foundation.</p>
                         <ul class="list-disc list-inside text-slate-600">
                             <li>Highway base, driveway base, paver base</li>
                         </ul>
                     </div>
                     <div>
-                        <p class="font-medium text-slate-700">Surface/Topping:</strong> #57 or #411 — good drainage, interlocks when compacted.</p>
+                        <p class="font-medium text-slate-700"><strong>Surface/Topping:</strong> #57 or #411 — good drainage, interlocks when compacted.</p>
                         <ul class="list-disc list-inside text-slate-600">
                             <li>Driveway surface, walkways, French drain fill, landscaping</li>
                         </ul>
                     </div>
                     <div>
-                        <p class="font-medium text-slate-700">Decorative/Topdressing:</strong> #8 — smallest fraction, used for finish coats.</p>
+                        <p class="font-medium text-slate-700"><strong>Decorative/Topdressing:</strong> #8 — smallest fraction, used for finish coats.</p>
                         <ul class="list-disc list-inside text-slate-600">
                             <li>Walkway topdressing, between pavers, playground filler</li>
                         </ul>
@@ -414,7 +419,7 @@
                 <!-- 3. Density by size -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Density by Size Code</h2>
-                    <p class="text-slate-500 mb-4">Typical compacted bulk densities and conversion factors (27 ft³ per yd³):</p>
+                    <p class="text-slate-500 mb-4">At typical compacted densities, #57 stone weighs 100 lb/ft³ (1.35 short tons/yd³), #411 110 lb/ft³ (1.49 tons/yd³), and #304 and crusher run 105 lb/ft³ (1.42 tons/yd³).</p>
                     <div class="grid grid-cols-2 gap-4 text-slate-600">
                         <div>
                             <p class="font-medium text-slate-700">Compacted density:</p>
@@ -440,7 +445,7 @@
                 <!-- 4. Base vs surface -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Base vs Surface Stone</h2>
-                    <p class="text-slate-500 mb-4">Typical layering for a driveway.</p>
+                    <p class="text-slate-500 mb-4">A typical residential driveway uses a 4″ base of crusher run or #304 and a 2″ surface of #57 or #411, for 6″ total.</p>
                     <div>
                         <p class="font-medium text-slate-700">Base layer (recommended 4″):</p>
                         <ul class="list-disc list-inside text-slate-600">
@@ -462,7 +467,7 @@
                 <!-- 5. Coverage per ton -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Coverage per Ton by Depth</h2>
-                    <p class="text-slate-500 mb-4">How much area 1 short ton of crushed stone covers at different depths (#57 stone at 100 lb/ft³):</p>
+                    <p class="text-slate-500 mb-4">One short ton of #57 stone covers about 120 ft² at 2″ deep, 80 ft² at 3″ and 60 ft² at 4″:</p>
                     <div class="space-y-1 text-slate-600">
                         <p class="font-medium text-slate-700">1 ton at 2″ depth: ~120 ft² (approx. 11.1 m²)</p>
                         <p class="font-medium text-slate-700">1 ton at 3″ depth: ~80 ft² (approx. 7.4 m²)</p>
@@ -495,7 +500,7 @@
                 <!-- 7. Related calculators -->
                 <div class="mt-10 pt-8 border-t border-slate-200">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Related calculators</h2>
-                    <p class="text-slate-500 mb-4">These tools share your project context.</p>
+                    <p class="text-slate-500 mb-4">Use the French drain, bag or pea gravel calculator for the next part of the project.</p>
                     <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
                         <a href="/french-drain-gravel-calculator/" class="group inline-block text-blue-600 underline group-hover underline-offset-2">
                             <div class="flex items-center gap-2">

@@ -149,6 +149,7 @@
             <div class="max-w-7xl mx-auto px-6 py-4">
                 <h1 class="text-3xl font-bold text-slate-900">Driveway Gravel Calculator</h1>
                 <p class="text-slate-500">Calculate gravel for base and surface layers of a driveway.</p>
+                <p class="answer-first text-sm text-slate-700 mt-2 max-w-5xl">A 20′ × 10′ driveway with a 4″ crusher run base and a 2″ #57 surface needs about <strong>3.70 cubic yards</strong> — <strong>5.17 short tons</strong> — before allowances. Cubic yards = area (ft²) × depth (ft) ÷ 27, applied to each layer and added together.</p>
                 <p class="text-xs text-slate-400 mt-1">Last updated: November 9, 2026</p>
             </div>
         </header>
@@ -271,13 +272,14 @@
             <!-- Coverage table -->
             <div id="driveway-coverage" class="mt-8 p-6 bg-slate-50 rounded-lg hidden">
                 <h2 class="text-2xl font-bold text-slate-800 mb-6">Coverage per Ton by Depth</h2>
-                <p id="driveway-coverage-caption" class="text-slate-500 mb-4">How much area gravel covers at different depths for driveways.</p>
+                <p id="driveway-coverage-caption" class="text-slate-500 mb-4">One short ton of pea gravel covers about 114 ft² at 2″ and 57 ft² at 4″. Calculated at 105 lb/ft³; 50 lb bags.</p>
                 <div>
                     <table class="w-full rounded-lg border border-slate-200">
                         <thead>
                             <tr class="bg-slate-50">
                                 <th class="p-3 text-left text-sm font-medium text-slate-600">Depth</th>
                                 <th class="p-3 text-left text-sm font-medium text-slate-600">ft² per ton</th>
+                                <th class="p-3 text-left text-sm font-medium text-slate-600">in² per ton</th>
                                 <th class="p-3 text-left text-sm font-medium text-slate-600">Bags per ton</th>
                             </tr>
                         </thead>
@@ -285,11 +287,13 @@
                             <tr class="border-b">
                                 <td class="p-3">2″</td>
                                 <td class="p-3">114</td>
+                                <td class="p-3">16,457</td>
                                 <td class="p-3">40</td>
                             </tr>
                             <tr class="bg-white border-b">
                                 <td class="p-3">4″</td>
                                 <td class="p-3">57</td>
+                                <td class="p-3">8,229</td>
                                 <td class="p-3">40</td>
                             </tr>
                         </tbody>
@@ -304,7 +308,7 @@
                 <!-- 1. Overview -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Driveway Gravel Calculator Overview</h2>
-                    <p class="text-slate-500 mb-4">Calculate the right amount of gravel for your driveway project, including base and surface layers.</p>
+                    <p class="text-slate-500 mb-4">A typical 20′ × 10′ driveway with a 4″ crusher run base and a 2″ #57 surface needs about 3.70 cubic yards (5.17 short tons) before allowances.</p>
                     <p class="text-slate-500 mb-4">Gravel is typically sold by the cubic yard or by the ton. The calculator converts your dimensions into the quantity you need, accounting for material density and compaction.</p>
                     <ul class="list-disc list-inside space-y-3 text-slate-600">
                         <li>Select your material from presets or enter a custom density (lb/ft³).</li>
@@ -315,10 +319,28 @@
                     </ul>
                 </div>
 
-                <!-- 2. Material selection -->
+                <!-- 2. Fan-out: cubic yards -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">How many cubic yards of gravel does a driveway need?</h2>
+                    <p class="text-slate-500 mb-4">A 20′ × 10′ driveway (200 ft²) with a 4″ base and a 2″ surface needs <strong>3.70 cubic yards</strong>. Calculate each layer separately with <strong>cubic yards = area (ft²) × depth (ft) ÷ 27</strong>, then add them: 200 × 0.333 ÷ 27 = 2.47 yd³ of base and 200 × 0.167 ÷ 27 = 1.23 yd³ of surface.</p>
+                    <ul class="list-disc list-inside space-y-3 text-slate-600">
+                        <li>Measure the finished length and width in feet, or the diameter for a circular driveway.</li>
+                        <li>Convert each layer depth from inches to feet by dividing by 12: 4″ = 0.333 ft and 2″ = 0.167 ft.</li>
+                        <li>Divide the layer volume in cubic feet by 27 to get cubic yards, then add the base and surface totals.</li>
+                    </ul>
+                </div>
+
+                <!-- 3. Fan-out: cubic yards to tons -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">How do you convert cubic yards of driveway gravel to tons?</h2>
+                    <p class="text-slate-500 mb-4"><strong>Short tons = cubic yards × 27 × density (lb/ft³) ÷ 2,000.</strong> At the calculator's densities, the 2.47 yd³ crusher run base (105 lb/ft³) weighs 3.50 short tons and the 1.23 yd³ #57 surface (100 lb/ft³) weighs 1.67 short tons, for <strong>5.17 short tons</strong> in total. Metric tonnes = short tons × 0.907.</p>
+                    <p class="text-slate-500">Density is the only material-specific input: #57 stone is taken as 100 lb/ft³, crusher run and #304 as 105 lb/ft³, and pea gravel as 105 lb/ft³. Confirm the figure on the delivery ticket if your supplier publishes one.</p>
+                </div>
+
+                <!-- 4. Material selection -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Material Selection</h2>
-                    <p class="text-slate-500 mb-4">Choose from common driveway gravel types with preset densities.</p>
+                    <p class="text-slate-500 mb-4">Choose crusher run or #304 (105 lb/ft³) for the base, and #57 stone (100 lb/ft³) or pea gravel (105 lb/ft³) for the surface.</p>
                     <div>
                         <p class="font-medium text-slate-700">Pea Gravel (105 lb/ft³):</p>
                         <ul class="list-disc list-inside text-slate-600">
@@ -352,10 +374,10 @@
                     </div>
                 </div>
 
-                <!-- 3. Layer configuration -->
+                <!-- 5. Layer configuration -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Layer Configuration</h2>
-                    <p class="text-slate-500 mb-4">A typical residential driveway has two layers.</p>
+                    <p class="text-slate-500 mb-4">Build a 4″ base of crusher run or #304 and a 2″ surface of #57 stone, for 6″ total; heavy vehicles or weak soil may need 8–12″.</p>
                     <div>
                         <p class="font-medium text-slate-700">Base layer (recommended 4″):</p>
                         <ul class="list-disc list-inside text-slate-600">
@@ -381,10 +403,10 @@
                     </div>
                 </div>
 
-                <!-- 4. Depth guide -->
+                <!-- 6. Depth guide -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Depth Guide</h2>
-                    <p class="text-slate-500 mb-4">Recommended depths per application.</p>
+                    <p class="text-slate-500 mb-4">Use 4″ of base and 2″ of surface for most residential driveways; drop to 3″ base on stable, well-drained soil or rise to 6″ for weak soil and heavy loads.</p>
                     <div class="grid grid-cols-2 gap-4 text-slate-600">
                         <div>
                             <p class="font-medium text-slate-700">Base:</p>
@@ -405,10 +427,17 @@
                     </div>
                 </div>
 
-                <!-- 5. Bag and pallet breakdown -->
+                <!-- 7. Fan-out: delivery cost -->
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">How much does driveway gravel delivery cost?</h2>
+                    <p class="text-slate-500 mb-4">Delivery is often included in a delivered per-ton price. When a yard bills it separately, HomeAdvisor's planning guidance is about <strong>$5 per mile</strong>, so a 10-mile delivery is roughly <strong>$50</strong> on top of the material.</p>
+                    <p class="text-slate-500">Many yards charge by the load or apply a minimum order, and a truck that cannot reach the site may mean bulk bags or a smaller vehicle. Ask for the delivery line separately and confirm truck size and access before ordering. The <a href="/driveway-cost-guide.html" class="text-blue-600 underline">driveway cost guide</a> breaks down material, delivery and labour ranges.</p>
+                </div>
+
+                <!-- 8. Bag and pallet breakdown -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Bag and Pallet Breakdown</h2>
-                    <p class="text-slate-500 mb-4">How your material is packaged and priced.</p>
+                    <p class="text-slate-500 mb-4">A 50 lb bag is standard, 40 bags make a short ton, and 4 cubic yards of #57 stone is about 216 bags or 6 pallets.</p>
                     <div>
                         <p class="font-medium text-slate-700">Bag sizes:</p>
                         <ul class="list-disc list-inside text-slate-600">
@@ -428,7 +457,7 @@
                     <p class="text-slate-500 mt-3">Example: 4 cubic yards of #57 stone (100 lb/ft³) = 108 ft³ = 10,800 lb ≈ 5.40 short tons ≈ 216 bags (50 lb) ≈ 6 pallets (5 full + 16 loose bags at 40 bags/pallet).</p>
                 </div>
 
-                <!-- 6. FAQ -->
+                <!-- 9. FAQ -->
                 <div class="mb-10">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">FAQ</h2>
                     <dl class="grid grid-cols-2 gap-4 md:grid-cols-3 text-slate-600">
@@ -449,10 +478,10 @@
                     </dl>
                 </div>
 
-                <!-- 7. Related calculators -->
+                <!-- 10. Related calculators -->
                 <div class="mt-10 pt-8 border-t border-slate-200">
                     <h2 class="text-2xl font-bold text-slate-800 mb-6">Related calculators</h2>
-                    <p class="text-slate-500 mb-4">These tools share your project context.</p>
+                    <p class="text-slate-500 mb-4">Use the French drain, crushed stone or bag calculator for the next part of the project.</p>
                     <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
                         <a href="/french-drain-gravel-calculator/" class="group inline-block text-blue-600 underline group-hover underline-offset-2">
                             <div class="flex items-center gap-2">
